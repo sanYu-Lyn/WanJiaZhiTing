@@ -1,0 +1,14 @@
+var diffDays = function (targetDay) {
+  var reg = getRegExp("-", "g")
+  // 正则匹配将'-'替换为'/'。兼容iOS
+  targetDay = targetDay.replace(reg, '/')
+  var etime = Date.parse(getDate(targetDay));
+  var stime = Date.parse(getDate());
+  var usedTime = etime - stime; //两个时间戳相差的毫秒数
+  var days = Math.floor(usedTime / (24 * 3600 * 1000)) + 2;
+  return days < 0 ? '已到期' : days + '天';
+}
+
+module.exports = {
+  diffDays: diffDays,
+}

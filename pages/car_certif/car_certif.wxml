@@ -1,0 +1,35 @@
+<!--pages/car_certification/car_certification.wxml-->
+<view class="top_container">
+  <view class="title">范例</view>
+
+  <view class="root">
+    <image class="image" src="../../image/ic_car_certif.png" mode="widthFix"></image>
+    <view class="car_num" wx:if="{{type==0}}">您正在认证{{car.carNo}}</view>
+  </view>
+
+  <block wx:if="{{type==1}}">
+    <view class="line_horizontal" style="margin-top:30rpx" />
+    <view class="item_container">
+      <view class="item_title">车牌号</view>
+      <view class="item_content">{{car.carNo}}</view>
+    </view>
+    <view class="line_horizontal" />
+    <view class="item_container">
+      <view class="item_title">车辆识别代码<span style="color:#FF0000">*</span></view>
+      <input class="item_content" placeholder-style="item_placeholder" placeholder="请输入车架号后6位"></input>
+    </view>
+    <view class="line_horizontal" />
+    <view class="item_container">
+      <view class="item_title">发动机号<span style="color:#FF0000">*</span></view>
+      <input class="item_content" placeholder-style="item_placeholder" placeholder="请输入发动机号后6位"></input>
+    </view>
+  </block>
+
+</view>
+
+<block wx:if="{{type==0}}">
+  <view class="btn" hover-class="hover_def" bindtap="onCameraClick">上传行驶证自动识别</view>
+  <!-- <view class="btn" hover-class="hover_def" style="color:#5C5C5C" bindtap="onInputClick">手动输入</view> -->
+</block>
+
+<view wx:if="{{type==1}}" class="submit_btn" hover-class="hover_def" bindtap="onCertifClick">去认证</view>

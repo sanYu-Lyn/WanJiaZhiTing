@@ -1,0 +1,29 @@
+<!--pages/car_complain/car_complain.wxml-->
+
+<view class="top_container" style="margin-top:40rpx">
+  <view class="top_step" style="background:white">1</view>
+  <view class="top_line"></view>
+  <view class="top_step">2</view>
+  <view class="top_line"></view>
+  <view class="top_step">3</view>
+</view>
+<view class="top_container" style="margin-top:20rpx">
+  <view class="top_step_text">身份认证</view>
+  <view class="top_step_text" style="margin-left:45rpx;margin-right:45rpx">驾驶证认证</view>
+  <view class="top_step_text">申诉成功</view>
+</view>
+
+<view class="card_container">
+  <image class="card" mode="aspectFit" src="{{forwardPath?forwardPath:'../../image/ic_card_forward.png'}}"
+    bindtap="onFowardClick"></image>
+  <view class="card_text">身份证人像面</view>
+  <image class="card" mode="aspectFit" src="{{backPath?backPath:'../../image/ic_card_back.png'}}"
+    style="margin-top:20rpx" bindtap="onBackClick"></image>
+  <view class="card_text">身份证国徽面</view>
+</view>
+
+<view class="notice_txt" style="margin-top:20rpx">请拍摄并上传身份证正反面</view>
+<view class="notice_txt">请确保上传的图片及字体清晰</view>
+<view class="notice_txt">图片模糊、遮挡、光线暗可能不予通过</view>
+
+<view class="submit_btn" bindtap="onNextClick">下一步</view>

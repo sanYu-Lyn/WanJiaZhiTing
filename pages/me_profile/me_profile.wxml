@@ -1,0 +1,44 @@
+<!--pages/me_profile/me_profile.wxml-->
+<view class="line_horizontal" />
+<view class="item_container">
+  <view class="item_title">头像</view>
+  <image class="item_avatar" src="{{userInfo.avatarUrl}}"></image>
+</view>
+<view class="line_horizontal" />
+<view class="item_container">
+  <view class="item_title">昵称</view>
+  <view class="item_right">
+    <view class="item_content">{{nickname}}</view>
+    <!-- <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image> -->
+  </view>
+</view>
+<!-- <view class="line_horizontal" />
+<view class="item_container">
+  <view class="item_title">账号</view>
+  <view class="item_right">
+    <view class="item_content">{{userInfo.phone}}</view>
+    <view class="icon_more"></view>
+  </view>
+</view> -->
+<!-- <view class="line_horizontal" /> -->
+<!-- <picker bindchange="bindPickerChange" value="{{index}}" range="{{gender}}"> -->
+<!-- <view class="item_container">
+  <view class="item_title">性别</view>
+  <view class="item_right">
+    <view class="item_content">{{userInfo.gender===1?'男':'女'}}</view>
+    <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+  </view>
+</view> -->
+<!-- </picker> -->
+<!-- <view class="line_horizontal" /> -->
+<!-- <picker mode="region" bindchange="bindRegionChange"> -->
+<!-- <view class="item_container">
+  <view class="item_title">地区</view>
+  <view class="item_right">
+    <view class="item_content">{{userInfo.country}}{{userInfo.province}}{{userInfo.city}}</view>
+    <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+  </view>
+</view> -->
+<!-- </picker> -->
+
+<view class="logout" bindtap="loginOut">退出登录</view>

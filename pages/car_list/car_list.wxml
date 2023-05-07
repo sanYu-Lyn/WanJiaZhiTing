@@ -1,0 +1,36 @@
+<!--pages/car_list/car_list.wxml-->
+
+<view wx:if="{{cars&&cars.length>0}}" class="container">
+
+  <block wx:for="{{cars}}" wx:key="unique">
+    <view class="item_container">
+      <view class="item_top">
+        <image class="item_img" src="../../image/ic_list_car.png" mode="aspectFit" />
+        <view class="item_content">
+          <view class="item_title">{{item.carno}}</view>
+          <!-- <view class="item_improve">
+            <view class="item_desc">完善品牌信息</view>
+            <image class="item_more" src="../../image/ic_public_more.png" mode="aspectFit" />
+          </view> -->
+        </view>
+      </view>
+      <view class="line_horizontal" style="margin-top:30rpx"></view>
+      <view class="item_bottom">
+        <block wx:if="{{item.isLocked}}">
+          <view class="item_btn_checked" data-index="{{index}}">已认证</view>
+        </block>
+        <block wx:else>
+          <view class="item_btn" hover-class="hover_def" bindtap="onCerfClick" data-index="{{index}}">去认证</view>
+        </block>
+        <view class="item_unbind" hover-class="hover_def" bindtap="onUnbindClick" data-index="{{index}}">解绑</view>
+      </view>
+    </view>
+  </block>
+
+  <view class="submit_container">
+    <view class="submit" hover-class="hover_def" bindtap="jumpBindCar">添加车辆</view>
+  </view>
+
+</view>
+
+<empty_btn wx:else subtitle="您没有添加任何车辆噢" btnText="添加车辆" bind:commit="jumpBindCar"></empty_btn>

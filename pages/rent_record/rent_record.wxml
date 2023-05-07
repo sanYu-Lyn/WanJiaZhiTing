@@ -1,0 +1,15 @@
+<!--pages/rent_record/rent_record.wxml-->
+
+<block wx:if="{{datas&&datas.length>0}}">
+  <block wx:for="{{datas}}" wx:key="unique">
+    <view class="item_container">
+      <view class="item_title">{{item.parkName}}</view>
+      <view class="item_date">有效期：{{item.startDate}}至{{item.endDate}}</view>
+      <view class="item_pay_date">支付时间：{{item.paymentTime}}</view>
+      <view class="item_price">支付金额：{{item.realAmt}}</view>
+      <view class="item_no">{{item.code}}</view>
+    </view>
+  </block>
+</block>
+
+<empty wx:else subtitle="暂无购买记录"></empty>

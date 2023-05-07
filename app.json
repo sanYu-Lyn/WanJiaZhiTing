@@ -1,0 +1,72 @@
+{
+  "pages": [
+    "pages/park_list/park_list",
+    "pages/base_map/base_map",
+    "pages/base_result/base_result",
+    "pages/base_search/base_search",
+    "pages/base_login/base_login",
+    "pages/rent_detail/rent_detail",
+    "pages/rent_apply/rent_apply",
+    "pages/rent_card/rent_card",
+    "pages/rent_record/rent_record",
+    "pages/fee_coupon/fee_coupon",
+    "pages/fee_pay/fee_pay",
+    "pages/fee_bill/fee_bill",
+    "pages/find_car/find_car",
+    "pages/find_result/find_result",
+    "pages/me_center/me_center",
+    "pages/me_profile/me_profile",
+    "pages/me_wallet/me_wallet",
+    "pages/me_feedback/me_feedback",
+    "pages/car_list/car_list",
+    "pages/car_profile/car_profile",
+    "pages/car_models/car_models",
+    "pages/car_certif/car_certif",
+    "pages/car_bind/car_bind",
+    "pages/car_brand/car_brand",
+    "pages/car_complain/car_complain",
+    "pages/car_complain_car/car_complain_car",
+    "pages/invoice_list/invoice_list",
+    "pages/invoice_title/invoice_title",
+    "pages/invoice_send/invoice_send",
+    "pages/invoice_title_list/invoice_title_list",
+    "pages/wallet_history/wallet_history",
+    "pages/wallet_settings/wallet_settings",
+    "pages/base_notice/base_notice",
+    "pages/fee_cars/fee_cars",
+    "pages/base_redirect/base_redirect"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "@page_backgroud",
+    "navigationBarTitleText": "万家智停",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "@page_backgroud",
+    "enablePullDownRefresh": false
+  },
+  "networkTimeout": {
+    "request": 5000,
+    "connectSocket": 5000,
+    "uploadFile": 120000,
+    "downloadFile": 120000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取您的当前位置"
+    }
+  },
+  "plugins": {
+
+  },
+  "useExtendedLib": {
+    "weui": true
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "entryPagePath": "pages/park_list/park_list",
+  "themeLocation": "theme/theme.json",
+  "debug": true
+}

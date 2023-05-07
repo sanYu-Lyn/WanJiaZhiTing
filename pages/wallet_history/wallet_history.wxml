@@ -1,0 +1,20 @@
+<wxs module="record" src="../../wxs/record.wxs"></wxs>
+
+<view wx:if="{{datas&&datas.length!=0}}">
+  <block wx:for="{{datas}}" wx:key="unique">
+    <view class="item_container">
+      <view class="item_top">
+        <!-- <view class="item_txt_type">{{record.displayType(item)}}</view>
+        <view class="item_txt_price">{{record.displayPrice(item)}}</view> -->
+        <view class="item_txt_type">充值</view>
+        <view class="item_txt_price">￥{{item.amt}}</view>
+      </view>
+      <view class="item_bottom">
+        <view class="item_txt_date">{{item.paytime}}</view>
+        <!-- <view class="item_txt_money">余额 {{item.walletBalance}}</view> -->
+      </view>
+    </view>
+  </block>
+</view>
+
+<empty wx:else subtitle="暂无收支记录"></empty>

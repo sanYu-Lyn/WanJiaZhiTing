@@ -1,0 +1,6 @@
+<!--component/keytext/keytext.wxml-->
+<view>
+  <block wx:for="{{value}}" wx:key="index">
+    <text class="{{item == keyword ? 'highlight' : 'normal' }}">{{item}}</text>
+  </block>
+</view>

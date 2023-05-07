@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "停车缴费",
+  "usingComponents": {
+    "empty_btn": "../../component/empty_btn/empty_btn"
+  }
+}

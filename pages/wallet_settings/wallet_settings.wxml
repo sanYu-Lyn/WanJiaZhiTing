@@ -1,0 +1,11 @@
+<!--pages/wallet_settings/wallet_settings.wxml-->
+<view class="top_container">
+  <view class="top_title" bindtap="onRuleClick">无感支付服务规则 ></view>
+</view>
+
+<view class="item_container">
+  <text class="item_title">使用钱包无感支付</text>
+  <image class="item_image" src="{{checked?'../../image/ic_switch_on.png':'../../image/ic_switch_off.png'}}"
+    mode="aspectFit" bindtap="onSwitchClick">
+  </image>
+</view>

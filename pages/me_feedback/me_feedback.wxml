@@ -1,0 +1,54 @@
+<!--pages/me_feedback/me_feedback.wxml-->
+<view class="title_type">请选择您要反馈的问题类型（多选）</view>
+
+<view class="group_container">
+  <view style="display:flex;flex-direction:row">
+    <view class="group_item" style="margin-left:100rpx" bindtap="onImproveClick">
+      <image class="group_img"
+        src="{{advice?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}" mode="aspectFit" />
+      <view class="group_text">改进建议</view>
+    </view>
+    <view class="group_item" style="margin-left:100rpx" bindtap="onCouponClick">
+      <image class="group_img"
+        src="{{coupon?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}" mode="aspectFit" />
+      <view class="group_text">优惠券问题</view>
+    </view>
+  </view>
+
+  <view style="display:flex;flex-direction:row;margin-top:30rpx">
+    <view class="group_item" style="margin-left:100rpx" bindtap="onExceptionClick">
+      <image class="group_img"
+        src="{{exception?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}"
+        mode="aspectFit" />
+      <view class="group_text">缴费异常</view>
+    </view>
+    <view class="group_item" style="margin-left:100rpx" bindtap="onCardClick">
+      <image class="group_img"
+        src="{{card?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}" mode="aspectFit" />
+      <view class="group_text">停车卡问题</view>
+    </view>
+  </view>
+
+  <view style="display:flex;flex-direction:row;margin-top:30rpx">
+    <view class="group_item" style="margin-left:100rpx" bindtap="onPriceClick">
+      <image class="group_img"
+        src="{{price?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}" mode="aspectFit" />
+      <view class="group_text">收费标准</view>
+    </view>
+    <view class="group_item" style="margin-left:100rpx" bindtap="onOtherClick">
+      <image class="group_img"
+        src="{{other?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}" mode="aspectFit" />
+      <view class="group_text">其他</view>
+    </view>
+  </view>
+</view>
+
+<view class="title_type">请补充详细问题及建议</view>
+
+<view class="input_container">
+  <textarea class="input" placeholder-class="input_placeholder" name="advice" id="advice" cols="30" rows="20"
+    placeholder="请输入200个字以内的描述" bindinput="onContentChanged" maxlength="200"></textarea>
+  <view class="count">{{count}}/200</view>
+</view>
+
+<view class="submit_btn">提 交</view>

@@ -1,0 +1,64 @@
+/* pages/car_profile/car_profile.wxss */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.car_image {
+  width: 110rpx;
+  height: 86rpx;
+  margin-top: 63rpx;
+}
+
+.car_num {
+  font-size: 48rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+  margin-top: 28rpx;
+}
+
+.item_container {
+  height: 80rpx;
+  background: #FFFFFF;
+  padding: 0 30rpx 0 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item_right {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item_image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.item_title {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+}
+
+.item_desc {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #A2A3A3;
+  margin-right: 30rpx;
+}
+
+.item_more {
+  width: 16rpx;
+  height: 32rpx;
+}

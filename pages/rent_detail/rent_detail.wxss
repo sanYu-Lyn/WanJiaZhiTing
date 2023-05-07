@@ -1,0 +1,149 @@
+/* pages/detail/detail.wxss */
+
+.map {
+  width: 100%;
+  height: 300rpx;
+}
+
+.content {
+  padding: 30rpx;
+  background-color: white;
+}
+
+.title {
+  font-size: 34rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+}
+
+.address {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #A2A3A3;
+  margin-top: 8rpx;
+}
+
+.detail {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  margin-top: 12rpx;
+  color: #A2A3A3;
+}
+
+.rent_container {
+  width: 100%;
+  height: 80rpx;
+  background-color: white;
+  margin-top: 20rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.rent_item_title {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+}
+
+.rent_item_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rent_item_desc {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #A2A3A3;
+  margin-right: 10rpx;
+}
+
+.standard_container {
+  width: 100%;
+  background-color: white;
+  margin-top: 20rpx;
+  padding: 30rpx 30rpx 50rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.standard_title {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+}
+
+.standard_center {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.standard_image {
+  width: 224rpx;
+  height: 145rpx;
+}
+
+.standard_text {
+  font-size: 28rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #A2A3A3;
+  margin-top: 8rpx;
+}
+
+.standard_desc {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #A2A3A3;
+}
+
+.bottom_container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  background-color: white;
+  display: flex;
+}
+
+.bottom_map {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom_line {
+  width: 1rpx;
+  height: 100%;
+  background: #F1F5F8;
+}
+
+.bottom_go {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #6EC7FF;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

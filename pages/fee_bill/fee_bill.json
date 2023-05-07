@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "停车账单",
+  "usingComponents": {
+    "empty": "../../component/empty/empty"
+  },
+  "enablePullDownRefresh": true
+}

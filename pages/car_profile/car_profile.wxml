@@ -1,0 +1,29 @@
+<!--pages/car_profile/car_profile.wxml-->
+
+<view class="root">
+  <image class="car_image" src="../../image/ic_list_car.png"></image>
+  <view class="car_num">桂B-GT888</view>
+</view>
+
+<view class="item_container" style="margin-top:60rpx" bindtap="onCarClick">
+  <view class="item_title">品牌</view>
+  <view class="item_right">
+    <text class="item_desc">请选择</text>
+    <image class="item_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+  </view>
+</view>
+<view class="line_horizontal"></view>
+<view class="item_container" bindtap="onCarClick">
+  <view class="item_title">型号</view>
+  <view class="item_right">
+
+  </view>
+</view>
+<view class="line_horizontal"></view>
+<view class="item_container" bindtap="onCarClick">
+  <view class="item_title">颜色</view>
+  <view class="item_right">
+    <text class="item_desc">请选择</text>
+    <image class="item_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+  </view>
+</view>

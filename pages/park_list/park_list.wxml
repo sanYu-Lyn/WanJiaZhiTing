@@ -1,0 +1,34 @@
+<!--pages/me_wallet/me_wallet.wxml-->
+<view class="root">
+  <search_bar text="万家智停" profile="true"></search_bar>
+
+  <view style="{{'margin-top: ' + 0}}">
+    <block wx:for="{{parkings}}" wx:key="unique">
+      <view class="item_container" bindtap="jumpParkingDetail" data-index="{{index}}">
+        <view class="item_title">{{item.parkname}}</view>
+        <view class="text_address">{{item.p}}{{item.c}}{{item.q}}{{item.addres}}</view>
+        <view>
+          <view class="hor" style="justify-content:flex-start;">
+            <view class="hor" style="align-items: center">
+              <view class="text_address">停车位</view>
+              <view class="item_title" style="margin-left: 20rpx;color: #438EF2;">
+                {{item.usecount}}/{{item.totalcount}}
+              </view>
+            </view>
+            <view class="hor" style="align-items: center;;margin-left: 120rpx;">
+              <view class="text_address">充电桩</view>
+              <view class="item_title" style="margin-left: 20rpx;color: #0ED16B;">
+                {{item.usechargetotalcount}}/{{item.chargetotalcount}}
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="line_horizontal" style="margin-top: 32rpx;margin-bottom: 14rpx;"></view>
+        <view style="width: 100%;display: flex;flex-direction: row;justify-content: center;" bindtap="locateTo" data-index="{{index}}">
+          <view style="font-size: 30rpx;font-family: Microsoft YaHei;font-weight: 400; color: #6EC8FF;">去这里</view>
+        </view>
+
+      </view>
+    </block>
+  </view>
+</view>

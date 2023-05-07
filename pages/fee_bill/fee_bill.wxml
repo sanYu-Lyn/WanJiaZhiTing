@@ -1,0 +1,52 @@
+<!--pages/fee_bill/fee_bill.wxml-->
+<view class="line_horizontal"></view>
+
+<!-- <view class="tab_container">
+  <view class="tab_title_container" bindtap="onTabClick" data-index="0">
+    <view class="{{tab_index==0?'tab_title_selected':'tab_title'}}" data-index="0">待支付</view>
+  </view>
+  <view class="tab_title_container" bindtap="onTabClick" data-index="1">
+    <view class="{{tab_index==1?'tab_title_selected':'tab_title'}}" data-index="1">已支付</view>
+  </view>
+</view> -->
+
+<!-- <view style="margin-top: 130rpx;"> -->
+<view style="margin-top: 0rpx;">
+  <block wx:if="{{tab_index==0}}">
+    <block wx:for="{{noPayOders}}" wx:key="unique">
+      <view class="item_container" bindtap="onPayClick" data-index="{{index}}">
+        <view class="item_left">
+          <view class="item_title">{{item.parkname}}</view>
+          <view class="item_date">{{item.inttime}} 至 {{item.outtime}}</view>
+          <view class="item_num">{{item.carno}}</view>
+          <view class="item_pay">需支付 ￥{{item.amt}}</view>
+        </view>
+        <view class="item_right">
+          <view class="item_result_wait">去支付</view>
+        </view>
+      </view>
+    </block>
+  </block>
+
+  <block wx:if="{{tab_index==1}}">
+    <block wx:for="{{paidOrders}}" wx:key="unique">
+      <view class="item_container" bindtap="onPaidClick" data-index="{{index}}">
+        <view class="item_left">
+          <view class="item_title">{{item.parkname}}</view>
+          <view class="item_date">{{item.intime}} 至 {{item.outtime}}</view>
+          <view class="item_num">{{item.carno}}</view>
+          <view class="item_pay">已支付 ￥{{item.amt}}</view>
+        </view>
+        <!-- <view class="item_right">
+          <view class="item_result">支付成功</view>
+        </view> -->
+      </view>
+    </block>
+  </block>
+
+  <view style="width:100%;height:30rpx"></view>
+</view>
+
+<block wx:if="{{(tab_index==0&&(!noPayOders||noPayOders.length==0))||(tab_index==1&&(!paidOrders||paidOrders.length==0))}}">
+  <empty subtitle="暂未发现任何订单"></empty>
+</block>

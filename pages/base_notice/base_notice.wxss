@@ -1,0 +1,13 @@
+/* pages/base_notice/base_notice.wxss */
+
+.container {
+  padding: 0 30rpx 0 30rpx;
+}
+
+.item_text {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+  line-height: 40rpx;
+}

@@ -1,0 +1,116 @@
+/* pages/me_wallet/me_wallet.wxss */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.top_container {
+  height: 239rpx;
+  background: #FFFFFF;
+  width: 100%;
+}
+
+.top_title {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+  margin: 30rpx 0 0 30rpx;
+}
+
+.top_money_contaner {
+  display: flex;
+  margin-top: 25rpx;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.top_pay_setting {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+  margin-bottom: 20rpx;
+  margin-right: 10rpx;
+}
+
+.top_money {
+  font-size: 72rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+  margin-left: 15rpx;
+}
+
+.title {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+  margin: 30rpx 0 0 30rpx;
+}
+
+.board_container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.item_container {
+  width: 28%;
+  height: 160rpx;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+  margin: 30rpx 0 0 0;
+}
+
+.item_container_selected {
+  width: 28%;
+  height: 160rpx;
+  background: #FFFFFF;
+  border: 4rpx solid #6EC7FF;
+  box-sizing: border-box;
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #6EC7FF;
+  margin: 30rpx 0 0 0;
+}
+
+.item_block {
+  width: 28%;
+  height: 180rpx;
+  margin: 30rpx 0 0 0;
+}
+
+.submit {
+  width: 400rpx;
+  height: 80rpx;
+  background: #FFFFFF;
+  border-radius: 40rpx;
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

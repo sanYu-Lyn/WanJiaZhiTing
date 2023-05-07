@@ -1,0 +1,67 @@
+/* pages/me_feedback/me_feedback.wxss */
+
+.title_type {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+  margin: 30rpx;
+}
+
+.group_container {
+  background: #FFFFFF;
+  padding: 40rpx 0 40rpx 0;
+}
+
+.group_item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.group_img {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+.group_text {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+}
+
+.input_container {
+  width: 100%;
+  background: white;
+  display: flex;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 10rpx;
+  margin: 25rpx 30rpx 25rpx 30rpx;
+  border: 1px solid #F1F5F8;
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+}
+
+.input_placeholder {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #A2A3A3;
+}
+
+.count {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #A2A3A3;
+  position: absolute;
+  right: 50rpx;
+  bottom: 30rpx;
+}

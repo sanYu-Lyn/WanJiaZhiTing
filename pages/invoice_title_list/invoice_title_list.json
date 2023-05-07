@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "发票抬头",
+  "usingComponents": {
+    "empty_btn": "../../component/empty_btn/empty_btn"
+  }
+}

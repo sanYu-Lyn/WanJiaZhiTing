@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "购买记录",
+  "usingComponents": {
+    "empty": "../../component/empty/empty"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的车辆",
+  "usingComponents": {
+    "empty_btn": "../../component/empty_btn/empty_btn"
+  }
+}

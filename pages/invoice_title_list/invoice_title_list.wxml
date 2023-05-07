@@ -1,0 +1,24 @@
+<!--pages/invoice_title_list/invoice_title_list.wxml-->
+<view wx:if="{{titles&&titles.length>0}}" class="container">
+  <block wx:for="{{titles}}" wx:key="index">
+    <view class="item_container">
+      <view class="item_top">
+        <view wx:if="{{item.type==0}}" class="item_penson_tag">个人</view>
+        <view class="item_company_tag" wx:else>公司</view>
+        <view class="item_company_name">{{item.name}}</view>
+      </view>
+      <view class="line_horizontal"></view>
+      <view class="item_bottom">
+        <view class="item_delete" bindtap="onDelClick" data-index="{{index}}">删除</view>
+        <view class="item_edit" bindtap="onEditClick" data-index="{{index}}">编辑</view>
+      </view>
+    </view>
+  </block>
+
+
+  <view class="submit_container">
+    <view class="submit" bindtap="jumpAdd">添加发票抬头</view>
+  </view>
+</view>
+
+<empty_btn wx:else subtitle="您没有添加任何抬头噢" btnText="添加发票抬头" bind:commit="jumpAdd"></empty_btn>

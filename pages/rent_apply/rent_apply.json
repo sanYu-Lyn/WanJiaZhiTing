@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "租车位",
+  "usingComponents": {
+    "mp-actionSheet": "weui-miniprogram/actionsheet/actionsheet"
+  }
+}

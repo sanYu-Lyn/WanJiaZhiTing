@@ -1,0 +1,82 @@
+<!--pages/invoice_title/invoice_title.wxml-->
+<view class="container">
+  <view class="top_desc">如需开具增值税专用发票，需全部填写</view>
+
+  <view class="item_container" catchtap="onTypeClick">
+    <view class="item_title">抬头类型</view>
+    <image class="item_checkbox" data-index="0"
+      src="{{type==0?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}"></image>
+    <text class="item_checkbox_title" data-index="0">企业</text>
+    <image class="item_checkbox" data-index="1"
+      src="{{type==1?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}"
+      style="margin-left:30rpx"></image>
+    <text class="item_checkbox_title" data-index="1">个人及政府事业单位</text>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <view class="item_container">
+    <view class="item_title">名称<span style="color:red">*</span></view>
+    <input class="item_input" placeholder-class="item_desc" placeholder="输入企业或单位全称(必填)" model:value="{{name}}"></input>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <view class="item_container">
+    <view class="item_title">税号<span style="color:red">*</span></view>
+    <input class="item_input" placeholder-class="item_desc" placeholder="输入纳税人识别号(必填)" model:value="{{num}}"></input>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <view class="item_container" catchtap="onDefClick">
+    <view class="item_title">默认抬头</view>
+    <image class="item_checkbox" data-index="0"
+      src="{{def?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}"></image>
+    <text class="item_checkbox_title" data-index="0">是</text>
+    <image class="item_checkbox" data-index="1"
+      src="{{!def?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}"
+      style="margin-left:30rpx"></image>
+    <text class="item_checkbox_title" data-index="1">否</text>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <view class="item_container">
+    <view class="item_title">公司地址</view>
+    <input class="item_input" placeholder-class="item_desc" placeholder="输入企业或单位地址" model:value="{{addr}}"></input>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <view class="item_container">
+    <view class="item_title">电话号码</view>
+    <input class="item_input" placeholder-class="item_desc" placeholder="输入企业或单位电话号码" type="number"
+      model:value="{{phone}}"></input>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <view class="item_container">
+    <view class="item_title">开户银行</view>
+    <input class="item_input" placeholder-class="item_desc" placeholder="输入企业或单位开户银行"
+      model:value="{{bank_addr}}"></input>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <view class="item_container">
+    <view class="item_title">银行账号</view>
+    <input class="item_input" placeholder-class="item_desc" placeholder="输入企业或单位银行帐号" type="number"
+      model:value="{{bank_account}}"></input>
+  </view>
+
+  <view class="top_desc">填写联系方式，向你同步电子发票信息</view>
+
+  <view class="item_container">
+    <view class="item_title">手机号<span style="color:red">*</span></view>
+    <input class="item_input" placeholder-class="item_desc" placeholder="输入个人手机号码(必填)" type="number"
+      model:value="{{mobile}}"></input>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <view class="item_container" style="margin-bottom:130rpx">
+    <view class="item_title">邮箱<span style="color:red">*</span></view>
+    <input class="item_input" placeholder-class="item_desc" placeholder="输入个人邮箱(必填)" model:value="{{email}}"></input>
+  </view>
+
+  <view class="submit_btn" bindtap="submit">保 存</view>
+</view>

@@ -1,0 +1,6 @@
+<!--pages/base_result/base_result.wxml-->
+<view class="root">
+  <image src="../../image/ic_pay_success.png" mode="aspectFit" class="img"></image>
+  <view class="text">{{subTitle}}</view>
+  <view class="btn" bindtap="onCompleteClick">完成</view>
+</view>

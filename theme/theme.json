@@ -1,0 +1,8 @@
+{
+  "light": {
+    "page_backgroud": "#fff"
+  },
+  "dark": {
+    "page_backgroud": "#000"
+  }
+}

@@ -1,0 +1,80 @@
+/* pages/car_certification/car_certification.wxss */
+
+.top_container {
+  background-color: white;
+  padding: 30rpx 30rpx 0 30rpx;
+}
+
+.title {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  margin-top: 30rpx;
+}
+
+.image {
+  width: 100%;
+}
+
+.car_num {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80rpx;
+  margin: 30rpx 30rpx 0 30rpx;
+  background: #FFFFFF;
+  border-radius: 40px;
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #6EC7FF;
+}
+
+.item_container {
+  height: 80rpx;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.item_title {
+  flex: 3;
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+}
+
+.item_content {
+  flex: 7;
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+}
+
+.item_placeholder {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #A2A3A3;
+}

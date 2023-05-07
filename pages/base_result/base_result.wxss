@@ -1,0 +1,36 @@
+/* pages/base_result/base_result.wxss */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img {
+  width: 120rpx;
+  height: 120rpx;
+  margin-top: 100rpx;
+}
+
+.text {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+  margin-top: 20rpx;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400rpx;
+  height: 80rpx;
+  background: #FFFFFF;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+  margin-top: 100rpx;
+}

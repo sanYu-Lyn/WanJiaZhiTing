@@ -1,0 +1,19 @@
+<!--pages/car_brand/car_brand.wxml-->
+<view class="list_container" id="list_brand">
+  <block wx:for="{{groups}}" wx:key="unique">
+    <view class="list_title" id="{{item.word}}">{{item.word}}</view>
+    <block wx:for="{{item.data}}" wx:key="unique">
+      <view class="list_item_container">
+        <image class="list_item_img"></image>
+        <view class="list_item_txt">{{item}}</view>
+      </view>
+      <view class="line_horizontal" style="margin-left:30rpx;"></view>
+    </block>
+  </block>
+</view>
+
+<view class="gird_container" id="gird_prefix">
+  <block wx:for="{{prefix}}" wx:key="unique">
+    <view class="gird_item" bindtap="onWordClick" data-index="{{index}}">{{item}}</view>
+  </block>
+</view>

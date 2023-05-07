@@ -1,0 +1,6 @@
+<!--pages/base_notice/base_notice.wxml-->
+<view class="container">
+  <block wx:for="{{content}}" wx:key='unique'>
+    <view style="margin-top:30rpx;"> <text class="item_text">{{item}}</text></view>
+  </block>
+</view>

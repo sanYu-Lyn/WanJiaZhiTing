@@ -1,0 +1,56 @@
+<!--pages/detail/detail.wxml-->
+<view>
+
+  <image class="image" src="{{orderImg}}" wx:if="{{false}}" />
+
+  <view class="content_container" style="margin-top:20rpx;">
+    <view class="title">{{order.parkName}}</view>
+    <view class="desc">入场时间 {{order.intime}}</view>
+    <view class="desc">停车时间 {{order.parktime}}</view>
+    <view class="desc">车牌号 {{order.carno}}</view>
+  </view>
+
+  <view class="item" style="margin-top:20rpx;" bindtap="onCouponClick" wx:if="{{false}}">
+    <view class="item_title">优惠券</view>
+    <view class="item_end">
+      <text class="item_ticket_text" wx:if="{{coupon}}">{{coupon.discount}}折</text>
+      <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" wx:if="{{order.status=='needToPay'}}" />
+    </view>
+  </view>
+  <view class="line" />
+  <view class="item" style="margin-top:20rpx;">
+    <view class="item_title">总停车费用</view>
+    <view class="item_end">
+      <block wx:if="{{order.status=='needToPay'}}">
+        <text wx:if="{{coupon}}" class="price_old">￥{{order.amt}}</text>
+        <text class="price_now">￥{{order.amt}}</text>
+      </block>
+      <block wx:else>
+        <text class="price_now">￥{{order.amt}}</text>
+      </block>
+    </view>
+  </view>
+
+  <block wx:if="{{order.status=='needToPay'}}">
+    <view class="pay_title" style="margin-top:50rpx;">支付方式</view>
+    <view class="item" bindtap="onWXClick">
+      <view class="item_title">微信支付</view>
+      <image class="pay_checkbox" src="{{payType==1?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}" mode="aspectFit" />
+    </view>
+    <view class="line_horizontal"></view>
+    <view class="item" bindtap="onWalletClick">
+      <view class="item_title">钱包支付</view>
+      <image class="pay_checkbox" src="{{payType==0?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}" mode="aspectFit" />
+    </view>
+  </block>
+
+  <block wx:if="{{order.status=='payed'}}">
+    <view class="item" style="margin-top:20rpx">
+      <view class="item_title">账单编号</view>
+      <text class="order_num">{{order.code}}</text>
+    </view>
+  </block>
+
+  <view class="submit_btn" hover-class='pay_hover' bindtap="onPayClick" wx:if="{{order.status=='needToPay'}}">去支付</view>
+
+</view>

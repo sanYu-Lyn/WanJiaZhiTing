@@ -1,0 +1,86 @@
+<!--pages/rent_apply/rent_apply.wxml-->
+<wxs module="distance" src="../../wxs/distance.wxs"></wxs>
+<view class="container">
+
+  <view class="line_horizontal" />
+
+  <view class="address">
+    <view class="address_container">
+      <view class="address_title">{{parking.parkname}}</view>
+      <view class="address_detail">{{parking.p}}{{parking.c}}{{parking.q}}{{parking.addres}}</view>
+    </view>
+    <view class="address_arrow" wx:if="{{parking&&parking.lat&&parking.lng}}"><text style="font-weight:800">{{distance.distance(lat,lng,parking.lat,parking.lng)}}</text>{{distance.unit(lat,lng,parking.lat,parking.lng)}}
+    </view>
+  </view>
+
+  <view class="item_container" style="margin-top:20rpx" bindtap="onCarAClick">
+    <view class="item_title">车牌号码</view>
+    <view class="item_content">
+      <view class="item_content_detail">{{chooseACar.carno}}</view>
+      <image class="item_content_arrow" src="../../image/ic_public_more.png" mode="aspectFit" />
+    </view>
+  </view>
+  <view class="line_horizontal" />
+  <view class="item_container" bindtap="onCarBClick">
+    <view class="item_title">车牌号码</view>
+    <view class="item_content">
+      <view class="item_content_detail">{{chooseBCar.carno}}</view>
+      <image class="item_content_arrow" src="../../image/ic_public_more.png" mode="aspectFit" />
+    </view>
+  </view>
+
+  <view class="line_horizontal" style="margin-top:20rpx" />
+  <picker mode="date" start="2020-09-01" end="2099-09-01" bindchange="bindStartDateChange">
+    <view class="item_container">
+      <view class="item_title">开始日期</view>
+      <view class="item_content">
+        <view class="item_content_detail" wx:if="{{startDate==null}}">请选择日期</view>
+        <view class="item_content_detail" wx:else>{{startDate}}</view>
+        <image class="item_content_arrow" src="../../image/ic_public_more.png" mode="aspectFit" />
+      </view>
+    </view>
+  </picker>
+  <view class="line_horizontal" />
+  <view class="item_container">
+    <view class="item_title">购买时限</view>
+  </view>
+
+  <view class="board_container">
+    <block wx:for="{{monthAvaible}}" wx:key="unique">
+      <view class="{{item.count==monthCount?'month_container_selected':'month_container'}}" bindtap="onMonthClick" data-index="{{index}}" wx:if="{{item}}">{{item.value}}</view>
+      <view class="item_block" wx:else></view>
+    </block>
+  </view>
+
+  <!--<view class="item_container" style="margin-top:20rpx" bindtap="onCouponClick">
+    <view class="item_title">优惠券</view>
+    <view class="item_content">
+      <view class="item_content_detail">暂无可用优惠券</view>
+      <image class="item_content_arrow" src="../../image/ic_public_more.png" mode="aspectFit" />
+    </view>
+  </view>-->
+  <view class="line_horizontal" />
+  <view class="item_container" bindtap="onGroundClick" wx:if="{{false}}">
+    <view class="item_title">停车场类型</view>
+    <view class="item_content">
+      <view class="item_content_detail">{{ground==null?'':ground.text}}</view>
+      <image class="item_content_arrow" src="../../image/ic_public_more.png" mode="aspectFit" />
+    </view>
+  </view>
+
+
+
+  <view class="pay_container">
+    <view style="display: flex; flex: 4;margin-left: 32rpx;">
+      <view class="item_title">合计金额</view>
+      <view class="item_content_price"> {{amt<0?'':'￥'+amt}} </view>
+      </view>
+      <view class="line_vertical" style="height: 80rpx;"></view>
+      <view class="pay_btn" bindtap="onPayClick">立即支付</view>
+    </view>
+  </view>
+
+  <mp-actionSheet bindactiontap="onCarAChoose" show="{{showCarsASheet}}" actions="{{carNums}}" />
+  <mp-actionSheet bindactiontap="onCarBChoose" show="{{showCarsBSheet}}" actions="{{carNums}}" />
+  <mp-actionSheet bindactiontap="onPayChoose" show="{{showPayTypeSheet}}" actions="{{payType}}" />
+  <mp-actionSheet bindactiontap="onGroundChoose" show="{{showGroundTypeSheet}}" actions="{{groundType}}" />

@@ -1,0 +1,22 @@
+var displayType = function (data) {
+  switch (data.orderType) {
+    case "walletIn":
+      return "充值到钱包";
+    default:
+      return "支付"
+  }
+}
+
+var displayPrice = function (data) {
+  switch (data.orderType) {
+    case "walletIn":
+      return "+" + data.payedAmt;
+    default:
+      return "-" + data.payedAmt;
+  }
+}
+
+module.exports = {
+  displayType: displayType,
+  displayPrice: displayPrice,
+}

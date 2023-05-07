@@ -1,0 +1,61 @@
+<!--pages/me_invoice/me_invoice.wxml-->
+
+<view class="tab_container">
+  <view class="tab_title_container" bindtap="onTabClick" data-index="0">
+    <view class="{{tab_index==0?'tab_title_selected':'tab_title'}}" data-index="0">待开票</view>
+  </view>
+  <view class="tab_title_container" bindtap="onTabClick" data-index="1">
+    <view class="{{tab_index==1?'tab_title_selected':'tab_title'}}" data-index="1">已开票</view>
+  </view>
+</view>
+
+<view class="container" style="margin-bottom:150rpx">
+  <view class="top_container">
+    <block wx:if="{{tab_index==0}}">
+      <view class="top_left">
+        <image class="top_image" src="../../image/ic_checkbox_selected.png" mode="aspectFit"></image>
+        <text class="top_text">本页全选</text>
+        <image class="top_image" src="../../image/ic_checkbox_normal.png" mode="aspectFit" style="margin-left:46rpx">
+        </image>
+        <text class="top_text">全选</text>
+      </view>
+      <view class="top_add" bindtap="jumpAddTitle">发票抬头 ></view>
+    </block>
+    <block wx:else>
+      <text class="top_text">共45张</text>
+      <view class="top_add" bindtap="jumpAddTitle">发票抬头 ></view>
+    </block>
+  </view>
+
+  <block wx:if="{{tab_index==0}}">
+    <block wx:for="{{undoData}}" wx:key="unique">
+      <view class="item_container" bindtap="onChooseClick" data-index="{{index}}">
+        <image class="item_image"
+          src="{{item.selected?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}"
+          mode="aspectFit"></image>
+        <view class="item_content">
+          <view class="item_title">{{item.parkName}}</view>
+          <view class="item_subtitle">支付时间 {{item.outTime}}</view>
+          <view class="item_subtitle">车牌号 {{item.carNo}}</view>
+        </view>
+        <view class="item_price">￥{{item.amt}}</view>
+      </view>
+      <view class="next" bindtap="jumpNext">下一步</view>
+    </block>
+  </block>
+
+  <block wx:else>
+    <view class="item_container">
+      <view class="item_content" style="margin-left:30rpx">
+        <view class="item_title">AAAAAA</view>
+        <view class="item_subtitle">213123213213</view>
+        <view class="item_subtitle">1231231231231231231231231</view>
+      </view>
+      <image class="item_invoice_image" style="margin-right:60rpx" src="../../image/ic_invoice_done.png"
+        mode="aspectFit"></image>
+    </view>
+  </block>
+
+</view>
+
+<empty wx:if="((tab_index==0&&undoData.length==0)||(tab_index==1&&doneData.length==0))" subtitle="暂无发票"></empty>

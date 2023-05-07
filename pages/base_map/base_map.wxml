@@ -1,0 +1,98 @@
+<!--pages/map/map.wxml-->
+<wxs module="distance" src="../../wxs/distance.wxs"></wxs>
+
+<navbar text="万家智停" profile="true"></navbar>
+
+<map class="map" id="map" style="position:absolute;top:0px;left:0px;" longitude="{{longitude}}" latitude="{{latitude}}"
+  show-compass='false' enable-rotate='false' show-location='true' markers="{{makers}}" min-scale="10" max-scale="20"
+  bindregionchange='bindregionchange' bindmarkertap='bindmarkertap' bindupdated='onRendered'></map>
+
+<!--卡片-->
+<view class="tab">
+  <swiper class="swiper" previous-margin='60rpx' next-margin='40rpx' bindchange="onItemChanged"
+    current="{{currentIndex}}">
+    <block wx:for="{{data}}" wx:key='unique'>
+      <swiper-item>
+        <view class="swiper_item">
+
+          <view class="title_container">
+            <text class="text_title">{{item.name}}</text>
+            <image class="title_mark" src="../../image/ic_card_rent.png" wx:if="{{item.canRent}}"></image>
+          </view>
+
+          <text class="text_address">{{item.address}}</text>
+
+          <!--有合作的停车场-->
+          <view class="card_center" wx:if="{{item.parkId}}">
+            <view class="card_center_cell">
+              <view class="card_center_cell_detail">
+                <view class="text_count" style="color:#333333">{{distance.distance(lat,lng,item.lat,item.lng)}}</view>
+                <view class="text_unit">{{distance.unit(lat,lng,item.lat,item.lng)}}</view>
+              </view>
+              <view class="text_desc">距您</view>
+            </view>
+            <view class="card_center_cell">
+              <view class="card_center_cell_detail">
+                <view class="text_count" wx:if="{{item.availableTmpCnt<=10}}" style="color:#ff5959">
+                  {{item.availableTmpCnt}}
+                </view>
+                <view class="text_count" wx:elif="{{item.availableTmpCnt<=30}}" style="color:#ffab6e">
+                  {{item.availableTmpCnt}}
+                </view>
+                <view class="text_count" wx:else style="color:#6EC7FF">{{item.availableTmpCnt}}
+                </view>
+                <view class="text_unit">个</view>
+              </view>
+              <view class="text_desc">空余车位</view>
+            </view>
+            <view class="card_center_cell">
+              <view class="card_center_cell_detail">
+                <view class="text_count" style="color:#FFDB6E">{{item.freeTimeMin}}</view>
+                <view class="text_unit">分钟</view>
+              </view>
+              <view class="text_desc">免费时长</view>
+            </view>
+          </view>
+
+          <!--无合作的停车场-->
+          <view class="card_center" wx:else>
+            <view class="card_center_cell">
+              <view class="card_center_cell_detail">
+                <view class="text_count" style="color:#333333">{{distance.distance(lat,lng,item.lat,item.lng)}}</view>
+                <view class="text_unit">{{distance.unit(lat,lng,item.lat,item.lng)}}</view>
+              </view>
+              <view class="text_desc">距您</view>
+            </view>
+            <view class="card_center_cell" style="flex:2">
+              <view class="text_empty" style="color:#A2A3A3">非万家智停合作停车场</view>
+              <view class="text_empty" style="margin-top:10rpx;color:#A2A3A3">暂无数据</view>
+            </view>
+          </view>
+
+          <view class="card_bottom">
+            <view class="card_btn" hover-class="hover_def" bindtap="jumpDetail" data-index="{{index}}">查看详情</view>
+            <view class="line" />
+            <view class="card_btn" hover-class="hover_def" style="color: #6EC7FF;" bindtap="goTo"
+              data-index="{{index}}">去这里</view>
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!--搜索-->
+<view class="search">
+  <view class="search_input" bindtap="jumpSearch">
+    <image class="search_image" src="../../image/ic_map_search.png"></image>
+    <text class="search_text">现在您想去哪？</text>
+  </view>
+</view>
+
+<!--定位-->
+<view class="locate" bindtap="locate">
+  <image class="locate_img" src="../../image/ic_map_locate.png" mode="scaleToFill"></image>
+</view>
+
+<!--中心锚点-->
+<image class="map_center_anchor" src="../../image/ic_map_center.png" mode="scaleToFill"></image>

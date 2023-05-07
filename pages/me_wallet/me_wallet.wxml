@@ -1,0 +1,37 @@
+<!--pages/me_wallet/me_wallet.wxml-->
+<view class="root">
+
+  <view class="top_container">
+    <view class="top_title">余额</view>
+    <view class="top_money_contaner">
+      <view class="top_money">￥{{userExpandInfo.amt}}</view>
+      <view style="margin-bottom:30rpx">
+        <view>
+          <text class="top_pay_setting" bindtap="onHistoryClick">收支记录</text>
+          <image style="width:10rpx;height:20rpx;margin-right:30rpx" src="../../image/ic_public_more.png"
+            mode="aspectFit" />
+        </view>
+        <!-- <view>
+          <text class="top_pay_setting" bindtap="onSettingsClick">无感支付设置</text>
+          <image style="width:10rpx;height:20rpx;margin-right:30rpx" src="../../image/ic_public_more.png"
+            mode="aspectFit" />
+        </view> -->
+      </view>
+    </view>
+  </view>
+
+  <view style="width:100%">
+    <view class="title">选择充值金额</view>
+  </view>
+
+  <view class="board_container">
+    <block wx:for="{{content}}" wx:key="unique">
+      <view class="{{index==current?'item_container_selected':'item_container'}}" bindtap="onPriceClick"
+        data-index="{{index}}" wx:if="{{item}}">￥{{item}}</view>
+      <view class="item_block" wx:else></view>
+    </block>
+  </view>
+
+  <view class="submit" hover-class="hover_def" bindtap="onChargeClick">充值</view>
+
+</view>

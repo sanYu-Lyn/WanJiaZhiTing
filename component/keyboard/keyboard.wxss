@@ -1,0 +1,95 @@
+/* component/keyboard/keyboard.wxss */
+
+:host {
+  width: 100%;
+}
+
+.vehicle-panel {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.vehicle-panel-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vehicle-panel-row-last {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vehicle-panel-row-button {
+  width: 8%;
+  height: 83rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(105, 144, 168, 0.1);
+  margin-top: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1.4%;
+  background-color: #fff;
+}
+
+.vehicle-panel-row-button-p {
+  width: 10%;
+  height: 83rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(105, 144, 168, 0.1);
+  margin-top: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 12rpx;
+  background-color: #fff;
+}
+
+.vehicle-panel-row-button-d {
+  width: 8%;
+  height: 83rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 0rpx 10rpx 0rpx rgba(105, 144, 168, 0.1);
+  margin-top: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1.4%;
+  background-color: #A9AFBB
+}
+
+.vehicle-panel-row-button-disable {
+  color: #C2C2CA;
+}
+
+.vehicle-hover {
+  background-color: #ccc;
+}
+
+.vehicle-panel-row-button-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vehicle-en-button-delete {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.vehicle-panel-ok {
+  background-color: #0F4BA1;
+  color: #fff;
+  width: 150rpx;
+  height: 80rpx;
+}

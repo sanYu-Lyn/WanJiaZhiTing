@@ -1,0 +1,33 @@
+<!--search/search.wxml-->
+<view>
+
+  <view class="search_input_container">
+    <view class="search_input_content">
+      <image class="search_image" src="../../image/ic_map_search.png"></image>
+      <input class="search_text" bindinput="bindUserInput" focus="true" />
+    </view>
+  </view>
+
+  <view class="search_detail_container">
+    <block wx:for="{{result}}" wx:key="index">
+      <view class="result_line"></view>
+      <view class="result_container">
+        <view class="result_detail" bindtap="onItemClick" data-index="{{index}}">
+          <text class="result_item_title">{{item.title}}</text>
+          <text class="result_item_address">{{item.address}}</text>
+          <!-- <text class="result_item_data">{{item.category}}</text> -->
+        </view>
+        <view class="result_target" bindtap="navigate_to" data-index="{{index}}">
+          <image class="result_target_image" src="../../image/ic_search_target.png" />
+          <view class="result_target_text">去这里</view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <block wx:for="{{result}}" wx:key="index">
+    <keytext keyword='{{key}}' text='{{item.title}}'></keytext>
+  </block>
+
+
+</view>

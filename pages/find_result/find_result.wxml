@@ -1,0 +1,22 @@
+<!--pages/find_result/find_result.wxml-->
+
+<view class="title">您的爱车所在位置</view>
+
+<view class="car_container" wx:if="{{state==1}}">
+  <image class="car_image" src="../../image/ic_find_empty.png" mode="scaleToFill" />
+  <view class="car_title">{{result.name}}</view>
+  <view class="car_address">{{result.contact}}</view>
+  <!-- <view class="car_location">
+    <text class="car_subtitle">楼层：</text> <text class="car_detail">无</text> <text class="car_subtitle"
+      style="margin-left:27rpx">车位号：</text>
+    <text class="car_detail">无</text>
+  </view> -->
+</view>
+
+<view class="car_result_container" wx:if="{{state==2||state==3}}">
+  <image class="car_result_img" src="{{state==2?'../../image/ic_find_none.png':'../../image/ic_find_error.png'}}"
+    mode="aspectFit" />
+  <view class="car_result_desc" style="margin-top:13rpx">{{state==2?'请在本停车场停车后':'网络开小差啦'}}</view>
+  <view class="car_result_desc">{{state==2?'再进行反向寻车哦':'刷新一下试试'}}</view>
+  <view class="refresh_btn">{{state==2?'寻车位':'刷新一下'}}</view>
+</view>

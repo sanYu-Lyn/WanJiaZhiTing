@@ -1,0 +1,126 @@
+/* pages/car_list/car_list.wxss */
+
+.item_container {
+  margin: 30rpx 50rpx 0 50rpx;
+  background-color: white;
+  box-shadow: 0px 0px 10px 0px rgba(89, 114, 240, 0.1);
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+}
+
+.item_top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item_bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+}
+
+
+.item_img {
+  width: 110rpx;
+  height: 86rpx;
+}
+
+.item_content {
+  margin-left: 30rpx;
+}
+
+.item_title {
+  font-size: 48rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+}
+
+.item_improve {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow-wrap: break-word;
+}
+
+.item_desc {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+}
+
+.item_more {
+  width: 11rpx;
+  height: 20rpx;
+  margin-left: 10rpx;
+  margin-top: -2rpx;
+}
+
+.item_btn {
+  width: 112rpx;
+  height: 36rpx;
+  border: 1px solid #5C5C5C;
+  border-radius: 25px;
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+  margin-right: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item_btn_checked {
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #A2A3A3;
+  margin-right: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item_unbind {
+  width: 112rpx;
+  height: 36rpx;
+  border: 1px solid #A2A3A3;
+  border-radius: 25px;
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #A2A3A3;
+  margin-right: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.submit {
+  width: 400rpx;
+  height: 80rpx;
+  background: #FFFFFF;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

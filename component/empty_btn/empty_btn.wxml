@@ -1,0 +1,10 @@
+<!--component/empty/empty.wxml-->
+<view class="empty_container">
+  <image class="empty_img" src="../../image/ic_public_empty.png" mode="aspectFit" />
+  <view class="empty_text" style="margin-top:12rpx">{{title}}</view>
+  <view class="empty_text">{{subtitle}}</view>
+
+  <view class="submit_container">
+    <view class="submit" hover-class="hover_def" bindtap="onButtonClick">{{btnText}}</view>
+  </view>
+</view>

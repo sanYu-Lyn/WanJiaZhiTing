@@ -1,0 +1,51 @@
+<!--pages/rent_coupon/rent_coupon.wxml-->
+<view class="line_horizontal"></view>
+<view class="tab_container">
+  <view class="tab_title_container" bindtap="onTabClick" data-index="0">
+    <view class="{{tab_index==0?'tab_title_selected':'tab_title'}}" data-index="0">待使用</view>
+  </view>
+  <view class="tab_title_container" bindtap="onTabClick" data-index="1">
+    <view class="{{tab_index==1?'tab_title_selected':'tab_title'}}" data-index="1">已过期</view>
+  </view>
+</view>
+
+<empty wx:if="{{(tab_index==0&&usefulData&&usefulData.length==0)||(tab_index==1&&uselessData&&uselessData.length==0)}}"
+  title="空空如也" subtitle="暂时无优惠券可用" style="margin-top:100rpx" />
+
+<!--待使用-->
+<view wx:if="{{tab_index==0}}" class="userful_container">
+  <block wx:for="{{usefulData}}" wx:key="unique">
+    <view class="item_container" bindtap="onCouponClick" data-index="{{index}}">
+      <view class="item_container_1">
+        <view class="item_price">{{item.discount}}<text style="font-size: 32rpx">折</text></view>
+      </view>
+      <view class="item_container_2">
+        <view class="item_content_1">封顶可抵扣{{item.maxAmt}}元</view>
+        <view class="item_content_2">有效期至{{item.endDate}}</view>
+        <view class="item_content_3">{{item.couponDefName}}</view>
+      </view>
+      <view class="item_container_3">
+        <view class="item_state">去使用</view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<!--已过期-->
+<view wx:if="{{tab_index==1}}" class="userless_container">
+  <block wx:for="{{uselessData}}" wx:key="unique">
+    <view class="item_container" bindtap="onActiveClick" data-index="{{index}}">
+      <view class="item_container_4">
+        <view class="item_price">{{item.discount}}<text style="font-size: 32rpx">折</text></view>
+      </view>
+      <view class="item_container_5">
+        <view class="item_content_1">封顶可抵扣{{item.maxAmt}}元</view>
+        <view class="item_content_2">有效期至{{item.endDate}}</view>
+        <view class="item_content_3">{{item.couponDefName}}</view>
+      </view>
+      <view class="item_container_6">
+        <view class="item_state">激 活</view>
+      </view>
+    </view>
+  </block>
+</view>

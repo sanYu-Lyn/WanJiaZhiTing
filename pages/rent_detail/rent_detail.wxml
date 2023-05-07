@@ -1,0 +1,43 @@
+<!--pages/detail/detail.wxml-->
+<wxs module="distance" src="../../wxs/distance.wxs"></wxs>
+
+<view style="margin-bottom:120rpx">
+  <map id="rent_map" class="map" longitude='{{parkLng}}' latitude="{{parkLat}}" markers="{{makers}}"></map>
+  <view class=" content">
+    <view class="title">{{parking.parkname}}</view>
+    <view class="address">{{parking.p}}{{parking.c}}{{parking.q}}{{parking.addres}}</view>
+    <view class="detil" wx:if="{{true}}">
+      <text style="font-weight:400;color:#333333" wx:if="{{parking}}">{{distance.distance(lat,lng,parking.wd,parking.jd)}}</text>{{distance.unit(lat,lng,parking.wd,parking.jd)}}距您
+      <block wx:if="{{parking.id}}">
+        <text style="font-weight:400;color:#6EC7FF;margin-left:8rpx">{{parking.totalcount-parking.usecount}}</text>个空余车位
+        <text style="font-weight:400;color:#FFDB6E;margin-left:8rpx">{{parking.chargetotalcount-parking.usechargetotalcount}}</text>空余充电桩
+      </block>
+    </view>
+  </view>
+
+  <view class="rent_container" hover-class="hover_def" bindtap="goTo" wx:if="{{true}}">
+    <view class="rent_item_title">导航</view>
+    <view class="rent_item_container">
+      <view wx:if="{{parking.availableGroundMonthlyCnt==0&&parking.availableUndergroundMonthlyCnt==0}}" class="rent_item_desc">可租车位已满</view>
+      <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" />
+    </view>
+  </view>
+
+  <view class="standard_container" wx:if="{{monthCard!=null}}">
+    <view class="standard_title">参考收费信息</view>
+    <block wx:if="{{monthCard.ruledesc!=''}}">
+      <rich-text class="standard_text" nodes="{{monthCard.ruledesc}}"></rich-text>
+    </block>
+    <block wx:else>
+      <view class="standard_center">
+        <image class="standard_image" src="../../image/ic_charge_standard.png" mode="aspectFit" />
+        <view class="standard_desc">收费标准即将公布</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="bottom_container">
+    <view class="bottom_go" hover-class="hover_def" bindtap="jumpApply">租车位</view>
+  </view>
+
+</view>

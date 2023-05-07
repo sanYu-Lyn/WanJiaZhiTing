@@ -1,0 +1,88 @@
+<!--pages/me_center/me_center.wxml-->
+<view class="line_horizontal" />
+<view class="profile_container">
+  <!--已登录-->
+  <view class="profile_login_container" wx:if="{{userInfo}}" bindtap="jumpProfile">
+    <view class="profile_bind">
+      <image class="profile_avatar" src="{{userInfo.avatarUrl}}" mode="aspectFit"></image>
+      <view style="margin-left:23rpx">
+        <view class="profile_name">{{nickname}}</view>
+        <!-- <view class="profile_id">ID:100000</view> -->
+      </view>
+    </view>
+    <view class="profile_bind">
+      <view class="profile_home" style="margin-right:20rpx">个人主页</view>
+      <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!--未登录-->
+  <view class="profile_login_container" wx:if="{{!userInfo}}" bindtap="onLoginClick">
+    <view class="profile_bind">
+      <image class="profile_avatar" src="../../image/ic_avatar_def.png"></image>
+      <view style="margin-left:23rpx">
+        <view class="profile_name">未登录</view>
+      </view>
+    </view>
+    <view class="profile_bind">
+      <view class="profile_home" style="margin-right:20rpx">点击登录</view>
+      <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+</view>
+
+<!-- <view class="score_container">
+  <view class="score_item" hover-class="hover_def" bindtap="onCardClick">
+    <view class="score_number">{{userExpandInfo?userExpandInfo.monthlyTktCnt:0}}</view>
+    <view class="score_desc">月卡</view>
+  </view>
+  <view class="score_item" hover-class="hover_def" bindtap="onScoreClick">
+    <view class="score_number">0</view>
+    <view class="score_desc">积分</view>
+  </view>
+  <view class="score_item" hover-class="hover_def" bindtap="onCouponClick">
+    <view class="score_number">{{userExpandInfo?userExpandInfo.couponCnt:0}}</view>
+    <view class="score_desc">优惠券</view>
+  </view>
+</view> -->
+
+<view class="item_container" hover-class="hover_def" style="margin-top:20rpx" bindtap="onCarClick">
+  <view class="item_left">
+    <image class="item_image" src="../../image/ic_me_car.png" mode="aspectFit"></image>
+    <view class="item_title">我的车辆</view>
+  </view>
+  <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+</view>
+<view class="line_horizontal"></view>
+<view class="item_container" hover-class="hover_def" bindtap="onWalletClick">
+  <view class="item_left">
+    <image class="item_image" src="../../image/ic_me_wallet.png" mode="aspectFit"></image>
+    <view class="item_title">我的钱包</view>
+  </view>
+  <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+</view>
+<view class="line_horizontal"></view>
+<view class="item_container" hover-class="hover_def" bindtap="onInvoiceClick">
+  <view class="item_left">
+    <image class="item_image" src="../../image/ic_me_invoice.png" mode="aspectFit"></image>
+    <view class="item_title">停车账单</view>
+  </view>
+  <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+</view>
+<view class="line_horizontal"></view>
+<view class="item_container" hover-class="hover_def" bindtap="onCardClick">
+  <view class="item_left">
+    <image class="item_image" src="../../image/ic_me_ticket.png" mode="aspectFit"></image>
+    <view class="item_title">我的月卡</view>
+  </view>
+  <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+</view>
+<view class="line_horizontal"></view>
+<view class="item_container" hover-class="hover_def" bindtap="onFeedbackClick">
+  <view class="item_left">
+    <image class="item_image" src="../../image/ic_me_feedback.png" mode="aspectFit"></image>
+    <view class="item_title">意见反馈</view>
+  </view>
+  <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+</view>

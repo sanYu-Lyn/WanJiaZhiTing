@@ -1,0 +1,20 @@
+<!--pages/find_car/find_car.wxml-->
+<view wx:if="{{cars&&cars.length>0}}" class="container">
+  <view class="title">请选择或确认您需要交费的车辆车牌号</view>
+
+  <view wx:for="{{cars}}" wx:key="unique" catchtap="onItemClick" data-index="{{index}}">
+    <view class="item_container">
+      <image class="item_image" mode="aspectFit"
+        src="{{chooseIndex==index?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}" />
+      <view class="item_content">{{item.carno}}</view>
+    </view>
+  </view>
+
+  <view class="submit_container">
+    <view class="submit" hover-class="hover_def" bindtap="jumpBindCar">选择其他交费车辆</view>
+  </view>
+
+  <view class="submit_btn" hover-class="hover_def" bindtap="submit">提 交</view>
+</view>
+
+<empty_btn subtitle="您没有添加任何车辆噢" btnText="选择其他交费车辆" bind:commit="jumpBindCar" wx:else></empty_btn>

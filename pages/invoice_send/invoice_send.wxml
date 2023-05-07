@@ -1,0 +1,74 @@
+<!--pages/invoice_send/invoice_send.wxml-->
+<view class="container">
+
+  <view class="top_container">
+    <view class="top_title">基本资料</view>
+    <view bindtap="onAddClick">
+      <text class="top_add">选择已添加的抬头</text>
+      <image class="top_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <view class="item_container" catchtap="onTypeClick">
+    <view class="item_title">抬头类型</view>
+    <image class="item_checkbox" data-index="0"
+      src="{{type==0?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}"></image>
+    <text class="item_checkbox_title" data-index="0">企业</text>
+    <image class="item_checkbox" data-index="1"
+      src="{{type==1?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}"
+      style="margin-left:30rpx"></image>
+    <text class="item_checkbox_title" data-index="1">个人及政府事业单位</text>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <view class="item_container">
+    <view class="item_title">名称<span style="color:red">*</span></view>
+    <input class="item_input" placeholder-class="item_desc" placeholder="输入企业或单位全称(必填)" model:value="{{name}}"></input>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <block wx:if="{{type==0}}">
+    <view class="item_container">
+      <view class="item_title">税号<span style="color:red">*</span></view>
+      <input class="item_input" placeholder-class="item_desc" placeholder="输入纳税人识别号(必填)" model:value="{{num}}"></input>
+    </view>
+    <view class="line_horizontal"></view>
+  </block>
+
+  <view class="item_container">
+    <view class="item_title">更多内容</view>
+    <input class="item_input" placeholder-class="item_desc" placeholder="备注、地址等(非必填）" model:value="{{desc}}"></input>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <view class="item_container" style="margin-top:30rpx;justify-content:space-between;">
+    <view class="item_title">开票金额</view>
+    <text class="item_input" class="item_price">213123</text>
+  </view>
+
+  <view class="top_title" style="padding:30rpx">接受方式</view>
+
+  <view class="item_container">
+    <view class="item_title">电子邮箱</view>
+    <input class="item_input" placeholder-class="item_desc" placeholder="输入邮箱用于向你发送电子发票"
+      model:value="{{email}}"></input>
+  </view>
+  <view class="line_horizontal"></view>
+
+  <view class="item_container" catchtap="onSingleClick">
+    <view class="item_title">发送单行程</view>
+    <image class="item_checkbox" data-index="0"
+      src="{{single?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}"></image>
+    <text class="item_checkbox_title" data-index="0">是</text>
+    <image class="item_checkbox" data-index="1"
+      src="{{!single?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}"
+      style="margin-left:30rpx"></image>
+    <text class="item_checkbox_title" data-index="1">否</text>
+  </view>
+
+  <view class="submit_btn" bindtap="submit">提 交</view>
+
+  <mp-actionSheet bindactiontap="onTitleChoose" show="{{showActionsheet}}" actions="{{groups}}" />
+
+</view>
+

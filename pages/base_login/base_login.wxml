@@ -1,0 +1,67 @@
+<!--pages/base_login/base_login.wxml-->
+<view class="root">
+
+  <block wx:if="{{status!=2}}">
+    <image class="logo" src="../../image/ic_logo.png" mode="aspectFit"></image>
+    <view class="name">欢迎登录万家智停</view>
+
+    <view style="position:relative">
+      <view class="btn_wx">使用微信一键登录</view>
+      <button class="btn_hint" style="width:100%" size="default" open-type="getUserInfo" lang="zh_CN"
+        bindgetuserinfo="onWXLoginClick" />
+    </view>
+
+    <view style="display: flex;justify-content: center;align-items: center;margin-top:30rpx">
+      <image class="dialog_check" src="../../image/ic_checkbox_selected.png"></image>
+      <view class="dialog_check_agreement">
+        <view class="dialog_check_text">绑定手机号代表同意</view>
+        <view class="dialog_check_text" bindtap="onUserAgreementClick">《用户协议》</view>
+        <view class="dialog_check_text">和</view>
+        <view class="dialog_check_text" bindtap="onPrivacyAgreementClick">《隐私协议》</view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if="{{status==1}}">
+    <view class="dialog_root">
+      <view class="dialog_container">
+        <view class="dialog_title">绑定手机号</view>
+        <view style="position:relative">
+          <view class="dialog_phone">微信手机号一键绑定</view>
+          <button class="btn_phone_hint" style="width:100%" size="default" open-type="getPhoneNumber" lang="zh_CN"
+            bindgetphonenumber="onBindPhoneClick" />
+        </view>
+        <view style="display: flex;justify-content: center;align-items: center;margin-top:30rpx;margin-bottom:50rpx;">
+          <image class="dialog_check" src="../../image/ic_checkbox_selected.png"></image>
+          <view class="dialog_check_agreement">
+            <view class="dialog_check_text">绑定手机号代表同意</view>
+            <view class="dialog_check_text" bindtap="onUserAgreementClick">《用户协议》</view>
+            <view class="dialog_check_text">和</view>
+            <view class="dialog_check_text" bindtap="onPrivacyAgreementClick">《隐私协议》</view>
+          </view>
+        </view>
+        <image class="dialog_close" src="../../image/ic_public_close.png" bindtap="onCloseClick"></image>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if="{{status==2}}">
+    <image class="logo" style="margin-top:100rpx" src="../../image/ic_logo.png" mode="aspectFit"></image>
+    <view class="name">欢迎登录万家智停</view>
+
+    <view class="input_container" style="margin-top:80rpx">
+      <view class="input_title">手机号码</view>
+      <view class="input_text">{{phone}}</view>
+    </view>
+    <view class="line_horizontal" style="box-sizing:border-box;padding-left:30rpx;margin-right:30rpx"></view>
+    <view class="input_container">
+      <view class="input_title">验证码</view>
+      <input type="number" placeholder-class="input_hint" placeholder="请输入验证码" class="input_text"
+        bindinput="onCodeInput" />
+      <view class="btn_code" bindtap="onGetCodeClick">{{time==60?'获取验证码':time+'s'}}</view>
+    </view>
+    <view class="line_horizontal" style="margin-left:30rpx;margin-right:30rpx"></view>
+    <view class="btn_login" bindtap="onPhoneLoginClick">登录</view>
+  </block>
+
+</view>

@@ -1,0 +1,64 @@
+<!--component/keyboard/keyboard.wxml-->
+
+<view wx:if="{{isShow}}" class="vehicle-panel" style="background-color:#cfd3da;padding:10rpx 0 10rpx 0">
+  <!--省份简写键盘-->
+  <block wx:if="{{keyBoardType === 1}}">
+    <view class="vehicle-panel-row">
+      <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button-p'
+        style="border:{{buttonBorder}}" wx:for="{{keyVehicle1}}" bindtap='vehicleTap' data-value="{{item}}"
+        wx:for-index="idx" wx:key="idx">{{item}}</view>
+    </view>
+    <view class="vehicle-panel-row">
+      <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button-p'
+        style="border:{{buttonBorder}}" wx:for="{{keyVehicle2}}" bindtap='vehicleTap' data-value="{{item}}"
+        wx:for-index="idx" wx:key="idx">{{item}}</view>
+    </view>
+    <view class="vehicle-panel-row">
+      <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button-p'
+        style="border:{{buttonBorder}}" wx:for="{{keyVehicle3}}" bindtap='vehicleTap' data-value="{{item}}"
+        wx:for-index="idx" wx:key="idx">{{item}}</view>
+    </view>
+    <view class="vehicle-panel-row-last">
+      <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button-p'
+        style="border:{{buttonBorder}}" bindtap='vehicleTap' data-value="{{item}}" wx:for="{{keyVehicle4}}"
+        wx:for-index="idx" wx:key="idx">{{item}}
+      </view>
+    </view>
+  </block>
+  <!--英文键盘  -->
+  <block wx:else>
+    <view class="vehicle-panel-row">
+      <view hover-class="{{numberEnable?'vehicle-hover':''}}" hover-start-time="10" hover-stay-time="100"
+        class="{{numberEnable?'vehicle-panel-row-button':'vehicle-panel-row-button vehicle-panel-row-button-disable'}}"
+        bindtap='vehicleTap' data-value="{{item}}" wx:for="{{keyNumber}}" style="border:{{buttonBorder}}"
+        wx:for-index="idx" wx:key="item">{{item}}</view>
+    </view>
+    <view class="vehicle-panel-row">
+      <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button'
+        style="border:{{buttonBorder}}" wx:for="{{keyEnInput1}}" bindtap='vehicleTap' data-value="{{item}}"
+        wx:for-index="idx" wx:key="idx">{{item}}</view>
+    </view>
+    <view class="vehicle-panel-row">
+      <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button'
+        style="border:{{buttonBorder}}" wx:for="{{keyEnInput2}}" bindtap='vehicleTap' data-value="{{item}}"
+        wx:for-index="idx" wx:key="idx">{{item}}</view>
+    </view>
+    <view class="vehicle-panel-row">
+      <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100" class='vehicle-panel-row-button'
+        style="border:{{buttonBorder}}" wx:for="{{keyEnInput3}}" bindtap='vehicleTap' data-value="{{item}}"
+        wx:for-index="idx" wx:key="idx">{{item}}</view>
+    </view>
+    <view class="vehicle-panel-row-last">
+      <view hover-class="{{specialEnable?'vehicle-hover':''}}" hover-start-time="10" hover-stay-time="100"
+        class="{{specialEnable?'vehicle-panel-row-button':'vehicle-panel-row-button vehicle-panel-row-button-disable'}}"
+        bindtap='vehicleTap' style="border:{{buttonBorder}}" data-value="{{item}}" wx:for="{{keyEnInput4}}"
+        wx:for-index="idx" wx:key="idx">
+        {{item}}</view>
+      <view hover-class="vehicle-hover" hover-start-time="10" hover-stay-time="100"
+        class='vehicle-panel-row-button-d vehicle-panel-row-button-img'>
+        <image src="../../image/ic_keyboard_del.png" class='vehicle-en-button-delete' bindtap='vehicleTap'
+          data-value="delete" mode='aspectFit'></image>
+      </view>
+    </view>
+  </block>
+</view>

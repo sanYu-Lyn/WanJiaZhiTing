@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "电子发票",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "empty": "../../component/empty/empty"
+  }
+}

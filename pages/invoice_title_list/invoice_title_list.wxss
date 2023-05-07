@@ -1,0 +1,114 @@
+/* pages/invoice_title_list/invoice_title_list.wxss */
+
+.item_container {
+  height: 180rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 30rpx 30rpx 0 30rpx;
+}
+
+.item_top {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5rpx 20rpx 5rpx 20rpx;
+}
+
+.item_bottom {
+  flex: 1;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 5rpx 20rpx 5rpx 20rpx;
+}
+
+.item_penson_tag {
+  width: 78rpx;
+  height: 34rpx;
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #FFAE58;
+  border: 1rpx solid #FFAE58;
+  border-radius: 17rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item_company_tag {
+  width: 78rpx;
+  height: 34rpx;
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #6EC7FF;
+  border: 1rpx solid #6EC7FF;
+  border-radius: 17rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item_company_name {
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+  word-break: break-all;
+  margin-left: 20rpx;
+}
+
+.item_edit {
+  width: 88rpx;
+  height: 36rpx;
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #5C5C5C;
+  border: 1rpx solid #A2A3A3;
+  border-radius: 18rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30rpx;
+}
+
+.item_delete {
+  width: 88rpx;
+  height: 36rpx;
+  font-size: 26rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 300;
+  color: #A2A3A3;
+  border: 1rpx solid #A2A3A3;
+  border-radius: 18rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.submit {
+  width: 400rpx;
+  height: 80rpx;
+  background: #FFFFFF;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5C5C5C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
