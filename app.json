@@ -34,7 +34,9 @@
     "pages/wallet_settings/wallet_settings",
     "pages/base_notice/base_notice",
     "pages/fee_cars/fee_cars",
-    "pages/base_redirect/base_redirect"
+    "pages/base_redirect/base_redirect",
+    "pages/charge_list/charge_list",
+    "pages/charge_detail/charge_detail"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -55,9 +57,7 @@
       "desc": "获取您的当前位置"
     }
   },
-  "plugins": {
-
-  },
+  "plugins": {},
   "useExtendedLib": {
     "weui": true
   },

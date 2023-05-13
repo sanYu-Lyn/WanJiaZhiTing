@@ -15,10 +15,16 @@
                 {{item.usecount}}/{{item.totalcount}}
               </view>
             </view>
-            <view class="hor" style="align-items: center;;margin-left: 120rpx;">
-              <view class="text_address">充电桩</view>
+            <view class="hor" style="align-items: center;;margin-left: 60rpx;">
+              <view class="text_address">慢充</view>
               <view class="item_title" style="margin-left: 20rpx;color: #0ED16B;">
-                {{item.usechargetotalcount}}/{{item.chargetotalcount}}
+                {{item.usechargetotalcount-item.fusechargetotalcount}}/{{item.chargetotalcount-item.fchargetotalcount}}
+              </view>
+            </view>
+            <view class="hor" style="align-items: center;;margin-left: 60rpx;">
+              <view class="text_address">快充</view>
+              <view class="item_title" style="margin-left: 20rpx;color: #007d65;">
+                {{item.fusechargetotalcount}}/{{item.fchargetotalcount}}
               </view>
             </view>
           </view>

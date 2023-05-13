@@ -1,4 +1,5 @@
 import http from '../../http/http_do'
+import authorize from '../../utils/utils_authorize'
 
 Page({
 
@@ -10,11 +11,23 @@ Page({
     navigationBarHeight: (getApp().globalData.statusBarHeight + 40) + 'px'
   },
 
+  onReady: function () {
+    this.requestLocation(
+      (lat, lng) => {
+        //更新用户的位置信息
+        getApp().globalData.latitude = lat
+        getApp().globalData.longitude = lng
+
+        this.findParkings();
+      }
+    )
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.findParkings();
+  
   },
 
   findParkings: function () {
@@ -27,6 +40,24 @@ Page({
       },
       res => {}
     )
+  },
+
+  requestLocation: function (callback) {
+    authorize.open(
+      'scope.userLocation',
+      function () {
+        wx.getLocation({
+          type: 'gcj02',
+          isHighAccuracy: true,
+          success: function (res) {
+            callback(res.latitude, res.longitude)
+          },
+          fail: function (res) {
+            console.log('Get location failed : ' + res.errMsg)
+          }
+        })
+      },
+      function (res) {})
   },
 
   jumpParkingDetail: function (e) {

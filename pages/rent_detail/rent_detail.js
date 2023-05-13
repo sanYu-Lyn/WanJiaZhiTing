@@ -81,5 +81,14 @@ Page({
       latitude: parking.wd,
       longitude: parking.jd
     })
+  },
+
+  onDeviceTap: function (e) {
+    console.log(this.data.parking)
+    let p = JSON.stringify(this.data.parking)
+   
+    wx.navigateTo({
+      url: '../charge_list/charge_list?parking=' + p,
+    })
   }
 })
