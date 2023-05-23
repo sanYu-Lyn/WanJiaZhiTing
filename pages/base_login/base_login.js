@@ -148,7 +148,8 @@ Page({
             status: 1
           })
         } else {
-          scan.doTask()
+          // scan.doTask()
+          wx.navigateBack()
         }
         wx.hideLoading()
       },

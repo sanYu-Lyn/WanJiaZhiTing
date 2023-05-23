@@ -547,6 +547,16 @@ const chargeDeviceDetail = function (deviceId, onStart, onSuccess, onError) {
   proxy.postRequest(BASE_URL + "/info/cdzdeviceinfo", params, onStart, onSuccess, onError)
 }
 
+/**
+ * 充电桩收费表
+ */
+const chargeFee = function (deviceId, onStart, onSuccess, onError) {
+  var params = {
+    id: deviceId
+  }
+  proxy.postRequest(BASE_URL + "/info/feestep", params, onStart, onSuccess, onError)
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //=========================================================END:充电桩相关========================================================================
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -637,3 +647,4 @@ exports.chargeAmounts = chargeAmounts;
 
 exports.chargeDeviceList = chargeDeviceList;
 exports.chargeDeviceDetail = chargeDeviceDetail;
+exports.chargeFee = chargeFee;

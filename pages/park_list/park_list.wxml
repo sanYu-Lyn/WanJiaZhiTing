@@ -1,10 +1,10 @@
 <!--pages/me_wallet/me_wallet.wxml-->
 <view class="root">
-  <search_bar text="万家智停" profile="true"></search_bar>
+  <search_bar text="万家智停" profile="true" style="position: fixed;width: 100%;"></search_bar>
 
-  <view style="{{'margin-top: ' + 0}}">
+  <view style="flex: 1;margin-top: 150rpx;">
     <block wx:for="{{parkings}}" wx:key="unique">
-      <view class="item_container" bindtap="jumpParkingDetail" data-index="{{index}}">
+      <view class="item_container">
         <view class="item_title">{{item.parkname}}</view>
         <view class="text_address">{{item.p}}{{item.c}}{{item.q}}{{item.addres}}</view>
         <view>
@@ -30,11 +30,15 @@
           </view>
         </view>
         <view class="line_horizontal" style="margin-top: 32rpx;margin-bottom: 14rpx;"></view>
-        <view style="width: 100%;display: flex;flex-direction: row;justify-content: center;" bindtap="locateTo" data-index="{{index}}">
-          <view style="font-size: 30rpx;font-family: Microsoft YaHei;font-weight: 400; color: #6EC8FF;">去这里</view>
+        <view class="button_container">
+          <view class="button_goto" bindtap="locateTo" data-index="{{index}}">去这里</view>
+          <view class="line_vertical" style=" height: 20px;"></view>
+          <view class="button_detail" bindtap="jumpParkingDetail" data-index="{{index}}">查看详情</view>
         </view>
 
       </view>
     </block>
   </view>
+
+  <official-account class="item_account">关注公众号</official-account>
 </view>

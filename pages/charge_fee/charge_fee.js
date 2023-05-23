@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    device: null
+    fee: null
   },
 
   /**
@@ -28,12 +28,12 @@ Page({
   },
 
   requestDetail: function () {
-    http.chargeDeviceDetail(
+    http.chargeFee(
       this.data.device.id,
       () => wx.showLoading(),
       res => {
         this.setData({
-          devices: res.data
+          fee: res.data
         })
         wx.hideLoading()
       },

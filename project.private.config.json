@@ -20,6 +20,13 @@
           "query": "q=https://park.itms8.top/qrcode?to%3Dout",
           "launchMode": "default",
           "scene": 1011
+        },
+        {
+          "name": "扫码关注公众号",
+          "pathName": "pages/park_list/park_list",
+          "query": "",
+          "launchMode": "default",
+          "scene": 1011
         }
       ]
     }

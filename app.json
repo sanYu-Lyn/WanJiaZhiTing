@@ -36,7 +36,8 @@
     "pages/fee_cars/fee_cars",
     "pages/base_redirect/base_redirect",
     "pages/charge_list/charge_list",
-    "pages/charge_detail/charge_detail"
+    "pages/charge_fee/charge_fee",
+    "pages/charge_pay/charge_pay"
   ],
   "window": {
     "backgroundTextStyle": "dark",
