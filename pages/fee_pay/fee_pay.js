@@ -13,7 +13,7 @@ Page({
     payCoupon: null, //缓存用户选择优惠券
     price: null,
     orderImg: null,
-    payType: 1, //0钱包支付 1微信支付
+    payType: 0, //0钱包支付 1微信支付
   },
 
   /**
@@ -25,6 +25,12 @@ Page({
     this.setData({
       order: ob,
     })
+
+    if (this.data.order.amt == 0) {
+      // wx.reLaunch({
+      //   url: '../base_result/base_result?src=0',
+      // })
+    }
   },
 
   /**
@@ -86,10 +92,9 @@ Page({
     if (!amt || amt <= 0) {
       return
     }
-    console.log('1231231231231312')
-    console.log(this.data.order)
-    pay.pay_out(
-      1, this.data.order.carno, 1,
+
+    pay.scan_out(
+      '212', this.data.order.cardno, this.data.payType,
       () => {
         wx.showLoading()
       },
@@ -102,7 +107,7 @@ Page({
         })
 
         //跳转到支付成功页面
-        wx.navigateTo({
+        wx.reLaunch({
           url: '../base_result/base_result?src=0',
         })
 
@@ -112,6 +117,10 @@ Page({
         wx.hideLoading()
       }
     );
+  },
+
+  onConfirmClick: function (params) {
+    wx.navigateBack()
   },
 
   /**

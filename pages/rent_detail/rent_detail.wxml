@@ -29,6 +29,19 @@
     </view>
   </view>
 
+  <view class="rent_container" hover-class="hover_def" bindtap="onParkingIn">
+    <view class="rent_item_title">进场</view>
+    <view class="rent_item_container">
+      <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" />
+    </view>
+  </view>
+  <view class="rent_container" style="margin-top: 0rpx;" hover-class="hover_def" bindtap="onParkingOut">
+    <view class="rent_item_title">出场</view>
+    <view class="rent_item_container">
+      <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" />
+    </view>
+  </view>
+
   <view class="standard_container" wx:if="{{monthCard!=null}}">
     <view class="standard_title">参考收费信息</view>
     <block wx:if="{{monthCard.ruledesc!=''}}">

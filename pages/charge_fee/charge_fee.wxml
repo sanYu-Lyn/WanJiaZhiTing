@@ -11,22 +11,35 @@
         <view>
           <view class="hor">
             <view class="hor" style="align-items: center;flex: 1;">
-              <view class="text_address">充电费</view>
+              <view class="sercice_fee">充电费</view>
               <view class="item_title" style="margin-left: 20rpx;color: #438EF2;">
                 {{item.price}}
               </view>
-              <view class="text_address" style="margin-left:6rpx;">元/度</view>
+              <view class="sercice_fee" style="margin-left:6rpx;">元/度</view>
             </view>
             <view class="hor" style="align-items: center;margin-top: 4rpx;flex: 1;">
-              <view class="text_address">服务费</view>
+              <view class="sercice_fee">服务费</view>
               <view class="item_title" style="margin-left: 20rpx;color: #0ED16B;">
                 {{item.serviceprice}}
               </view>
-              <view class="text_address" style="margin-left:6rpx;">元</view>
+              <view class="sercice_fee" style="margin-left:6rpx;">元</view>
             </view>
           </view>
         </view>
       </view>
     </block>
+  </view>
+
+  <view class="rent_container" hover-class="hover_def" bindtap="onChargeStart">
+    <view class="rent_item_title">开始充电</view>
+    <view class="rent_item_container">
+      <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" />
+    </view>
+  </view>
+  <view class="rent_container" style="margin-top: 0rpx;" hover-class="hover_def" bindtap="onChargeEnd">
+    <view class="rent_item_title">结束充电</view>
+    <view class="rent_item_container">
+      <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" />
+    </view>
   </view>
 </view>

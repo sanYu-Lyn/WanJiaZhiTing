@@ -7,7 +7,7 @@
     <view class="title">{{order.parkName}}</view>
     <view class="desc">入场时间 {{order.intime}}</view>
     <view class="desc">停车时间 {{order.parktime}}</view>
-    <view class="desc">车牌号 {{order.carno}}</view>
+    <view class="desc">车牌号 {{order.cardno}}</view>
   </view>
 
   <view class="item" style="margin-top:20rpx;" bindtap="onCouponClick" wx:if="{{false}}">
@@ -31,7 +31,7 @@
     </view>
   </view>
 
-  <block wx:if="{{order.status=='needToPay'}}">
+  <block wx:if="{{false}}">
     <view class="pay_title" style="margin-top:50rpx;">支付方式</view>
     <view class="item" bindtap="onWXClick">
       <view class="item_title">微信支付</view>
@@ -51,6 +51,7 @@
     </view>
   </block>
 
-  <view class="submit_btn" hover-class='pay_hover' bindtap="onPayClick" wx:if="{{order.status=='needToPay'}}">去支付</view>
+  <view class="submit_btn" hover-class='pay_hover' bindtap="onConfirmClick" wx:if="{{order.amt==0}}">无需支付</view>
+  <view class="submit_btn" hover-class='pay_hover' bindtap="onPayClick" wx:else="{{order.status=='needToPay'}}">去支付</view>
 
 </view>

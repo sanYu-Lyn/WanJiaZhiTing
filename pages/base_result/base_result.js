@@ -45,6 +45,10 @@ Page({
         title = '停车缴费';
         subTitle = '无需支付';
         break
+      case '7':
+        title = '停车进场';
+        subTitle = '进场成功';
+        break
     }
     wx.setNavigationBarTitle({
       title: title
@@ -117,6 +121,11 @@ Page({
         })
         break
       case '6':
+        wx.reLaunch({
+          url: '/pages/park_list/park_list',
+        })
+        break
+      case '7':
         wx.reLaunch({
           url: '/pages/park_list/park_list',
         })

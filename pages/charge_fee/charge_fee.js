@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    device: null,
     fee: null
   },
 
@@ -38,6 +39,22 @@ Page({
         wx.hideLoading()
       },
       res => wx.hideLoading()
+    )
+  },
+
+  onChargeStart: function (params) {
+    http.chargeStart(this.data.device.id, '桂A888888',
+      () => {},
+      res => {},
+      res => {}
+    )
+  },
+
+  onChargeEnd: function (params) {
+    http.chargeEnd(this.data.device.id, 1,
+      () => {},
+      res => {},
+      res => {}
     )
   }
 })

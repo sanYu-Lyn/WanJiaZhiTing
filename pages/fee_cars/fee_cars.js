@@ -9,7 +9,15 @@ Page({
 
   data: {
     cars: [],
-    chooseIndex: 0
+    chooseIndex: 0,
+    to: 'out'
+  },
+
+  onLoad(options) {
+    const _to = options.to
+    this.setData({
+      to: _to
+    })
   },
 
   onShow: function () {
@@ -47,6 +55,14 @@ Page({
   },
 
   submit: function () {
+    if (this.data.to == 'in') {
+      this.scanIn()
+    } else {
+      this.scanOut()
+    }
+  },
+
+  scanOut: function () {
     var car = this.data.cars[this.data.chooseIndex]
     pay.pay_out('1', car.carno, 1,
       () => wx.showLoading(),
@@ -58,5 +74,18 @@ Page({
       },
       res => wx.hideLoading()
     )
+  },
+
+  scanIn: function () {
+    var car = this.data.cars[this.data.chooseIndex]
+    http.scanIn('d1', '桂A888888',
+      () => wx.showLoading(),
+      res => {
+        wx.hideLoading()
+        wx.reLaunch({
+          url: '../base_result/base_result?src=7',
+        })
+      },
+      res => wx.hideLoading())
   }
 })

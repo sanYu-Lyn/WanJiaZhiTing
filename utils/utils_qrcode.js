@@ -9,10 +9,12 @@ const doTask = function () {
   // }
   if (getApp().globalData.task.to === 'out') {
     scanOut()
+    return
   }
 
   if (getApp().globalData.task.to === 'parkout') {
     jumpToSelectCar()
+    return
   }
 
   // if (getApp().globalData.task) {  
@@ -53,7 +55,7 @@ const checkLoginState = function () {
 }
 
 const scanOut = function () {
-  http.scanOut('212', '黑E33333',
+  http.scanOut('212', '桂A888888',
     () => wx.showLoading(),
     res => {
       wx.hideLoading()
@@ -64,7 +66,7 @@ const scanOut = function () {
 }
 
 const parkOut = function () {
-  http.parkOut('1', '黑E33333',
+  http.parkOut('1', '桂A888888',
     () => wx.showLoading(),
     res => {
       wx.hideLoading()
@@ -110,7 +112,7 @@ const jumpToOrderPay = function (order) {
  */
 const jumpToSelectCar = function () {
   wx.redirectTo({
-    url: '../fee_cars/fee_cars',
+    url: '../fee_cars/fee_cars?to=out',
   })
 
 }

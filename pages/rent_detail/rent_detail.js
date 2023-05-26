@@ -1,5 +1,6 @@
 // pages/detail/detail.js
 import http from '../../http/http_do'
+import scan from '../../utils/utils_qrcode'
 
 Page({
 
@@ -86,9 +87,22 @@ Page({
   onDeviceTap: function (e) {
     console.log(this.data.parking)
     let p = JSON.stringify(this.data.parking)
-   
+
     wx.navigateTo({
       url: '../charge_list/charge_list?parking=' + p,
     })
+  },
+
+  onParkingIn: function (params) {
+    wx.navigateTo({
+      url: '../fee_cars/fee_cars?to=in',
+    })
+  },
+
+  onParkingOut: function (params) {
+    getApp().globalData.task = {
+      to: 'out'
+    }
+    scan.doTask()
   }
 })

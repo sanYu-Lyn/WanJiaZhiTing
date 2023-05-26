@@ -282,7 +282,7 @@ Page({
       if (this.data.monthCard.iscomplex === 'Y') {
         const map = JSON.parse(this.data.monthCard.amtrule)
         this.setData({
-          amt: map[monthCount]
+          amt: map[this.data.monthCount]
         })
       } else {
         this.setData({

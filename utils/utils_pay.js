@@ -25,7 +25,7 @@ const pay_out = (parkid, carno, type, start, success, error) => {
     start,
     res => {
       if (type == 0) {
-        // payByWallet(parkId, carA, carB, startDate, monthCount, start, success, error)
+        // payMonthCardByWallet(parkId, carA, carB, startDate, monthCount, start, success, error)
       } else {
         requestWX(res.data.wxpay, success, error)
       }
@@ -39,9 +39,9 @@ const pay_out = (parkid, carno, type, start, success, error) => {
  * 扫码进出场
  * @param {*} type 0钱包支付 1微信支付
  */
-const scan_out = (order, type, start, success, error) => {
+const scan_out = (deviceno, carno, type, start, success, error) => {
   if (type == 0) {
-    // payByWallet(parkId, carA, carB, startDate, monthCount, start, success, error)
+    payParkingFeeByWallet(deviceno, carno, start, success, error)
   } else {
     requestWX(res.data.wxpay, success, error)
   }
@@ -53,9 +53,9 @@ const scan_out = (order, type, start, success, error) => {
  */
 const pay_choose = (parkId, carA, carB, startDate, monthCount, type, start, success, error) => {
   if (type == 0) {
-    payByWallet(parkId, carA, carB, startDate, monthCount, start, success, error)
+    payMonthCardByWallet(parkId, carA, carB, startDate, monthCount, start, success, error)
   } else {
-    payByWX(parkId, carA, carB, startDate, monthCount, start,
+    payMonthCardByWX(parkId, carA, carB, startDate, monthCount, start,
       res => {
         requestWX(res.data, success, error)
       },
@@ -63,12 +63,16 @@ const pay_choose = (parkId, carA, carB, startDate, monthCount, type, start, succ
   }
 }
 
-const payByWallet = (parkId, carA, carB, startDate, monthCount, start, success, error) => {
-  http.payByWallet(parkId, carA, carB, startDate, monthCount, start, success, error)
+const payMonthCardByWallet = (parkId, carA, carB, startDate, monthCount, start, success, error) => {
+  http.payMonthCardByWallet(parkId, carA, carB, startDate, monthCount, start, success, error)
 }
 
-const payByWX = (parkId, carA, carB, startDate, monthCount, start, success, error) => {
-  http.payByWX(parkId, carA, carB, startDate, monthCount, start, success, error)
+const payMonthCardByWX = (parkId, carA, carB, startDate, monthCount, start, success, error) => {
+  http.payMonthCardByWX(parkId, carA, carB, startDate, monthCount, start, success, error)
+}
+
+const payParkingFeeByWallet = (deviceno, carno, start, success, error) => {
+  http.payParkingFeeByWallet(deviceno, carno, start, success, error)
 }
 
 const requestWX = (res, success, error) => {

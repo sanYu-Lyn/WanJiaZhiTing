@@ -432,12 +432,23 @@ const availableCoupons = function (orderId, onStart, onSuccess, onError) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * 使用钱包支付停车费
+ */
+const payParkingFeeByWallet = function (deviceno, carno, onStart, onSuccess, onError) {
+  var params = {
+    deviceno: deviceno,
+    carno: carno
+  }
+  proxy.postRequest(BASE_URL + '/user/comfirmPay', params, onStart, onSuccess, onError);
+}
+
+/**
  * 使用钱包缴费
  * @param {*} amt 金额
  * @param {*} couponId 优惠券 
  * @param {*} orderId 订单
  */
-const payByWallet = function (parkid, carno1, carno2, stime, count, onStart, onSuccess, onError) {
+const payMonthCardByWallet = function (parkid, carno1, carno2, stime, count, onStart, onSuccess, onError) {
   var params = {
     parkid: parkid,
     carno1: carno1,
@@ -451,7 +462,7 @@ const payByWallet = function (parkid, carno1, carno2, stime, count, onStart, onS
 /**
  * 微信支付
  */
-const payByWX = function (parkid, carno1, carno2, stime, count, onStart, onSuccess, onError) {
+const payMonthCardByWX = function (parkid, carno1, carno2, stime, count, onStart, onSuccess, onError) {
   var params = {
     parkid: parkid,
     carno1: carno1,
@@ -557,6 +568,28 @@ const chargeFee = function (deviceId, onStart, onSuccess, onError) {
   proxy.postRequest(BASE_URL + "/info/feestep", params, onStart, onSuccess, onError)
 }
 
+/**
+ * 开始充电
+ */
+const chargeStart = function (id, carno, onStart, onSuccess, onError) {
+  var params = {
+    id: id,
+    carno: carno
+  }
+  proxy.postRequest(BASE_URL + "/cdz/startCharge", params, onStart, onSuccess, onError)
+}
+
+/**
+ * 结束充电
+ */
+const chargeEnd = function (id, payPark, onStart, onSuccess, onError) {
+  var params = {
+    id: id,
+    payPark: payPark
+  }
+  proxy.postRequest(BASE_URL + "/cdz/stopChargeByUser", params, onStart, onSuccess, onError)
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //=========================================================END:充电桩相关========================================================================
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -636,8 +669,9 @@ exports.couponActive = couponActive;
 exports.couponFind = couponFind;
 exports.availableCoupons = availableCoupons;
 
-exports.payByWallet = payByWallet;
-exports.payByWX = payByWX;
+exports.payParkingFeeByWallet = payParkingFeeByWallet
+exports.payMonthCardByWallet = payMonthCardByWallet;
+exports.payMonthCardByWX = payMonthCardByWX;
 exports.charge = charge;
 exports.wallet = wallet;
 exports.walletHistory = walletHistory;
@@ -648,3 +682,5 @@ exports.chargeAmounts = chargeAmounts;
 exports.chargeDeviceList = chargeDeviceList;
 exports.chargeDeviceDetail = chargeDeviceDetail;
 exports.chargeFee = chargeFee;
+exports.chargeStart = chargeStart;
+exports.chargeEnd = chargeEnd
