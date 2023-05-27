@@ -17,6 +17,7 @@ Page({
     this.setData({
       device: JSON.parse(options.device)
     })
+    console.log(this.data.device)
   },
 
   /**
@@ -41,8 +42,14 @@ Page({
   },
 
   onChargeStart: function (params) {
-    wx.navigateTo({
-      url: '../charge_start/charge_start?device=' + JSON.stringify(this.data.device),
-    })
+    if (getApp().globalData.userInfo) {
+      wx.navigateTo({
+        url: '../charge_start/charge_start?device=' + JSON.stringify(this.data.device),
+      })
+    } else {
+      wx.navigateTo({
+        url: '../base_login/base_login',
+      })
+    }
   },
 })

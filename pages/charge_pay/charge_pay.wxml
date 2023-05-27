@@ -1,9 +1,11 @@
 <view>
 
   <view class="content_container" style="margin-top:20rpx;">
-    <view class="title">{{ls.carno}}</view>
-    <view class="desc">开始时间 {{ls.stime}}</view>
-    <view class="desc">结束时间 {{ls.etime}}</view>
+    <view class="desc">{{ls.carno==''?'无车牌信息':ls.carno}}</view>
+    <view class="desc">{{device.addres}}</view>
+    <view class="desc">设备名称：{{device.devicename}}</view>
+    <view class="desc">开始时间：{{ls.stime}}</view>
+    <view class="desc" wx:if="{{cdzls}}">结束时间：{{cdzls.etime}}</view>
   </view>
 
   <view class="content_container" style="margin-top:20rpx;" wx:if="{{parkls}}">

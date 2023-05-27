@@ -43,10 +43,16 @@ Page({
 
   jumpApply: function () {
     // if (this.data.parking.availableGroundMonthlyCnt > 0 || this.data.parking.availableUndergroundMonthlyCnt > 0) {
-    wx.navigateTo({
-      url: '../rent_apply/rent_apply?parking=' + JSON.stringify(this.data.parking) +
-        '&card=' + JSON.stringify(this.data.monthCard),
-    })
+    if (getApp().globalData.userInfo) {
+      wx.navigateTo({
+        url: '../rent_apply/rent_apply?parking=' + JSON.stringify(this.data.parking) +
+          '&card=' + JSON.stringify(this.data.monthCard),
+      })
+    } else {
+      wx.navigateTo({
+        url: '../base_login/base_login',
+      })
+    }
     // }
   },
 

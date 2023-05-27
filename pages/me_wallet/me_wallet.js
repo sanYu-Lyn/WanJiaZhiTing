@@ -9,7 +9,8 @@ Page({
   data: {
     userExpandInfo: null,
     content: "",
-    current: -1
+    current: -1,
+    to: ''
   },
 
   /**
@@ -17,6 +18,11 @@ Page({
    */
   onLoad: function (options) {
     this.requestChargeAmounts();
+    if (options.to != null) {
+      this.setData({
+        to: options.to
+      })
+    }
   },
 
   /**
@@ -82,7 +88,7 @@ Page({
 
   onChargeClick: function () {
     if (this.data.content && this.data.current > 0) {
-      console.log(this.data.content)
+      const that = this
       var amount = Object.keys(this.data.content)[this.data.current - 1]
       http.charge(amount,
         () => {},
@@ -94,9 +100,16 @@ Page({
             signType: res.data.signType,
             paySign: res.data.paySign,
             success(res) {
-              wx.navigateTo({
-                url: '../base_result/base_result?src=5',
-              })
+              console.log('------>' + that.data.to)
+              if (that.data.to == 'charge') {
+                wx.redirectTo({
+                  url: '../base_result/base_result?src=5',
+                })
+              } else {
+                wx.navigateTo({
+                  url: '../base_result/base_result?src=5',
+                })
+              }
             },
             fail(res) {}
           })

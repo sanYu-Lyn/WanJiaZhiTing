@@ -13,6 +13,7 @@ Page({
     nickname: '',
     userExpandInfo: null,
     ls: null,
+    device: null
   },
 
   onLoad: function (options) {},
@@ -142,7 +143,8 @@ Page({
       () => {},
       res => {
         this.setData({
-          ls: res.data.ls
+          ls: res.data.ls,
+          device: res.data.deviceinfo
         })
       },
       res => {}
@@ -161,7 +163,8 @@ Page({
 
   onChargeClick: function () {
     wx.navigateTo({
-      url: '../charge_pay/charge_pay?ls=' + JSON.stringify(this.data.ls),
+      url: '../charge_pay/charge_pay?ls=' + JSON.stringify(this.data.ls) +
+        '&device=' + JSON.stringify(this.data.device),
     })
   },
 

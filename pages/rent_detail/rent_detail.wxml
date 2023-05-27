@@ -10,7 +10,6 @@
       <text style="font-weight:400;color:#333333" wx:if="{{parking}}">{{distance.distance(lat,lng,parking.wd,parking.jd)}}</text>{{distance.unit(lat,lng,parking.wd,parking.jd)}}距您
       <block wx:if="{{parking.id}}">
         <text style="font-weight:400;color:#6EC7FF;margin-left:8rpx">{{parking.totalcount-parking.usecount}}</text>个空余车位
-        <text style="font-weight:400;color:#FFDB6E;margin-left:8rpx">{{parking.chargetotalcount-parking.usechargetotalcount}}</text>空余充电桩
       </block>
     </view>
   </view>
@@ -22,8 +21,13 @@
     </view>
   </view>
 
-  <view class="rent_container" hover-class="hover_def" bindtap="onDeviceTap">
-    <view class="rent_item_title">终端明细</view>
+  <view class="rent_container" style="height: 120rpx;" hover-class="hover_def" bindtap="onDeviceTap">
+    <view style="display: flex;flex-direction: row; align-items: center;">
+      <view class="rent_item_title">充电终端</view>
+      <view class="charge_device">
+        {{parking.chargetotalcount-parking.usechargetotalcount}}个空余充电桩
+      </view>
+    </view>
     <view class="rent_item_container">
       <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" />
     </view>

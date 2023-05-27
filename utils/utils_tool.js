@@ -2,19 +2,6 @@ const isEmpty = text => {
   return text == null || text.length == 0;
 }
 
-const generateTarget = type => {
-  switch (type) {
-    case 1:
-      return {
-        'to': 'bind_to_pay'
-      };
-    case 2:
-      return {
-        'to': 'bind_to_rent'
-      }
-  }
-}
-
 const checkPhone = phone => {
   return /^1[3456789]\d{9}$/.test(phone)
 }
@@ -162,7 +149,6 @@ const getScale = mapScale => {
 
 
 exports.isEmpty = isEmpty;
-exports.generateTarget = generateTarget;
 exports.checkPhone = checkPhone
 exports.encriptPhone = encriptPhone
 exports.provinceMap = provinceMap;

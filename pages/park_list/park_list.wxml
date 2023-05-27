@@ -5,26 +5,28 @@
   <view style="flex: 1;margin-top: 150rpx;">
     <block wx:for="{{parkings}}" wx:key="unique">
       <view class="item_container">
-        <view class="item_title">{{item.parkname}}</view>
-        <view class="text_address">{{item.p}}{{item.c}}{{item.q}}{{item.addres}}</view>
-        <view>
-          <view class="hor" style="justify-content:flex-start;">
-            <view class="hor" style="align-items: center">
-              <view class="text_address">停车位</view>
-              <view class="item_title" style="margin-left: 20rpx;color: #438EF2;">
-                {{item.usecount}}/{{item.totalcount}}
+        <view bindtap="jumpParkingDetail" data-index="{{index}}">
+          <view class="item_title">{{item.parkname}}</view>
+          <view class="text_address">{{item.p}}{{item.c}}{{item.q}}{{item.addres}}</view>
+          <view>
+            <view class="hor" style="justify-content:flex-start;">
+              <view class="hor" style="align-items: center">
+                <view class="text_address">停车位</view>
+                <view class="item_title" style="margin-left: 20rpx;color: #438EF2;">
+                  {{item.usecount}}/{{item.totalcount}}
+                </view>
               </view>
-            </view>
-            <view class="hor" style="align-items: center;;margin-left: 60rpx;">
-              <view class="text_address">慢充</view>
-              <view class="item_title" style="margin-left: 20rpx;color: #0ED16B;">
-                {{item.usechargetotalcount-item.fusechargetotalcount}}/{{item.chargetotalcount-item.fchargetotalcount}}
+              <view class="hor" style="align-items: center;;margin-left: 60rpx;">
+                <view class="text_address">慢充</view>
+                <view class="item_title" style="margin-left: 20rpx;color: #0ED16B;">
+                  {{item.usechargetotalcount-item.fusechargetotalcount}}/{{item.chargetotalcount-item.fchargetotalcount}}
+                </view>
               </view>
-            </view>
-            <view class="hor" style="align-items: center;;margin-left: 60rpx;">
-              <view class="text_address">快充</view>
-              <view class="item_title" style="margin-left: 20rpx;color: #007d65;">
-                {{item.fusechargetotalcount}}/{{item.fchargetotalcount}}
+              <view class="hor" style="align-items: center;;margin-left: 60rpx;">
+                <view class="text_address">快充</view>
+                <view class="item_title" style="margin-left: 20rpx;color: #007d65;">
+                  {{item.fusechargetotalcount}}/{{item.fchargetotalcount}}
+                </view>
               </view>
             </view>
           </view>

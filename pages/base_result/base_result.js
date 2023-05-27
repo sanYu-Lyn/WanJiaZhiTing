@@ -37,6 +37,7 @@ Page({
         title = '租车位';
         subTitle = '支付完成';
         break
+      case 'charge':
       case '5':
         title = '钱包充值';
         subTitle = '支付完成';
@@ -123,6 +124,9 @@ Page({
         wx.navigateBack({
           delta: 2,
         })
+        break
+      case '5':
+        wx.navigateBack()
         break
       case '6':
         wx.reLaunch({

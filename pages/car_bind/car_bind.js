@@ -149,7 +149,7 @@ Page({
       license = license + this.data.license_green;
     }
 
-    if (this.data.target.to == 'bind_to_pay') { //停车场缴费
+    if (this.data.target.to == 'bind_to_pay') {
       this.bindToPay(null, license, this.convertColor())
     } else { //绑定车牌
       this.bindCarNo(license)
@@ -207,6 +207,8 @@ Page({
     switch (this.data.target.to) {
       case 'bind_to_pay':
         break;
+      case 'bind_to_in':
+        break;
       case 'bind_to_rent':
         this.bindToRent(car)
         break;
@@ -221,7 +223,11 @@ Page({
    */
   bindToAddCar: function () {
     var pages = getCurrentPages();
-    var prevPage = pages[pages.length - 2];
+    if (this.data.target.to == 'bind_to_in' || this.data.target.to == 'bind_to_charge') {
+      var prevPage = pages[pages.length - 1];
+    } else {
+      var prevPage = pages[pages.length - 2];
+    }
     prevPage.findBindCars(true)
     wx.navigateBack()
   },

@@ -147,3 +147,19 @@
   justify-content: center;
   align-items: center;
 }
+
+.charge_device {
+  background: #0ED16B;
+  border: 4rpx solid #0ED16B;
+  box-sizing: border-box;
+  border-radius: 12rpx;
+  display: flex;
+  margin-left: 24rpx;
+  padding: 8rpx;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #ffffff;
+}

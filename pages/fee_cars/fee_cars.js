@@ -1,8 +1,6 @@
 // pages/fee_cars/fee_cars.js
 import http from '../../http/http_do'
 import persistence from '../../utils/utils_persistence'
-import util from '../../utils/utils_tool'
-import toast from '../../utils/utils_toast'
 import pay from '../../utils/utils_pay'
 
 Page({
@@ -21,10 +19,10 @@ Page({
   },
 
   onShow: function () {
-    this.requestCars();
+    this.findBindCars();
   },
 
-  requestCars: function () {
+  findBindCars: function () {
     http.findBindCars(() => {
         var cars = persistence.getCarLicenses();
         this.setData({
@@ -48,14 +46,28 @@ Page({
   },
 
   jumpBindCar: function () {
-    var params = util.generateTarget(1);
+    var params = {
+      target: 'bind_to_pay'
+    }
+    if (this.data.to == 'in') {
+      params.target = 'bind_to_in'
+    } else if (this.data.to == 'charge') {
+      params.target = 'bind_to_charge'
+    }
     wx.navigateTo({
       url: '../car_bind/car_bind?target=' + JSON.stringify(params),
     })
   },
 
   submit: function () {
-    if (this.data.to == 'in') {
+    if (this.data.to == 'charge') {
+      const pages = getCurrentPages()
+      const prePage = pages[pages.length - 2]
+      prePage.setData({
+        car: this.data.cars[this.data.chooseIndex]
+      })
+      wx.navigateBack()
+    } else if (this.data.to == 'in') {
       this.scanIn()
     } else {
       this.scanOut()

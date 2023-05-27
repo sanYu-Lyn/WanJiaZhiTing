@@ -7,6 +7,7 @@ Page({
    */
   data: {
     ls: null,
+    device: null,
     balance: null,
     cdzls: null,
     parkls: null,
@@ -19,7 +20,8 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      ls: JSON.parse(options.ls)
+      ls: JSON.parse(options.ls),
+      device: JSON.parse(options.device)
     })
   },
 
@@ -45,7 +47,7 @@ Page({
   },
 
   onChargeStart: function (params) {
-    http.chargeStart(this.data.device.id, '桂A888888',
+    http.chargeStart(this.data.device.id, '桂A88888',
       () => {},
       res => {},
       res => {}
@@ -56,7 +58,6 @@ Page({
     http.chargeEnd(this.data.ls.id,
       () => {},
       res => {
-
         this.setData({
           balance: res.data.balance,
           cdzls: res.data.cdzls,
