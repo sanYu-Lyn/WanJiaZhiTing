@@ -12,6 +12,7 @@ Page({
     userInfo: null,
     nickname: '',
     userExpandInfo: null,
+    ls: null,
   },
 
   onLoad: function (options) {},
@@ -22,6 +23,7 @@ Page({
   onShow: function () {
     if (getApp().globalData.userInfo) {
       this.updateCount()
+      this.requestCurrentCharge()
       this.setData({
         userInfo: getApp().globalData.userInfo,
         nickname: encriptPhone(getApp().globalData.userInfo.phone)
@@ -135,6 +137,18 @@ Page({
     // )
   },
 
+  requestCurrentCharge: function () {
+    http.chargeCurrent(
+      () => {},
+      res => {
+        this.setData({
+          ls: res.data.ls
+        })
+      },
+      res => {}
+    )
+  },
+
   checkLoginState: function () {
     if (getApp().globalData.userInfo) {
       return true
@@ -143,6 +157,18 @@ Page({
       url: '../base_login/base_login',
     })
     return false;
+  },
+
+  onChargeClick: function () {
+    wx.navigateTo({
+      url: '../charge_pay/charge_pay?ls=' + JSON.stringify(this.data.ls),
+    })
+  },
+
+  onChargeHistoryClick: function () {
+    wx.navigateTo({
+      url: '../charge_history/charge_history',
+    })
   },
 
   onLoginClick: function () {

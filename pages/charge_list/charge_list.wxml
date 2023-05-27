@@ -31,7 +31,7 @@
         <view class="hor" style="justify-content:flex-start;align-items:center;margin-top: 4rpx;">
           <view class="text_address" style="margin-right:6rpx;">状态</view>
           <view wx:if="{{item.status==1}}" class="status">使用中</view>
-          <view wx:if="{{item.status==2}}" class="status" style="color: #ed1941;">暂不可用</view>
+          <view wx:elif="{{item.status==2}}" class="status" style="color: #ed1941;">暂不可用</view>
           <view wx:else='' class="status" style="color: #999d9c;">空闲中</view>
         </view>
         <view class="line_horizontal" style="margin-top: 16rpx;margin-bottom: 14rpx;"></view>

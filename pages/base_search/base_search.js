@@ -1,6 +1,6 @@
 // search/search.js
 
-import poi from '../../utils/utils_map'
+import http from '../../http/http_do'
 
 Page({
 
@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    'result': [],
+    'parkings': [],
     'key': '',
   },
 
@@ -46,24 +46,42 @@ Page({
    * https://developers.weixin.qq.com/community/servicemarket/detail/000c86744f0258bddd99ab93051c15
    */
   searchByKey: async function (key) {
-    var that = this;
-    poi.searchByKey(key, getApp().globalData.city, function (res) {
-      that.setData({
-        'result': res
-      })
-    }, function (res) {})
+    // var that = this;
+    // poi.searchByKey(key, getApp().globalData.city, function (res) {
+    //   that.setData({
+    //     'result': res
+    //   })
+    // }, function (res) {})
+    http.findParkings(
+      getApp().globalData.longitude,
+      getApp().globalData.latitude,
+      key,
+      () => {},
+      res => {
+        this.setData({
+          parkings: res.data
+        })
+      },
+      res => {}
+    )
   },
 
   bindUserInput: function (eventhandle) {
     this.searchByKey(eventhandle.detail.value)
   },
 
-  onItemClick: function (e) {
-    var index = e.currentTarget.dataset.index
-    var result = this.data.result[index]
-    var pages = getCurrentPages()
-    var prePage = pages[pages.length - 2]
-    prePage.moveToLocation(result.location.lat, result.location.lng)
-    wx.navigateBack()
+  jumpParkingDetail: function (e) {
+    var parking = this.data.parkings[e.currentTarget.dataset.index]
+    wx.navigateTo({
+      url: '../rent_detail/rent_detail?parking=' + JSON.stringify(parking),
+    })
+  },
+
+  locateTo: function (e) {
+    var parking = this.data.parkings[e.currentTarget.dataset.index]
+    wx.openLocation({
+      latitude: parking.wd,
+      longitude: parking.jd
+    })
   }
 })

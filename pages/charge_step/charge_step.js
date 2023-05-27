@@ -1,5 +1,3 @@
-// pages/charge_detail/charge_detail.js
-
 import http from '../../http/http_do'
 
 Page({
@@ -9,7 +7,7 @@ Page({
    */
   data: {
     device: null,
-    fee: null
+    fee: null,
   },
 
   /**
@@ -43,18 +41,8 @@ Page({
   },
 
   onChargeStart: function (params) {
-    http.chargeStart(this.data.device.id, '桂A888888',
-      () => {},
-      res => {},
-      res => {}
-    )
+    wx.navigateTo({
+      url: '../charge_start/charge_start?device=' + JSON.stringify(this.data.device),
+    })
   },
-
-  onChargeEnd: function (params) {
-    http.chargeEnd(this.data.device.id, 1,
-      () => {},
-      res => {},
-      res => {}
-    )
-  }
 })

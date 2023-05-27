@@ -28,7 +28,6 @@ Page({
   onLoad: function (options) {
     var type = options.src
     this.fetchContent(type)
-
   },
 
   onLoad: function (options) {

@@ -94,7 +94,7 @@ Page({
     }
 
     pay.scan_out(
-      '212', this.data.order.cardno, this.data.payType,
+      'dz-45-1', this.data.order.cardno, this.data.payType,
       () => {
         wx.showLoading()
       },

@@ -68,13 +68,15 @@ Page({
 
   onAddClick: function (e) {
     var ticket = this.data.datas[e.currentTarget.dataset.index]
+    console.log(ticket)
     var renewalOrder = {
-      parkingId: ticket.parkId,
-      parkingName: ticket.parkName,
-      carId: ticket.carId,
-      carNo: ticket.carNo,
-      startDate: ticket.startDate,
-      endDate: ticket.endDate
+      parkingId: ticket.parkid,
+      parkingName: ticket.parkname,
+      carId: ticket.id,
+      carno1: ticket.carno1,
+      carno2: ticket.carno2,
+      startDate: ticket.sdate,
+      endDate: ticket.edate
     }
 
     wx.navigateTo({

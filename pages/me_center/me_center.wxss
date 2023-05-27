@@ -111,3 +111,14 @@
   font-weight: 300;
   color: #5C5C5C;
 }
+
+.charge_container {
+  height: 70rpx;
+  background-color: #0ED16B;
+  width: 100%;
+  padding: 0 30rpx 0 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

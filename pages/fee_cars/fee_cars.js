@@ -78,7 +78,7 @@ Page({
 
   scanIn: function () {
     var car = this.data.cars[this.data.chooseIndex]
-    http.scanIn('d1', '桂A888888',
+    http.scanIn('dz-45-0', '桂A88888',
       () => wx.showLoading(),
       res => {
         wx.hideLoading()

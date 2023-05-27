@@ -151,6 +151,8 @@ function doFail(res, onFailed) {
     wx.reLaunch({
       url: '../base_result/base_result?src=6',
     })
+  } else if (res.code == 4000) {
+    onFailed(res)
   } else if (res.code > 0) {
     toast.show(res.msg, 3000);
   } else if (res.code == 100 || res.code == 101) {

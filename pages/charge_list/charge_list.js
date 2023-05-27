@@ -37,7 +37,7 @@ Page({
   jumpChargeDeviceDetail: function (e) {
     var device = this.data.devices[e.currentTarget.dataset.index]
     wx.navigateTo({
-      url: '../charge_fee/charge_fee?device=' + JSON.stringify(device),
+      url: '../charge_step/charge_step?device=' + JSON.stringify(device),
     })
   }
 })

@@ -68,8 +68,10 @@ Page({
       this.setData({
         startDate: startDate,
         chooseACar: {
-          carId: renewalOrder.carId,
-          carNo: renewalOrder.carNo
+          carno: renewalOrder.carno1
+        },
+        chooseBCar: {
+          carno: renewalOrder.carno2,
         },
         parking: {
           parkId: renewalOrder.parkingId,

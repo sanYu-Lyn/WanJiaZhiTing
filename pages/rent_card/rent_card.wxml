@@ -1,7 +1,7 @@
 <!--pages/rent_card/rent_card.wxml-->
 <wxs module="date" src="../../wxs/date.wxs"></wxs>
 
-<view class="titie_container">
+<view class="titie_container" wx:if="{{false}}">
   <view style="display:flex;flex-direction:row;align-items:center">
     <image class="title_image" src="../../image/ic_public_question.png">停车卡说明</image>
     <text class="title_content" bindtap="onNoticeClick">月卡说明</text>
@@ -18,7 +18,7 @@
     </view>
     <view class="item_bottom">
       <view class="item_number">车牌号 {{item.carno1}} {{item.carno2}}</view>
-      <view class="item_btn" bindtap="onAddClick" data-index="{{index}}">续费</view>
+      <view class="item_btn" bindtap="onAddClick" data-index="{{index}}" wx:if="{{false}}">续费</view>
     </view>
   </block>
 </view>

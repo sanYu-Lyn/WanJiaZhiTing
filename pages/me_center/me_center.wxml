@@ -47,6 +47,13 @@
   </view>
 </view> -->
 
+<view class="charge_container" wx:if="{{ls}}" bindtap="onChargeClick">
+  <view class="item_left">
+    <view class="item_title" style="color:white;">您有车辆正在充电>>> </view>
+  </view>
+  <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+</view>
+
 <view class="item_container" hover-class="hover_def" style="margin-top:20rpx" bindtap="onCarClick">
   <view class="item_left">
     <image class="item_image" src="../../image/ic_me_car.png" mode="aspectFit"></image>
@@ -67,6 +74,14 @@
   <view class="item_left">
     <image class="item_image" src="../../image/ic_me_invoice.png" mode="aspectFit"></image>
     <view class="item_title">停车账单</view>
+  </view>
+  <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+</view>
+<view class="line_horizontal"></view>
+<view class="item_container" hover-class="hover_def" bindtap="onChargeHistoryClick">
+  <view class="item_left">
+    <image class="item_image" src="../../image/ic_me_invoice.png" mode="aspectFit"></image>
+    <view class="item_title">充电账单</view>
   </view>
   <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
 </view>

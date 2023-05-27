@@ -1,0 +1,11 @@
+<view class="root">
+  <block wx:for="{{datas}}" wx:key="unique">
+    <view class="item_container">
+      <view class="item_title">{{item.carno}}</view>
+      <view class="text_address">设备编号：{{item.devicename}}</view>
+      <view class="text_address">开始时间：{{item.stime}}</view>
+      <view class="text_address">结束时间：{{item.etime}}</view>
+      <view class="text_address">金额：{{item.amt}}元</view>
+    </view>
+  </block>
+</view>

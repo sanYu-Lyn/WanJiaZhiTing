@@ -8,16 +8,16 @@
     "miniprogram": {
       "list": [
         {
-          "name": "",
+          "name": "道闸扫码出场",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "q=https://park.itms8.top/qrcode?to%3Dout",
+          "query": "q=https://park.itms8.top/qrcode?to%3Dout&device%3Do212",
           "launchMode": "default",
           "scene": 1011
         },
         {
-          "name": "",
+          "name": "道闸扫码进场",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "q=https://park.itms8.top/qrcode?to%3Dout",
+          "query": "q=https://park.itms8.top/qrcode?to%3Din",
           "launchMode": "default",
           "scene": 1011
         },
@@ -27,6 +27,20 @@
           "query": "",
           "launchMode": "default",
           "scene": 1011
+        },
+        {
+          "name": "公众号扫码出场",
+          "pathName": "pages/base_redirect/base_redirect",
+          "query": "q=https://park.itms8.top/qrcode?to%3DparkOut&parkid=1",
+          "launchMode": "default",
+          "scene": 1011
+        },
+        {
+          "name": "结束充电",
+          "pathName": "pages/base_redirect/base_redirect",
+          "query": "q=https://park.itms8.top/qrcode?to%3DchargeEnd&deviceid=110",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

@@ -316,8 +316,12 @@ const findNearParkings = function (lat, lng, distanceKm, onStart, onSuccess, onE
 /**
  * 查询停车场
  */
-const findParkings = function (onStart, onSuccess, onError) {
-  var params = {}
+const findParkings = function (jd, wd, parkname, onStart, onSuccess, onError) {
+  var params = {
+    jd: jd,
+    wd: wd,
+    parkname: parkname
+  }
   proxy.postNoTokenRequest(BASE_URL + '/info/parklist', params, onStart, onSuccess, onError);
 }
 
@@ -582,12 +586,40 @@ const chargeStart = function (id, carno, onStart, onSuccess, onError) {
 /**
  * 结束充电
  */
-const chargeEnd = function (id, payPark, onStart, onSuccess, onError) {
+const chargeEnd = function (id, onStart, onSuccess, onError) {
+  var params = {
+    id: id,
+  }
+  proxy.postRequest(BASE_URL + "/cdz/stopChargeByUser", params, onStart, onSuccess, onError)
+}
+
+/**
+ * 充电缴费 
+ * @param {} id 
+ * @param {*} payPark 是否支付停车费,0不交停车费1:缴停车费
+ */
+const chargePay = function (id, payPark, onStart, onSuccess, onError) {
   var params = {
     id: id,
     payPark: payPark
   }
-  proxy.postRequest(BASE_URL + "/cdz/stopChargeByUser", params, onStart, onSuccess, onError)
+  proxy.postRequest(BASE_URL + "/cdz/comfirmStopCharge", params, onStart, onSuccess, onError)
+}
+
+/**
+ * 当前充电
+ */
+const chargeCurrent = function (onStart, onSuccess, onError) {
+  var params = {}
+  proxy.postRequest(BASE_URL + "/cdz/getUserCurrentCharge", params, onStart, onSuccess, onError)
+}
+
+/**
+ * 历史充电账单
+ */
+const chargeHistory = function (onStart, onSuccess, onError) {
+  var params = {}
+  proxy.postRequest(BASE_URL + "/cdz/getUserChargeLs", params, onStart, onSuccess, onError)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -684,3 +716,6 @@ exports.chargeDeviceDetail = chargeDeviceDetail;
 exports.chargeFee = chargeFee;
 exports.chargeStart = chargeStart;
 exports.chargeEnd = chargeEnd
+exports.chargeCurrent = chargeCurrent
+exports.chargePay = chargePay
+exports.chargeHistory = chargeHistory

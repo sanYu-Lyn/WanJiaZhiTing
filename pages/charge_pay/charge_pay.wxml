@@ -1,31 +1,32 @@
-<view class="root">
-  <view style="{{'margin-top: ' + 0}}">
-    <block wx:for="{{fee}}" wx:key="unique">
-      <view class="item_container" bindtap="jumpChargeDeviceDetail" data-index="{{index}}">
-        <view class="hor" style="justify-content:flex-start;align-items: baseline;">
-          <view class="item_title">{{item.stime}}</view>
-          ~
-          <view class="item_title">{{item.etime}}</view>
-        </view>
-        <view>
-          <view class="hor">
-            <view class="hor" style="align-items: center;flex: 1;">
-              <view class="text_address">充电费</view>
-              <view class="item_title" style="margin-left: 20rpx;color: #438EF2;">
-                {{item.price}}
-              </view>
-              <view class="text_address" style="margin-left:6rpx;">元/度</view>
-            </view>
-            <view class="hor" style="align-items: center;margin-top: 4rpx;flex: 1;">
-              <view class="text_address">服务费</view>
-              <view class="item_title" style="margin-left: 20rpx;color: #0ED16B;">
-                {{item.serviceprice}}
-              </view>
-              <view class="text_address" style="margin-left:6rpx;">元</view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </block>
+<view>
+
+  <view class="content_container" style="margin-top:20rpx;">
+    <view class="title">{{ls.carno}}</view>
+    <view class="desc">开始时间 {{ls.stime}}</view>
+    <view class="desc">结束时间 {{ls.etime}}</view>
   </view>
+
+  <view class="content_container" style="margin-top:20rpx;" wx:if="{{parkls}}">
+    <view class="title">{{parkls.carno}}</view>
+    <view class="desc">入场时间 {{parkls.intime}}</view>
+    <view class="desc">出场时间 {{parkls.outtime}}</view>
+  </view>
+
+  <view class="item" style="margin-top:20rpx;" wx:if="{{parkls}}" bindtap="onParkClick">
+    <view class="item_title">同时支付停车费</view>
+    <image class="pay_checkbox" src="{{payPark?'../../image/ic_checkbox_selected.png':'../../image/ic_checkbox_normal.png'}}" mode="aspectFit" />
+  </view>
+
+  <view class="line" />
+  <view class="item" style="margin-top:20rpx;" wx:if="{{amt}}">
+    <view class="item_title">总停车费用</view>
+    <view class="item_end">
+      <text class="price_now">￥{{amt}}</text>
+    </view>
+  </view>
+
+  <view class="submit_btn" hover-class='pay_hover' bindtap="onConfirmClick" wx:if="{{amt&&amt==0}}">无需支付</view>
+  <view class="submit_btn" hover-class='pay_hover' bindtap="onChargeEnd" wx:elif="{{amt==null}}">结束充电</view>
+  <view class="submit_btn" hover-class='pay_hover' bindtap="onPayClick" wx:else="">支付</view>
+
 </view>

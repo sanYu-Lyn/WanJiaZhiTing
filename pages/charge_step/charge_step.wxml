@@ -36,10 +36,4 @@
       <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" />
     </view>
   </view>
-  <view class="rent_container" style="margin-top: 0rpx;" hover-class="hover_def" bindtap="onChargeEnd">
-    <view class="rent_item_title">结束充电</view>
-    <view class="rent_item_container">
-      <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" />
-    </view>
-  </view>
 </view>

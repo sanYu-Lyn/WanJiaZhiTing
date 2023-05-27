@@ -55,7 +55,7 @@ const checkLoginState = function () {
 }
 
 const scanOut = function () {
-  http.scanOut('212', '桂A888888',
+  http.scanOut('dz-45-1', '桂A88888',
     () => wx.showLoading(),
     res => {
       wx.hideLoading()
@@ -66,7 +66,7 @@ const scanOut = function () {
 }
 
 const parkOut = function () {
-  http.parkOut('1', '桂A888888',
+  http.parkOut('1', '桂A88888',
     () => wx.showLoading(),
     res => {
       wx.hideLoading()
