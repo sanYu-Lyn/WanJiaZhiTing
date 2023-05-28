@@ -8,7 +8,7 @@ Page({
    */
   data: {
     device: null,
-    hours: [-1, 1, 2, 4, 6, 8],
+    hours: [-1, 2, 4, 6, 8, 9],
     hour: -1,
     amt: null,
     car: null

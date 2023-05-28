@@ -25,5 +25,10 @@
     <view class="bind_car">绑定车牌>></view>
   </view>
 
+  <view style="display: flex;flex-direction: row; margin-left: 30rpx;margin-right: 30rpx;margin-top: 12rpx;">
+    <image class="title_image" src="../../image/ic_public_question.png"></image>
+    <view class="text_tips">在对接道闸场站输入充电车牌号可以减免部分停车费用，此车牌为本次充电临时车牌</view>
+  </view>
+
 
 </view>

@@ -68,6 +68,7 @@
 .charge_start {
   background: #0ED16B;
   height: 70rpx;
+  width: 120rpx;
   box-sizing: border-box;
   border-radius: 12rpx;
   display: flex;
@@ -83,6 +84,7 @@
 .charge_end {
   background: red;
   height: 70rpx;
+  width: 120rpx;
   box-sizing: border-box;
   border-radius: 12rpx;
   display: flex;

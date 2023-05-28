@@ -75,16 +75,3 @@
   -webkit-writing-mode: vertical-rl;
   writing-mode: vertical-rl;
 }
-
-.text_tips {
-  font-size: 24rpx;
-  color: #A2A3A3;
-  font-family: Microsoft YaHei;
-  margin-left: 6rpx;
-}
-
-.title_image {
-  width: 30rpx;
-  height: 24rpx;
-  margin-top: 8rpx;
-}

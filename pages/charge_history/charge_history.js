@@ -71,10 +71,13 @@ Page({
       res => wx.hideLoading()
     )
   },
+
   onChargeClick(e) {
     var histoty = this.data.datas[e.currentTarget.dataset.index]
-    wx.navigateTo({
-      url: '../charge_pay/charge_pay?ls=' + JSON.stringify(histoty),
-    })
+    if (histoty.status == 0) {
+      wx.navigateTo({
+        url: '../charge_pay/charge_pay?ls=' + JSON.stringify(histoty),
+      })
+    }
   }
 })

@@ -20,7 +20,6 @@
   font-weight: 400;
   color: #5C5C5C;
   font-family: Microsoft YaHei;
-  color: #5C5C5C;
 }
 
 .month_container_selected {
@@ -97,7 +96,20 @@
 }
 
 .bind_car {
+  font-size: 32rpx;
+  color: #5C5C5C;
+  font-family: Microsoft YaHei;
+}
+
+.text_tips {
   font-size: 24rpx;
   color: #A2A3A3;
   font-family: Microsoft YaHei;
+  margin-left: 6rpx;
+}
+
+.title_image {
+  width: 30rpx;
+  height: 24rpx;
+  margin-top: 8rpx;
 }

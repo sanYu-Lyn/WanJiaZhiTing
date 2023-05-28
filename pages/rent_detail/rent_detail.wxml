@@ -21,15 +21,15 @@
     </view>
   </view>
 
-  <view class="rent_container" style="height: 120rpx;" hover-class="hover_def" bindtap="onDeviceTap">
+  <view class="rent_container" style="height: 120rpx;">
     <view style="display: flex;flex-direction: row; align-items: center;">
       <view class="rent_item_title">充电终端</view>
-      <view class="charge_device">
-        {{parking.chargetotalcount-parking.usechargetotalcount}}个空余充电桩
+      <view class="charge_device" hover-class="hover_def" bindtap="onDeviceTap">
+        电车慢充{{parking.chargetotalcount-parking.usechargetotalcount}}个
       </view>
-    </view>
-    <view class="rent_item_container">
-      <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" />
+      <view class="charge_device" hover-class="hover_def">
+        二轮充电
+      </view>
     </view>
   </view>
 
