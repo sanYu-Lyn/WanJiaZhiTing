@@ -47,12 +47,12 @@ Page({
 
   jumpBindCar: function () {
     var params = {
-      target: 'bind_to_pay'
+      to: 'bind_to_pay'
     }
     if (this.data.to == 'in') {
-      params.target = 'bind_to_in'
+      params.to = 'bind_to_in'
     } else if (this.data.to == 'charge') {
-      params.target = 'bind_to_charge'
+      params.to = 'bind_to_charge'
     }
     wx.navigateTo({
       url: '../car_bind/car_bind?target=' + JSON.stringify(params),

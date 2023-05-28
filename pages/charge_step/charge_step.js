@@ -8,23 +8,29 @@ Page({
   data: {
     device: null,
     fee: null,
+    canStop: false,
+    ls: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    let _device = JSON.parse(options.device)
     this.setData({
-      device: JSON.parse(options.device)
+      device: _device,
+      status: _device.status
     })
-    console.log(this.data.device)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
+  onShow() {
     this.requestDetail()
+    if (getApp().globalData.userInfo) {
+      this.requestUserCharge()
+    }
   },
 
   requestDetail: function () {
@@ -41,6 +47,19 @@ Page({
     )
   },
 
+  requestUserCharge() {
+    http.chargeCurrent(
+      () => {},
+      res => {
+        this.setData({
+          canStop: this.data.device.id == res.data.deviceinfo.id,
+          ls: res.data.ls,
+        })
+      },
+      res => {}
+    )
+  },
+
   onChargeStart: function (params) {
     if (getApp().globalData.userInfo) {
       wx.navigateTo({
@@ -52,4 +71,11 @@ Page({
       })
     }
   },
+
+  onChargeEnd() {
+    wx.navigateTo({
+      url: '../charge_pay/charge_pay?ls=' + JSON.stringify(this.data.ls) +
+        '&device=' + JSON.stringify(this.data.device),
+    })
+  }
 })

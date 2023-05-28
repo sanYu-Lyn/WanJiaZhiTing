@@ -7,7 +7,7 @@
     <view class="title">{{parking.parkname}}</view>
     <view class="address">{{parking.p}}{{parking.c}}{{parking.q}}{{parking.addres}}</view>
     <view class="detail" wx:if="{{true}}">
-      <text style="font-weight:400;color:#333333" wx:if="{{parking}}">{{distance.distance(lat,lng,parking.wd,parking.jd)}}</text>{{distance.unit(lat,lng,parking.wd,parking.jd)}}距您
+      <text style="font-weight:400;color:#333333" wx:if="{{parking}}">{{parking.distance}}</text>km距您
       <block wx:if="{{parking.id}}">
         <text style="font-weight:400;color:#6EC7FF;margin-left:8rpx">{{parking.totalcount-parking.usecount}}</text>个空余车位
       </block>

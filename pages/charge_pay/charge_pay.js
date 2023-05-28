@@ -21,15 +21,24 @@ Page({
   onLoad(options) {
     this.setData({
       ls: JSON.parse(options.ls),
-      device: JSON.parse(options.device)
+      // device: JSON.parse(options.device)
     })
+
+    if (options.device) {
+      this.setData({
+        device: JSON.parse(options.device)
+      })
+    } else {
+      this.requestDevice()
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-    // this.requestDetail()
+  requestDevice() {
+    http.chargeDeviceDetail(this.data.ls.deviceid,
+      () => {},
+      res => this.setData({
+        device: res.data
+      }), res => {})
   },
 
   requestDetail: function () {

@@ -121,6 +121,7 @@
   font-weight: 400;
   color: #5C5C5C;
   display: flex;
+  margin-bottom: 30rpx;
   justify-content: center;
   align-items: center;
 }

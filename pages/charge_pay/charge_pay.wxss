@@ -12,7 +12,7 @@
   font-weight: 400;
   color: #5C5C5C;
   margin-left: 30rpx;
-  margin-right: 30rpx;
+  margin-right: 12rpx;
 }
 
 .desc {
@@ -102,4 +102,22 @@
 .pay_checkbox {
   width: 30rpx;
   height: 30rpx;
+}
+
+.charge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 8rpx;
+  padding-right: 8rpx;
+  padding-top: 4rpx;
+  padding-bottom: 4rpx;
+  border-radius: 8rpx;
+  background: #0ED16B;
+  font-size: 20rpx;
+  align-items: center;
+  justify-content: center;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #ffffff;
 }

@@ -575,9 +575,10 @@ const chargeFee = function (deviceId, onStart, onSuccess, onError) {
 /**
  * 开始充电
  */
-const chargeStart = function (id, carno, onStart, onSuccess, onError) {
+const chargeStart = function (id, carno, chargetime, onStart, onSuccess, onError) {
   var params = {
     id: id,
+    chargetime: chargetime,
     carno: carno
   }
   proxy.postRequest(BASE_URL + "/cdz/startCharge", params, onStart, onSuccess, onError)

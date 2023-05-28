@@ -1,4 +1,5 @@
 import http from '../../http/http_do'
+import toast from '../../utils/utils_toast'
 
 Page({
 
@@ -62,7 +63,7 @@ Page({
 
   onChargeClick: function (e) {
     const carno = this.data.car == null ? "" : this.data.car.carno
-    http.chargeStart(this.data.device.id, carno,
+    http.chargeStart(this.data.device.id, carno, this.data.hour == -1 ? 0 : this.data.hour * 60,
       () => wx.showLoading(),
       res => {
         wx.reLaunch({

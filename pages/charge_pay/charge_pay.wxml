@@ -1,7 +1,11 @@
 <view>
 
   <view class="content_container" style="margin-top:20rpx;">
-    <view class="desc">{{ls.carno==''?'无车牌信息':ls.carno}}</view>
+    <view style="flex-direction: row;display: flex;align-items: center;">
+      <view class="title">{{ls.carno==''?'无车牌信息':ls.carno}}</view>
+      <view class="charge" wx:if="{{device.status==1}}">充电中</view>
+    </view>
+
     <view class="desc">{{device.addres}}</view>
     <view class="desc">设备名称：{{device.devicename}}</view>
     <view class="desc">开始时间：{{ls.stime}}</view>
@@ -21,7 +25,7 @@
 
   <view class="line" />
   <view class="item" style="margin-top:20rpx;" wx:if="{{amt}}">
-    <view class="item_title">总停车费用</view>
+    <view class="item_title">支付费用</view>
     <view class="item_end">
       <text class="price_now">￥{{amt}}</text>
     </view>

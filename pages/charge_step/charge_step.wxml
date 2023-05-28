@@ -2,14 +2,15 @@
 <view class="root">
 
   <view class="item_container" bindtap="jumpChargeDeviceDetail" data-index="{{index}}">
-    <view class="hor" style="width: 100%; justify-content:space-between;align-items: center;">
+    <view class="hor" style="width: 100%; justify-content:space-between;align-items: flex-end;">
       <view>
         <view class="item_title">{{device.devicename}}</view>
         <view class="sercice_fee">编号:{{device.deviceno}}</view>
         <view class=" sercice_fee">{{device.addres}}</view>
       </view>
 
-      <view class='charge_start' bindtap="onChargeStart" wx:if="{{device.status==0}}">开始充电</view>
+      <view class='charge_start' bindtap="onChargeStart" wx:if="{{status==0}}">开始充电</view>
+      <view class='charge_end' bindtap="onChargeEnd" wx:if="{{canStop}}">结束充电</view>
     </view>
 
   </view>

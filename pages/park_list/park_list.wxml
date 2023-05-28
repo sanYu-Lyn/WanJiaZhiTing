@@ -6,7 +6,10 @@
     <block wx:for="{{parkings}}" wx:key="unique">
       <view class="item_container">
         <view bindtap="jumpParkingDetail" data-index="{{index}}">
-          <view class="item_title">{{item.parkname}}</view>
+          <view class="hor" style="align-items: baseline;">
+            <view class="item_title">{{item.parkname}}</view>
+            <view class="text_address" style="color: #263a2f; margin-left: 12rpx;">距您{{item.distance}}km</view>
+          </view>
           <view class="text_address">{{item.p}}{{item.c}}{{item.q}}{{item.addres}}</view>
           <view>
             <view class="hor" style="justify-content:flex-start;">

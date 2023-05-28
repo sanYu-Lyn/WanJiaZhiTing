@@ -33,9 +33,10 @@ Page({
   onLoad: function (options) {
     if (options.target) {
       var target = JSON.parse(options.target)
-
+      console.log(target)
       this.setData({
-        'target': target
+        'target': target,
+        'license_index': target.to == 'bind_to_charge' ? 1 : 0
       })
 
       var title
@@ -194,9 +195,10 @@ Page({
   updateCars: function () {
     http.findBindCars(() => {},
       res => {
-        persistence.setCarLicense(res.data.content)
-        // this.doTask(res.data.content[res.data.content.length - 1]);
-        this.bindToAddCar()
+        console.log(res.data)
+        persistence.setCarLicense(res.data)
+        // this.doTask(res.data.content);
+        this.bindToAddCar(res.data[0].carno)
       },
       res => {
         wx.hideLoading()
@@ -213,7 +215,7 @@ Page({
         this.bindToRent(car)
         break;
       default:
-        this.bindToAddCar()
+        this.bindToAddCar(car)
         break
     }
   },
@@ -221,15 +223,30 @@ Page({
   /**
    * 绑定结束，车辆列表
    */
-  bindToAddCar: function () {
+  bindToAddCar: function (carno) {
+    console.log(this.data.target.to )
     var pages = getCurrentPages();
-    if (this.data.target.to == 'bind_to_in' || this.data.target.to == 'bind_to_charge') {
+    if (this.data.target.to == 'bind_to_charge') {
+      var chargePage = pages[pages.length - 3];
+      chargePage.setData({
+        car: {
+          carno: carno
+        }
+      })
+      wx.navigateBack({
+        delta: 2
+      })
+    } else if (this.data.target.to == 'bind_to_in') {
       var prevPage = pages[pages.length - 1];
+      prevPage.findBindCars(true)
+      wx.navigateBack()
+    } else if (this.data.target.to == 'bind_to_rent') {
+      wx.navigateBack()
     } else {
       var prevPage = pages[pages.length - 2];
+      prevPage.findBindCars(true)
+      wx.navigateBack()
     }
-    prevPage.findBindCars(true)
-    wx.navigateBack()
   },
 
   /**

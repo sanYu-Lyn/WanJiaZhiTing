@@ -205,7 +205,7 @@ Page({
   onCarAChoose: function (e) {
     if (e.detail.index == this.data.carNums.length - 1) {
       var params = {
-        target: 'bind_to_rent'
+        to: 'bind_to_rent'
       }
       var jsonStr = JSON.stringify(params)
       wx.navigateTo({
@@ -224,7 +224,10 @@ Page({
 
   onCarBChoose: function (e) {
     if (e.detail.index == this.data.carNums.length - 1) {
-      var jsonStr = JSON.stringify(utils.generateTarget(2))
+      var params = {
+        to: 'bind_to_rent'
+      }
+      var jsonStr = JSON.stringify(params)
       wx.navigateTo({
         url: '../car_bind/car_bind?target=' + jsonStr,
       })

@@ -71,3 +71,27 @@ page {
   justify-content: center;
   color: #72777b;
 }
+
+.status {
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 12rpx;
+  padding-right: 12rpx;
+  background-color: #0ED16B;
+  color: white;
+  border-radius: 12rpx;
+  font-family: Microsoft YaHei;
+}
+
+.done {
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 12rpx;
+  padding-right: 12rpx;
+  color: #A2A3A3;
+  border-radius: 12rpx;
+  border: 12rpx #A2A3A3 1rpx;
+  font-family: Microsoft YaHei;
+}

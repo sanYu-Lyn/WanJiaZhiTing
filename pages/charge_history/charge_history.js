@@ -59,7 +59,6 @@ Page({
 
   },
 
-
   requestHistory() {
     http.chargeHistory(
       () => wx.showLoading(),
@@ -71,5 +70,11 @@ Page({
       },
       res => wx.hideLoading()
     )
+  },
+  onChargeClick(e) {
+    var histoty = this.data.datas[e.currentTarget.dataset.index]
+    wx.navigateTo({
+      url: '../charge_pay/charge_pay?ls=' + JSON.stringify(histoty),
+    })
   }
 })

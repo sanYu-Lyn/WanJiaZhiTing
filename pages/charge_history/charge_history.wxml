@@ -1,7 +1,11 @@
 <view class="root">
   <block wx:for="{{datas}}" wx:key="unique">
-    <view class="item_container">
-      <view class="item_title">{{item.carno}}</view>
+    <view class="item_container" bindtap="onChargeClick" data-index="{{index}}">
+      <view class="hor">
+        <view class="item_title">{{item.carno==''?'无车牌信息':item.carno}}</view>
+        <view class="status" wx:if="{{item.status==0}}">充电中</view>
+        <view class="done" wx:else="">已完成</view>
+      </view>
       <view class="text_address">设备编号：{{item.devicename}}</view>
       <view class="text_address">开始时间：{{item.stime}}</view>
       <view class="text_address">结束时间：{{item.etime}}</view>
