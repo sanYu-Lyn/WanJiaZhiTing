@@ -27,7 +27,7 @@
 
   <view style="display: flex;flex-direction: row; margin-left: 30rpx;margin-right: 30rpx;margin-top: 12rpx;">
     <image class="title_image" src="../../image/ic_public_question.png"></image>
-    <view class="text_tips">在对接道闸场站输入充电车牌号可以减免部分停车费用，此车牌为本次充电临时车牌</view>
+    <view class="text_tips">提示：输入充电车牌号可以减免此次在本停车场的部分临时停车费用，请准确填写充电车牌号</view>
   </view>
 
 

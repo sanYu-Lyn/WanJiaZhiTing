@@ -10,9 +10,9 @@ page {
 }
 
 .logo {
-  width: 110rpx;
-  height: 120rpx;
-  margin-top: 455rpx;
+  width: 210rpx;
+  height: 220rpx;
+  margin-top: 300rpx;
 }
 
 .name {

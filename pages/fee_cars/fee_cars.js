@@ -8,13 +8,14 @@ Page({
   data: {
     cars: [],
     chooseIndex: 0,
-    to: 'out'
+    to: 'out',
+    id: null
   },
 
   onLoad(options) {
-    const _to = options.to
     this.setData({
-      to: _to
+      to: options.to,
+      id: options.id
     })
   },
 
@@ -69,14 +70,15 @@ Page({
       wx.navigateBack()
     } else if (this.data.to == 'in') {
       this.scanIn()
-    } else {
+    } else if (this.data.to == 'parkout') {
       this.scanOut()
     }
   },
 
   scanOut: function () {
     var car = this.data.cars[this.data.chooseIndex]
-    pay.pay_out('1', car.carno, 1,
+    console.log('carno = %s id = %s', car.carno, this.data.id)
+    pay.pay_out(this.data.id, car.carno, 1,
       () => wx.showLoading(),
       res => {
         wx.hideLoading()
@@ -90,7 +92,8 @@ Page({
 
   scanIn: function () {
     var car = this.data.cars[this.data.chooseIndex]
-    http.scanIn('dz-45-0', '桂A88888',
+    console.log('carno = %s id = %s', car.carno, this.data.id)
+    http.scanIn(this.data.id, car.carno,
       () => wx.showLoading(),
       res => {
         wx.hideLoading()

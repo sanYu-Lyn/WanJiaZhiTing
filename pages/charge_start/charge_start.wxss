@@ -105,11 +105,11 @@
   font-size: 24rpx;
   color: #A2A3A3;
   font-family: Microsoft YaHei;
-  margin-left: 6rpx;
+  margin-left: 10rpx;
 }
 
 .title_image {
-  width: 30rpx;
+  width: 34rpx;
   height: 24rpx;
-  margin-top: 8rpx;
+  margin-top: 10rpx;
 }

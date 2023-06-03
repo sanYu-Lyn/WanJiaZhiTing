@@ -143,14 +143,7 @@ Page({
         wx.showLoading()
       },
       res => {
-        if (!res) {
-          this.setData({
-            status: 1
-          })
-        } else {
-          // scan.doTask()
-          wx.navigateBack()
-        }
+        wx.navigateBack()
         wx.hideLoading()
       },
       res => {

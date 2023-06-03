@@ -481,9 +481,9 @@ const payMonthCardByWX = function (parkid, carno1, carno2, stime, count, onStart
  * 钱包充值
  * @param {*} amt 金额
  */
-const charge = function (amt, onStart, onSuccess, onError) {
+const charge = function (key, onStart, onSuccess, onError) {
   var params = {
-    amt: amt,
+    key: key,
   }
   proxy.postRequest(BASE_URL + '/recharge/rechargeAmt', params, onStart, onSuccess, onError);
 }

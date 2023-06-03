@@ -1,146 +1,111 @@
 import http from '../http/http_do'
+import toast from '../utils/utils_toast'
 
 const doTask = function () {
   if (!getApp().globalData.task) {
     return
   }
-  // if (!checkLoginState()) {
-  //   return
-  // }
+
+  if (!checkLoginState()) {
+    return
+  }
+
+  var to = getApp().globalData.task.to
+  var id = getApp().globalData.task.id
+
+  console.log('to = %s id = %s', to, id)
+
+  if (to == 'in') {
+    wx.navigateTo({
+      url: '../fee_cars/fee_cars?to=in&id=' + id,
+    })
+    return
+  }
+
   if (getApp().globalData.task.to === 'out') {
-    scanOut()
+    http.scanOut(id, '桂A88888',
+      () => wx.showLoading(),
+      res => {
+        wx.hideLoading()
+        res.data.status = 'needToPay'
+        const params = encodeURIComponent(JSON.stringify(res.data))
+        wx.redirectTo({
+          url: '../fee_pay/fee_pay?order=' + params,
+        })
+      },
+      res => wx.hideLoading()
+    )
     return
   }
 
   if (getApp().globalData.task.to === 'parkout') {
-    jumpToSelectCar()
+    wx.redirectTo({
+      url: '../fee_cars/fee_cars?to=parkout&id=' + id,
+    })
     return
   }
 
-  // if (getApp().globalData.task) {  
-  //   if (checkLoginState()) {
-  //     switch (getApp().globalData.task.to) {
-  //       case '1':
-  //         checkNeedPayOrder()
-  //         break;
-  //       case '2':
-  //         buyRentCard()
-  //         break;
-  //     }
-  //   }
-  // } else {
-  //   let pages = getCurrentPages();
-  //   if (pages.length > 1) {
-  //     wx.navigateBack()
-  //   }
-  // }
+  if (getApp().globalData.task.to === 'chargestart') {
+    http.chargeDeviceDetail(id,
+      () => wx.showLoading(),
+      res => {
+        wx.redirectTo({
+          url: '../charge_start/charge_start?device=' + JSON.stringify(res.data),
+        })
+      },
+      res => {
+        wx.hideLoading()
+      }
+    )
+    return
+  }
+
+  if (getApp().globalData.task.to === 'chargeend') {
+    const to_pay = (ls, device) => {
+      wx.redirectTo({
+        url: '../charge_pay/charge_pay?ls=' + JSON.stringify(ls) +
+          '&device=' + JSON.stringify(device),
+      })
+    }
+
+    const no_pay = () => {
+      toast.normal('当前充电桩未查询到充电信息');
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '../charge_history/charge_history',
+        })
+      }, 2000);
+    }
+
+    http.chargeCurrent(
+      () => wx.showLoading(),
+      res => {
+        if (id == res.data.deviceinfo.id) {
+          to_pay(res.data.ls, res.data.deviceinfo)
+        } else {
+          no_pay()
+        }
+      },
+      res => no_pay()
+    )
+    return
+  }
+
   wx.navigateBack()
 }
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////出场扫码查询待支付订单//////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  *检测用是否登录，未登录跳转到登录界面
  */
 const checkLoginState = function () {
   if (!getApp().globalData.userInfo) {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../base_login/base_login',
     })
     return false //未登录
   }
   return true //已登录
 }
-
-const scanOut = function () {
-  http.scanOut('dz-45-1', '桂A88888',
-    () => wx.showLoading(),
-    res => {
-      wx.hideLoading()
-      jumpToOrderPay(res.data)
-    },
-    res => wx.hideLoading()
-  )
-}
-
-const parkOut = function () {
-  http.parkOut('1', '桂A88888',
-    () => wx.showLoading(),
-    res => {
-      wx.hideLoading()
-      jumpToSelectCar()
-    },
-    res => wx.hideLoading()
-  )
-}
-
-/**
- * 检测是否有待支付的订单
- */
-const checkNeedPayOrder = function () {
-  http.needToPayOrder(
-    () => wx.showLoading(),
-    res => {
-      if (res.data && res.data.content[0]) {
-        jumpToOrderPay(res.data.content[0])
-      } else {
-        jumpToSelectCar()
-      }
-      wx.hideLoading()
-    },
-    res => wx.hideLoading()
-  )
-
-  getApp().globalData.task = null
-}
-
-/**
- * 跳转到订单支付界面
- */
-const jumpToOrderPay = function (order) {
-  order.status = 'needToPay'
-  const params = encodeURIComponent(JSON.stringify(order))
-  wx.redirectTo({
-    url: '../fee_pay/fee_pay?order=' + params,
-  })
-}
-
-/**
- * 跳转到选择车辆界面
- */
-const jumpToSelectCar = function () {
-  wx.redirectTo({
-    url: '../fee_cars/fee_cars?to=out',
-  })
-
-}
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////出场扫码查询待支付订单//////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////月卡续租////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * 续费月卡
- */
-const buyRentCard = function () {
-  if (getApp().globalData.task.id) {
-    var carId = getApp().globalData.task.id
-  } else {
-    wx.navigateTo({
-      url: '../rent_card/rent_card',
-    })
-  }
-  getApp().globalData.task = null
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////月卡续租////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 module.exports = {
   doTask: doTask,
