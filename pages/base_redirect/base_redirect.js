@@ -8,9 +8,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (options.q) {
-      var to = util.getUrlParam(decodeURIComponent(options.q), 'to');
-      var id = util.getUrlParam(decodeURIComponent(options.q), 'id');
+    console.log('--------------------------------------------')
+    console.log(options.scene)
+    if (options.scene) {
+      options.scene = 'https://xxx.xxx.xxx/qrcode?' + options.scene
+      var to = util.getUrlParam(decodeURIComponent(options.scene), 'to');
+      var id = util.getUrlParam(decodeURIComponent(options.scene), 'id');
+      if (to) getApp().globalData.task = {
+        to: to,
+        id: id
+      }
+    }
+
+    if (options.power) {
+      var to = util.getUrlParam(decodeURIComponent(options.scene), 'to');
+      var id = util.getUrlParam(decodeURIComponent(options.scene), 'id');
       if (to) getApp().globalData.task = {
         to: to,
         id: id

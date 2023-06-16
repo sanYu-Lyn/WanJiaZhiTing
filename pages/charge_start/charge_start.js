@@ -11,13 +11,20 @@ Page({
     hours: [-1, 2, 4, 6, 8, 9],
     hour: -1,
     amt: null,
-    car: null
+    car: null,
+    isMoto: false
   },
 
   onLoad: function (options) {
     this.setData({
       device: JSON.parse(options.device)
     })
+
+    if (options.moto) {
+      this.setData({
+        isMoto: true
+      })
+    }
   },
 
   onShow: function () {
@@ -62,8 +69,29 @@ Page({
   },
 
   onChargeClick: function (e) {
+    if (this.data.isMoto) {
+      this.doMotoCharge()
+    } else {
+      this.doCarCharge()
+    }
+  },
+
+  doCarCharge() {
     const carno = this.data.car == null ? "" : this.data.car.carno
     http.chargeStart(this.data.device.id, carno, this.data.hour == -1 ? 0 : this.data.hour * 60,
+      () => wx.showLoading(),
+      res => {
+        wx.reLaunch({
+          url: '../base_result/base_result?src=8',
+        })
+      },
+      res => {}
+    )
+  },
+
+  doMotoCharge() {
+    const carno = this.data.car == null ? "" : this.data.car.carno
+    http.chargeMotoStart(this.data.device.id, carno, this.data.hour == -1 ? 0 : this.data.hour * 60,
       () => wx.showLoading(),
       res => {
         wx.reLaunch({

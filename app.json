@@ -39,8 +39,29 @@
     "pages/charge_pay/charge_pay",
     "pages/charge_step/charge_step",
     "pages/charge_start/charge_start",
-    "pages/charge_history/charge_history"
+    "pages/charge_moto/charge_moto",
+    "pages/charge_history/charge_history",
+    "pages/charge_moto_history/charge_moto_history",
+    "pages/park_pay/park_pay",
+    "pages/park_out/park_out"
   ],
+  "tabBar": {
+    "custom": true,
+    "backgroundColor": "#ffffff",
+    "list": [{
+        "pagePath": "pages/park_list/park_list",
+        "text": "停车场"
+      },
+      {
+        "pagePath": "pages/park_pay/park_pay",
+        "text": "停车缴费"
+      },
+      {
+        "pagePath": "pages/me_center/me_center",
+        "text": "我的"
+      }
+    ]
+  },
   "window": {
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "@page_backgroud",

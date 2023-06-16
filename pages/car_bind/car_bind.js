@@ -151,7 +151,7 @@ Page({
     }
 
     if (this.data.target.to == 'bind_to_pay') {
-      this.bindToPay(null, license, this.convertColor())
+      this.bindToPay(license, this.convertColor())
     } else { //绑定车牌
       this.bindCarNo(license)
     }
@@ -224,7 +224,7 @@ Page({
    * 绑定结束，车辆列表
    */
   bindToAddCar: function (carno) {
-    console.log(this.data.target.to )
+    console.log(this.data.target.to)
     var pages = getCurrentPages();
     if (this.data.target.to == 'bind_to_charge') {
       var chargePage = pages[pages.length - 3];
@@ -252,16 +252,34 @@ Page({
   /**
    * 根据车id查询是否有待支付订单
    */
-  bindToPay: function (carId, carNo, plateColor) {
-    pay.pay_out('1', carNo, 1,
+  bindToPay: function (carno, color) {
+    http.parkOut(carno,
       () => wx.showLoading(),
       res => {
         wx.hideLoading()
-        wx.reLaunch({
-          url: '../base_result/base_result?src=0',
+        const order = {
+          lsid: res.data.lsid,
+          amt: res.data.amt,
+          cardno: res.data.carno,
+          intime: res.data.intime,
+          parktime: res.data.parktime,
+          parkName: res.data.parkname,
+          parkid: res.data.parkid,
+          status: 'needToPay'
+        }
+        wx.navigateTo({
+          url: '../fee_pay/fee_pay?order=' + JSON.stringify(order),
         })
       },
-      res => wx.hideLoading()
+      res => {
+        wx.hideLoading()
+        toast.normal('未查询到停车订单');
+        setTimeout(() => {
+          wx.navigateTo({
+            url: '../fee_bill/fee_bill',
+          })
+        }, 2000);
+      }
     )
   },
 

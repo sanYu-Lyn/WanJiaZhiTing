@@ -3,17 +3,7 @@
 <view class="navbar" style="{{'height: ' + navigationBarHeight}}">
   <view style="{{'height: ' + statusBarHeight}}"></view>
   <view class='title-container'>
-    <view class='capsule' wx:if="{{ back||home||profile }}">
-      <view bindtap='back' wx:if="{{back}}">
-        <image src='/images/back.png'></image>
-      </view>
-      <view bindtap='backHome' wx:if="{{home}}">
-        <image src='/images/home.png'></image>
-      </view>
-      <view bindtap='profile' wx:if="{{profile}}">
-        <image class="icon_btn" mode="aspectFit" src='../../image/ic_map_profile.png'></image>
-      </view>
-    </view>
+    <view class="city">{{city}}</view>
     <!--搜索-->
     <view class="search_input" bindtap="jumpSearch">
       <image class="search_image" src="../../image/ic_map_search.png"></image>

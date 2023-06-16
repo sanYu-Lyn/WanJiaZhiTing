@@ -1,8 +1,8 @@
 <view>
 
   <view class="content_container" style="margin-top:20rpx;">
-    <view style="flex-direction: row;display: flex;align-items: center;">
-      <view class="title">{{ls.carno==''?'无车牌信息':ls.carno}}</view>
+    <view style="flex-direction: row;display: flex;align-items: baseline;">
+      <view class="title">{{ls.carno==null||ls.carno==''?'无车牌信息':ls.carno}}</view>
       <view class="charge" wx:if="{{device.status==1}}">充电中</view>
     </view>
 

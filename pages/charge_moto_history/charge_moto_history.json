@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "二轮账单",
+  "usingComponents": {
+    "empty": "../../component/empty/empty"
+  }
+}

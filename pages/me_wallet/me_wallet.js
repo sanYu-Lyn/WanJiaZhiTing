@@ -90,7 +90,6 @@ Page({
     if (this.data.content && this.data.current > 0) {
       const that = this
       var amount = Object.keys(this.data.content)[this.data.current - 1]
-      console.log('.>>>>>' + amount)
       http.charge(amount,
         () => {},
         res => {
@@ -101,6 +100,7 @@ Page({
             signType: res.data.signType,
             paySign: res.data.paySign,
             success(res) {
+              console.log('------------------------------>')
               if (that.data.to == 'charge') {
                 wx.redirectTo({
                   url: '../base_result/base_result?src=5',

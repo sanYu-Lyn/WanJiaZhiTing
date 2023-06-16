@@ -4,10 +4,10 @@
   <image class="image" src="{{orderImg}}" wx:if="{{false}}" />
 
   <view class="content_container" style="margin-top:20rpx;">
-    <view class="desc">车牌号 {{order.cardno}}</view>
     <view class="title">{{order.parkName}}</view>
-    <view class="desc">入场时间 {{order.intime}}</view>
-    <view class="desc">停车时间 {{order.parktime}}</view>
+    <view class="desc">车牌号：{{order.cardno}}</view>
+    <view class="desc">入场时间：{{order.intime}}</view>
+    <view class="desc">停车时间：{{order.parktime}}</view>
   </view>
 
   <view class="item" style="margin-top:20rpx;" bindtap="onCouponClick" wx:if="{{false}}">

@@ -16,11 +16,13 @@
       </view>
       <view class="line_horizontal" style="margin-top:30rpx"></view>
       <view class="item_bottom">
-        <block wx:if="{{item.isLocked}}">
-          <view class="item_btn_checked" data-index="{{index}}">已认证</view>
-        </block>
-        <block wx:else>
-          <view class="item_btn" hover-class="hover_def" bindtap="onCerfClick" data-index="{{index}}">去认证</view>
+        <block wx:if="{{false}}">
+          <block wx:if="{{item.isLocked}}">
+            <view class="item_btn_checked" data-index="{{index}}">已认证</view>
+          </block>
+          <block wx:else>
+            <view class="item_btn" hover-class="hover_def" bindtap="onCerfClick" data-index="{{index}}">去认证</view>
+          </block>
         </block>
         <view class="item_unbind" hover-class="hover_def" bindtap="onUnbindClick" data-index="{{index}}">解绑</view>
       </view>

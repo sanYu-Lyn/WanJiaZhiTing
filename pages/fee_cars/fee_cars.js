@@ -2,6 +2,7 @@
 import http from '../../http/http_do'
 import persistence from '../../utils/utils_persistence'
 import pay from '../../utils/utils_pay'
+import toast from '../../utils/utils_toast'
 
 Page({
 
@@ -78,15 +79,33 @@ Page({
   scanOut: function () {
     var car = this.data.cars[this.data.chooseIndex]
     console.log('carno = %s id = %s', car.carno, this.data.id)
-    pay.pay_out(this.data.id, car.carno, 1,
+    http.parkOut(car.carno,
       () => wx.showLoading(),
       res => {
         wx.hideLoading()
-        wx.reLaunch({
-          url: '../base_result/base_result?src=0',
+        const order = {
+          lsid: res.data.lsid,
+          amt: res.data.amt,
+          cardno: res.data.carno,
+          intime: res.data.intime,
+          parktime: res.data.parktime,
+          parkName: res.data.parkname,
+          parkid: res.data.parkid,
+          status: 'needToPay'
+        }
+        wx.navigateTo({
+          url: '../fee_pay/fee_pay?order=' + JSON.stringify(order),
         })
       },
-      res => wx.hideLoading()
+      res => {
+        wx.hideLoading()
+        toast.normal('未查询到停车订单');
+        setTimeout(() => {
+          wx.navigateTo({
+            url: '../fee_bill/fee_bill',
+          })
+        }, 2000);
+      }
     )
   },
 

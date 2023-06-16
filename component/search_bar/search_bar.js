@@ -8,6 +8,14 @@ Component({
       type: String,
       value: 'Wechat'
     },
+    count: {
+      type: Number,
+      value: 0
+    },
+    city: {
+      type: String,
+      value: '柳州市'
+    },
     back: {
       type: Boolean,
       value: false
@@ -27,24 +35,6 @@ Component({
   },
 
   methods: {
-    backHome: function () {
-      let pages = getCurrentPages()
-      wx.navigateBack({
-        delta: pages.length
-      })
-    },
-    back: function () {
-      wx.navigateBack({
-        delta: 1
-      })
-    },
-    profile: function () {
-      wx.navigateTo({
-        url: '../../pages/me_center/me_center',
-        // url: '../../pages/base_redirect/base_redirect?to=2',
-      })
-    },
-
     jumpSearch: function () {
       wx.navigateTo({
         url: '../../pages/base_search/base_search',

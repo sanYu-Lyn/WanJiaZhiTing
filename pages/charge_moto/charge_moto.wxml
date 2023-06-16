@@ -1,0 +1,30 @@
+<view>
+  <view class="text_title">请选择插座号</view>
+  <grid-view type='aligned' cross-axis-count='8' main-axis-gap='20rpx' cross-axis-gap='20rpx' class="grid">
+    <view wx:key="unique" wx:for="{{devices}}" data-index="{{index}}" bindtap="onDeviceTap">
+      <view wx:if="{{item.status == 0}}" class="item_free">{{item.devicename}}</view>
+      <view wx:elif="{{item.status == 1}}" class="item_charge">{{item.devicename}}</view>
+      <view wx:else="" class="item_disable">{{item.devicename}}</view>
+    </view>
+  </grid-view>
+
+  <view class="hor">
+    <view style="display: flex;flex-direction: row;align-items: center;">
+      <view class="rect_free"></view>
+      <view class="text_desc">空闲</view>
+    </view>
+
+    <view style="display: flex;flex-direction: row;align-items: center;margin-left: 32rpx;">
+      <view class="rect_charge"></view>
+      <view class="text_desc">充电中</view>
+    </view>
+
+    <view style="display: flex;flex-direction: row;align-items: center;margin-left: 32rpx;">
+      <view class="rect_disable"></view>
+      <view class="text_desc">不可用</view>
+    </view>
+  </view>
+
+  <view class=".hor" style="color: gray;font-size: 24rpx;">每小时单价：{{parking.cdprice}}元</view>
+
+</view>

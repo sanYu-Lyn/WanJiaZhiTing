@@ -6,12 +6,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 200rpx;
 }
 
 .empty_img {
   width: 302rpx;
   height: 302rpx;
+  margin-top: 200rpx;
 }
 
 .empty_text {

@@ -36,21 +36,21 @@
           "scene": 1011
         },
         {
-          "name": "结束充电",
-          "pathName": "pages/base_redirect/base_redirect",
-          "query": "q=https://park.itms8.top/qrcode?to%3Dchargeend%26id%3D18",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
           "name": "开始充电",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "q=https://park.itms8.top/qrcode?to%3Dchargestart%26id%3D18",
+          "query": "scene=to%3Dchargecar%26id%3D18",
+          "launchMode": "default",
+          "scene": 1011
+        },
+        {
+          "name": "二轮充电",
+          "pathName": "pages/base_redirect/base_redirect",
+          "query": "scene=to%3Dchargemoto%26id%3D350",
           "launchMode": "default",
           "scene": 1011
         }
       ]
     }
   },
-  "libVersion": "2.25.4"
+  "libVersion": "2.32.0"
 }

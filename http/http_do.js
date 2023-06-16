@@ -91,15 +91,13 @@ const decryptPhone = function (encryptedData, iv, sessionKey, onStart, onSuccess
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * 查询用户信息
- * @param {*} userId 用户id
+ * 查询用户计数信息 
  */
-const getUser = function (userId, onStart, onSuccess, onError) {
-  var params = {
-    userId: userId,
-  }
-  proxy.getRequest(BASE_URL + '/users', params, onStart, onSuccess, onError);
+const getUserCount = function (onStart, onSuccess, onError) {
+  var params = {}
+  proxy.postRequest(BASE_URL + '/user/getWaitPayOrderCount', params, onStart, onSuccess, onError);
 }
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //=========================================================END:用户相关========================================================================
@@ -168,12 +166,11 @@ const uploadCarCertif = function (path, carId, name, onStart, onSuccess, onError
  * 待支付的订单
  * @param {*} carNo 车牌号
  */
-const parkOrderNoPay = function (carNo, pageNumber, onStart, onSuccess, onError) {
+const parkOrderWait = function (carNo, onStart, onSuccess, onError) {
   var params = {
-    carNo: carNo,
-    pageNumber: pageNumber
+    carno: carNo,
   }
-  proxy.getRequest(BASE_URL + '/orders/my/parking/needToPay', params, onStart, onSuccess, onError);
+  proxy.postRequest(BASE_URL + '/user/parkPay', params, onStart, onSuccess, onError);
 }
 
 /**
@@ -275,10 +272,9 @@ const scanIn = function (deviceno, carno, onStart, onSuccess, onError) {
 /**
  * 扫码出场
  */
-const scanOut = function (deviceno, carno, onStart, onSuccess, onError) {
+const scanOut = function (deviceno, onStart, onSuccess, onError) {
   var params = {
     deviceno: deviceno,
-    carno: carno
   }
   proxy.postRequest(BASE_URL + '/user/scanPay', params, onStart, onSuccess, onError);
 }
@@ -286,9 +282,8 @@ const scanOut = function (deviceno, carno, onStart, onSuccess, onError) {
 /**
  * 扫公众号出场
  */
-const parkOut = function (parkid, carno, onStart, onSuccess, onError) {
+const parkOut = function (carno, onStart, onSuccess, onError) {
   var params = {
-    parkid: parkid,
     carno: carno
   }
   proxy.postRequest(BASE_URL + '/user/parkPay', params, onStart, onSuccess, onError);
@@ -378,7 +373,7 @@ const rentRule = function (parkid, onStart, onSuccess, onError) {
   var params = {
     parkid: parkid
   }
-  proxy.postRequest(BASE_URL + '/monthcard/getMonthCardRule', params, onStart, onSuccess, onError);
+  proxy.postRequest(BASE_URL + '/info/getMonthCardRule', params, onStart, onSuccess, onError);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -438,10 +433,9 @@ const availableCoupons = function (orderId, onStart, onSuccess, onError) {
 /**
  * 使用钱包支付停车费
  */
-const payParkingFeeByWallet = function (deviceno, carno, onStart, onSuccess, onError) {
+const payParkingFeeByWallet = function (lsid, onStart, onSuccess, onError) {
   var params = {
-    deviceno: deviceno,
-    carno: carno
+    lsid: lsid
   }
   proxy.postRequest(BASE_URL + '/user/comfirmPay', params, onStart, onSuccess, onError);
 }
@@ -563,6 +557,16 @@ const chargeDeviceDetail = function (deviceId, onStart, onSuccess, onError) {
 }
 
 /**
+ * 二轮充电桩详情
+ */
+const chargeMotoDeviceDetail = function (deviceId, onStart, onSuccess, onError) {
+  var params = {
+    id: deviceId
+  }
+  proxy.postRequest(BASE_URL + "/info/motordeviceinfo", params, onStart, onSuccess, onError)
+}
+
+/**
  * 充电桩收费表
  */
 const chargeFee = function (deviceId, onStart, onSuccess, onError) {
@@ -570,6 +574,16 @@ const chargeFee = function (deviceId, onStart, onSuccess, onError) {
     id: deviceId
   }
   proxy.postRequest(BASE_URL + "/info/feestep", params, onStart, onSuccess, onError)
+}
+
+/**
+ * 二轮充电桩收费表
+ */
+const chargeMoto = function (parkingId, onStart, onSuccess, onError) {
+  var params = {
+    parkid: parkingId
+  }
+  proxy.postRequest(BASE_URL + "/info/getMotorCdDevice", params, onStart, onSuccess, onError)
 }
 
 /**
@@ -585,6 +599,19 @@ const chargeStart = function (id, carno, chargetime, onStart, onSuccess, onError
 }
 
 /**
+ * 开始二轮充电
+ */
+const chargeMotoStart = function (id, carno, chargetime, onStart, onSuccess, onError) {
+  var params = {
+    id: id,
+    chargetime: chargetime,
+    carno: carno
+  }
+  proxy.postRequest(BASE_URL + "/motorcd/startCharge", params, onStart, onSuccess, onError)
+}
+
+
+/**
  * 结束充电
  */
 const chargeEnd = function (id, onStart, onSuccess, onError) {
@@ -592,6 +619,16 @@ const chargeEnd = function (id, onStart, onSuccess, onError) {
     id: id,
   }
   proxy.postRequest(BASE_URL + "/cdz/stopChargeByUser", params, onStart, onSuccess, onError)
+}
+
+/**
+ * 结束二轮充电
+ */
+const chargeMotoEnd = function (id, onStart, onSuccess, onError) {
+  var params = {
+    id: id,
+  }
+  proxy.postRequest(BASE_URL + "/motorcd/stopChargeByUser", params, onStart, onSuccess, onError)
 }
 
 /**
@@ -608,6 +645,17 @@ const chargePay = function (id, payPark, onStart, onSuccess, onError) {
 }
 
 /**
+ * 二轮充电缴费 
+ * @param {} id 
+ */
+const chargePayMoto = function (id, onStart, onSuccess, onError) {
+  var params = {
+    id: id,
+  }
+  proxy.postRequest(BASE_URL + "/motorcd/comfirmStopCharge", params, onStart, onSuccess, onError)
+}
+
+/**
  * 当前充电
  */
 const chargeCurrent = function (onStart, onSuccess, onError) {
@@ -616,11 +664,31 @@ const chargeCurrent = function (onStart, onSuccess, onError) {
 }
 
 /**
+ * 当前二轮充电
+ */
+const chargeCurrentMoto = function (onStart, onSuccess, onError) {
+  var params = {}
+  proxy.postRequest(BASE_URL + "/motorcd/getUserCurrentCharge", params, onStart, onSuccess, onError)
+}
+
+/**
  * 历史充电账单
  */
-const chargeHistory = function (onStart, onSuccess, onError) {
-  var params = {}
+const chargeHistory = function (pageNum, onStart, onSuccess, onError) {
+  var params = {
+    pageNum: pageNum
+  }
   proxy.postRequest(BASE_URL + "/cdz/getUserChargeLs", params, onStart, onSuccess, onError)
+}
+
+/**
+ * 二轮历史充电账单
+ */
+const chargeMotoHistory = function (pageNum, onStart, onSuccess, onError) {
+  var params = {
+    pageNum: pageNum
+  }
+  proxy.postRequest(BASE_URL + "/motorcd/getUserChargeLs", params, onStart, onSuccess, onError)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -665,6 +733,7 @@ exports.bindPhone = bindPhone;
 exports.getMessageCode = getMessageCode;
 // exports.login = login;
 exports.decryptPhone = decryptPhone;
+exports.getUserCount = getUserCount
 
 exports.bindCarNo = bindCarNo;
 exports.unbindCarNo = unbindCarNo;
@@ -674,7 +743,7 @@ exports.uploadCarCertif = uploadCarCertif;
 
 exports.ticketOrderNoPay = ticketOrderNoPay;
 exports.ticketOrderPaid = ticketOrderPaid;
-exports.parkOrderNoPay = parkOrderNoPay;
+exports.parkOrderWait = parkOrderWait;
 exports.parkOrderPaid = parkOrderPaid;
 exports.inquery = inquery;
 exports.orderInImage = orderInImage;
@@ -714,9 +783,16 @@ exports.chargeAmounts = chargeAmounts;
 
 exports.chargeDeviceList = chargeDeviceList;
 exports.chargeDeviceDetail = chargeDeviceDetail;
+exports.chargeMotoDeviceDetail = chargeMotoDeviceDetail;
 exports.chargeFee = chargeFee;
 exports.chargeStart = chargeStart;
+exports.chargeMotoStart = chargeMotoStart;
 exports.chargeEnd = chargeEnd
+exports.chargeMotoEnd = chargeMotoEnd
 exports.chargeCurrent = chargeCurrent
+exports.chargeCurrentMoto = chargeCurrentMoto
 exports.chargePay = chargePay
+exports.chargePayMoto = chargePayMoto
 exports.chargeHistory = chargeHistory
+exports.chargeMotoHistory = chargeMotoHistory
+exports.chargeMoto = chargeMoto

@@ -20,31 +20,15 @@ const pay = (parkId, carA, carB, startDate, monthCount, type, start, success, er
  * 公众号进出场
  * @param {*} type 0钱包支付 1微信支付
  */
-const pay_out = (parkid, carno, type, start, success, error) => {
-  http.parkOut(parkid, carno,
-    start,
+const pay_out = (lsid, start, success, error) => {
+  payParkingFeeByWallet(lsid, start,
     res => {
-      if (type == 0) {
-        // payMonthCardByWallet(parkId, carA, carB, startDate, monthCount, start, success, error)
-      } else {
+      if (res.data && res.data.wxpay) {
         requestWX(res.data.wxpay, success, error)
+      } else {
+        success(res)
       }
-    },
-    error
-  )
-
-}
-
-/**
- * 扫码进出场
- * @param {*} type 0钱包支付 1微信支付
- */
-const scan_out = (deviceno, carno, type, start, success, error) => {
-  if (type == 0) {
-    payParkingFeeByWallet(deviceno, carno, start, success, error)
-  } else {
-    requestWX(res.data.wxpay, success, error)
-  }
+    }, error)
 }
 
 /**
@@ -71,8 +55,8 @@ const payMonthCardByWX = (parkId, carA, carB, startDate, monthCount, start, succ
   http.payMonthCardByWX(parkId, carA, carB, startDate, monthCount, start, success, error)
 }
 
-const payParkingFeeByWallet = (deviceno, carno, start, success, error) => {
-  http.payParkingFeeByWallet(deviceno, carno, start, success, error)
+const payParkingFeeByWallet = (lsid, start, success, error) => {
+  http.payParkingFeeByWallet(lsid, start, success, error)
 }
 
 const requestWX = (res, success, error) => {
@@ -94,6 +78,5 @@ const requestWX = (res, success, error) => {
 module.exports = {
   pay: pay,
   pay_choose: pay_choose,
-  pay_out: pay_out,
-  scan_out: scan_out
+  pay_out: pay_out
 }

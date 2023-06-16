@@ -11,28 +11,37 @@
   <view class="search_detail_container">
     <block wx:for="{{parkings}}" wx:key="unique">
       <view class="item_container">
-        <view class="item_title">{{item.parkname}}</view>
-        <view class="text_address">{{item.p}}{{item.c}}{{item.q}}{{item.addres}}</view>
-        <view>
-          <view class="hor" style="justify-content:flex-start;">
-            <view class="hor" style="align-items: center">
-              <view class="text_address">停车位</view>
-              <view class="item_title" style="margin-left: 20rpx;color: #438EF2;">
-                {{item.usecount}}/{{item.totalcount}}
+        <view bindtap="jumpParkingDetail" data-index="{{index}}">
+          <view class="hor" style="align-items: baseline;">
+            <view class="hor" style="align-items: center;">
+              <image wx:if="{{item.isself}}" src="../../image/ic_logo.png" style="width: 30rpx;height: 30rpx;margin-right: 8rpx;" />
+              <view class="item_title">{{item.parkname}}</view>
+            </view>
+            <view class="text_address" style="color: #263a2f; margin-left: 12rpx;">距您{{item.distance}}km</view>
+          </view>
+          <view class="text_address">{{item.p}}{{item.c}}{{item.q}}{{item.addres}}</view>
+          <view>
+            <view wx:if="{{item.isself}}" class="hor" style="justify-content:flex-start;">
+              <view class="hor" style="align-items: center">
+                <view class="text_address">停车位</view>
+                <view class="item_title" style="margin-left: 20rpx;color: #438EF2;">
+                  {{item.usecount}}/{{item.totalcount}}
+                </view>
+              </view>
+              <view class="hor" style="align-items: center;;margin-left: 60rpx;">
+                <view class="text_address">慢充</view>
+                <view class="item_title" style="margin-left: 20rpx;color: #0ED16B;">
+                  {{item.usechargetotalcount}}/{{item.chargetotalcount}}
+                </view>
+              </view>
+              <view class="hor" style="align-items: center;;margin-left: 60rpx;">
+                <view class="text_address">快充</view>
+                <view class="item_title" style="margin-left: 20rpx;color: #007d65;">
+                  {{item.fusechargetotalcount}}/{{item.fchargetotalcount}}
+                </view>
               </view>
             </view>
-            <view class="hor" style="align-items: center;;margin-left: 60rpx;">
-              <view class="text_address">慢充</view>
-              <view class="item_title" style="margin-left: 20rpx;color: #0ED16B;">
-                {{item.usechargetotalcount-item.fusechargetotalcount}}/{{item.chargetotalcount-item.fchargetotalcount}}
-              </view>
-            </view>
-            <view class="hor" style="align-items: center;;margin-left: 60rpx;">
-              <view class="text_address">快充</view>
-              <view class="item_title" style="margin-left: 20rpx;color: #007d65;">
-                {{item.fusechargetotalcount}}/{{item.fchargetotalcount}}
-              </view>
-            </view>
+            <view wx:else="" class="text_address" style="margin-top: 12rpx;">非合作停车场，数据更新中...</view>
           </view>
         </view>
         <view class="line_horizontal" style="margin-top: 32rpx;margin-bottom: 14rpx;"></view>

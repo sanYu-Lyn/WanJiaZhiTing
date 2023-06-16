@@ -1,7 +1,7 @@
 <!--pages/charge_list/charge_list.wxml-->
 <view class="root">
 
-  <view class="item_container" bindtap="jumpChargeDeviceDetail" data-index="{{index}}">
+  <view class="item_container" data-index="{{index}}">
     <view class="hor" style="width: 100%; justify-content:space-between;align-items: flex-end;">
       <view>
         <view class="item_title">{{device.devicename}}</view>

@@ -14,7 +14,7 @@ Page({
     parkLat: 0,
     parkLng: 0,
     makers: [],
-    monthCard: null
+    monthCard: null,
   },
 
   /**
@@ -30,7 +30,9 @@ Page({
       lng: getApp().globalData.longitude,
       makers: this.createpParkingMaker(parking)
     })
-    this.parkingRule()
+    if (this.data.parking.isself) {
+      this.parkingRule()
+    }
   },
 
   parkingRule: function () {
@@ -91,12 +93,29 @@ Page({
   },
 
   onDeviceTap: function (e) {
-    console.log(this.data.parking)
-    let p = JSON.stringify(this.data.parking)
+    if (getApp().globalData.userInfo) {
+      let p = JSON.stringify(this.data.parking)
+      wx.navigateTo({
+        url: '../charge_list/charge_list?parking=' + p,
+      })
+    } else {
+      wx.navigateTo({
+        url: '../base_login/base_login',
+      })
+    }
+  },
 
-    wx.navigateTo({
-      url: '../charge_list/charge_list?parking=' + p,
-    })
+  onMotoTap: function (e) {
+    if (getApp().globalData.userInfo) {
+      let p = JSON.stringify(this.data.parking)
+      wx.navigateTo({
+        url: '../charge_moto/charge_moto?parking=' + p,
+      })
+    } else {
+      wx.navigateTo({
+        url: '../base_login/base_login',
+      })
+    }
   },
 
   onParkingIn: function (params) {

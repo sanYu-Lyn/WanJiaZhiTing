@@ -93,8 +93,8 @@ Page({
       return
     }
 
-    pay.scan_out(
-      'dz-45-1', this.data.order.cardno, this.data.payType,
+    pay.pay_out(
+      this.data.order.lsid,
       () => {
         wx.showLoading()
       },

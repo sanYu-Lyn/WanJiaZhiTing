@@ -7,62 +7,100 @@ Page({
    * 页面的初始数据
    */
   data: {
-    'tab_index': 1,
-    'noPayOders': [],
-    'noPayLoadAll': false,
-    'noPayPageNo': 0,
-    'paidOrders': [],
-    'paidLoadAll': false,
-    'paidPageNo': 0
+    tab_display: 1, // 0 both 1 未支付 2 已支付
+    tab_index: 0,
+    margin: 0,
+
+    doneOrders: [],
+    donePageNum: 0,
+
+    waitOrders: [],
+    waitPageNum: 0,
+  },
+
+  onLoad(option) {
+    var display = 2
+    if (option.display) {
+      display = option.display
+    }
+    if (display == 0) {
+      this.setData({
+        tab_index: 0,
+        tab_display: display,
+        margin: 120
+      })
+    } else if (display == 1) {
+      this.setData({
+        tab_index: 0,
+        tab_display: display,
+        margin: 0
+      })
+    } else {
+      this.setData({
+        tab_index: 1,
+        tab_display: display,
+        margin: 0
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function (options) {
     // this.requestNoPayOrders(true);
-    this.requestPaidOrders(true);
+    this.data.waitOrders = []
+    this.data.doneOrders = []
+    if (this.data.tab_display == 0 || this.data.tab_display == 2) {
+      this.requestPaidOrders();
+    }
+    if (this.data.tab_display == 0 || this.data.tab_display == 1) {
+      this.requestWaitOrders()
+    }
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    if (this.data.tab_index == 0) {
-      this.requestNoPayOrders(true);
-    } else {
-      this.requestPaidOrders(true);
-    }
+    this.requestPaidOrders(true);
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (this.data.tab_index == 0) {
-      if (!this.data.noPayLoadAll)
-        this.requestNoPayOrders(false);
-    } else {
-      if (!this.data.paidLoadAll)
-        this.requestPaidOrders(false);
+    if (this.tab_index == 1) {
+      this.requestPaidOrders(false);
     }
   },
 
-  onTabClick: function (e) {
+  onTabClick(e) {
     this.setData({
-      'tab_index': e.target.dataset.index
-    })
-  },
-
-  onPayClick: function (e) {
-    var order = this.data.noPayOders[e.currentTarget.dataset.index]
-    wx.navigateTo({
-      url: '../fee_pay/fee_pay?order=' + JSON.stringify(order),
+      tab_index: e.target.dataset.index
     })
   },
 
   onPaidClick: function (e) {
-    var order = this.data.paidOrders[e.currentTarget.dataset.index]
+    // var order = this.data.doneOrders[e.currentTarget.dataset.index]
+    // wx.navigateTo({
+    //   url: '../fee_pay/fee_pay?order=' + JSON.stringify(order),
+    // })
+  },
+
+  onWaitClick: function (e) {
+    var order = this.data.waitOrders[e.currentTarget.dataset.index]
+    console.log(order)
+    order = {
+      amt: order.amt,
+      cardno: order.carno,
+      intime: order.intime,
+      parktime: order.parktime,
+      parkName: order.parkname,
+      parkid: order.parkid,
+      status: 'needToPay'
+    }
+    console.log(order)
     wx.navigateTo({
       url: '../fee_pay/fee_pay?order=' + JSON.stringify(order),
     })
@@ -71,64 +109,31 @@ Page({
   /**
    * 查询已经支付的订单
    */
-  requestPaidOrders: function (isRefresh) {
-    var pageNumber = this.data.paidPageNo;
-    if (isRefresh) {
-      pageNumber = 0;
-    }
-    pageNumber++;
-
-    http.parkOrderPaid(pageNumber,
+  requestPaidOrders: function () {
+    const that = this
+    http.parkOrderPaid(this.data.donePageNum + 1,
       () => {},
       res => {
-        let data = this.data.paidOrders;
-        if (isRefresh) {
-          if (res.data) data = res.data
-        } else {
-          data = data.concat(res.data)
-        }
-
         this.setData({
-          'paidOrders': data,
-          'paidLoadAll':true,//  data.length >= res.data.totalElement,
-          'paidPageNo': pageNumber
+          doneOrders: this.data.doneOrders.concat(res.data),
+          donePageNum: that.data.donePageNum++
         })
-        wx.stopPullDownRefresh()
       },
-      res => {
-        wx.stopPullDownRefresh()
-      })
+      res => {})
   },
 
   /**
-   * 查询未支付的停车订单
+   * 查询未支付的订单
    */
-  requestNoPayOrders: function (isRefresh) {
-    var pageNumber = this.data.noPayPageNo;
-    if (isRefresh) {
-      pageNumber = 0;
-    }
-    pageNumber++;
-
-    http.parkOrderNoPay('鄂A88888', pageNumber,
-      () => {},
-      res => {
-        let data = this.data.noPayOders;
-        if (isRefresh) {
-          data = res.data.content
-        } else {
-          data = data.concat(res.data.content)
-        }
-
-        this.setData({
-          'noPayOders': data,
-          'noPayLoadAll': data.length >= res.data.totalElement,
-          'noPayPageNo': pageNumber
-        })
-        wx.stopPullDownRefresh()
-      },
-      res => {
-        wx.stopPullDownRefresh()
-      })
-  }
+  requestWaitOrders: function () {
+    var that = this
+    // http.parkOrderWait('京E344444',
+    //   () => {},
+    //   res => {
+    //     that.setData({
+    //       waitOrders: that.data.waitOrders.concat(res.data)
+    //     })
+    //   },
+    //   res => {})
+  },
 })

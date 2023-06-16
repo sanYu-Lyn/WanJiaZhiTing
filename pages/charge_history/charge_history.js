@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    datas: []
+    bills: [],
+    pageNum: 1
   },
 
   /**
@@ -56,16 +57,17 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-
+    this.data.pageNum++
+    this.requestHistory()
   },
 
   requestHistory() {
-    http.chargeHistory(
+    http.chargeHistory(this.data.pageNum,
       () => wx.showLoading(),
       res => {
         wx.hideLoading()
         this.setData({
-          datas: res.data.ls
+          bills: this.data.bills.concat(res.data.ls),
         })
       },
       res => wx.hideLoading()
@@ -75,6 +77,7 @@ Page({
   onChargeClick(e) {
     var histoty = this.data.datas[e.currentTarget.dataset.index]
     if (histoty.status == 0) {
+      histoty.isMoto = false
       wx.navigateTo({
         url: '../charge_pay/charge_pay?ls=' + JSON.stringify(histoty),
       })

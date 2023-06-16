@@ -122,3 +122,19 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.count {
+  border-radius: 40rpx;
+  padding-left: 3rpx;
+  padding-right: 3rpx;
+  min-width: 28rpx;
+  font-size: 18rpx;
+  font-family: Microsoft YaHei;
+  font-weight: 900;
+  color: white;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}

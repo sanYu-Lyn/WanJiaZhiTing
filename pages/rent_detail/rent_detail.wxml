@@ -6,7 +6,7 @@
   <view class=" content">
     <view class="title">{{parking.parkname}}</view>
     <view class="address">{{parking.p}}{{parking.c}}{{parking.q}}{{parking.addres}}</view>
-    <view class="detail" wx:if="{{true}}">
+    <view class="detail" wx:if="{{parking.isself}}">
       <text style="font-weight:400;color:#333333" wx:if="{{parking}}">{{parking.distance}}</text>km距您
       <block wx:if="{{parking.id}}">
         <text style="font-weight:400;color:#6EC7FF;margin-left:8rpx">{{parking.totalcount-parking.usecount}}</text>个空余车位
@@ -21,19 +21,19 @@
     </view>
   </view>
 
-  <view class="rent_container" style="height: 120rpx;">
+  <view wx:if="{{parking.isself}}" class="rent_container" style="height: 120rpx;">
     <view style="display: flex;flex-direction: row; align-items: center;">
       <view class="rent_item_title">充电终端</view>
       <view class="charge_device" hover-class="hover_def" bindtap="onDeviceTap">
         电车慢充{{parking.chargetotalcount-parking.usechargetotalcount}}个
       </view>
-      <view class="charge_device" hover-class="hover_def">
+      <view class="charge_device" hover-class="hover_def" bindtap="onMotoTap" wx:if="{{parking.motorcharge=='Y'}}">
         二轮充电
       </view>
     </view>
   </view>
 
-  <view class="rent_container" hover-class="hover_def" bindtap="onParkingIn">
+  <!-- <view class="rent_container" hover-class="hover_def" bindtap="onParkingIn">
     <view class="rent_item_title">进场</view>
     <view class="rent_item_container">
       <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" />
@@ -44,7 +44,7 @@
     <view class="rent_item_container">
       <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit" />
     </view>
-  </view>
+  </view> -->
 
   <view class="standard_container" wx:if="{{monthCard!=null}}">
     <view class="standard_title">参考收费信息</view>
@@ -59,7 +59,7 @@
     </block>
   </view>
 
-  <view class="bottom_container">
+  <view class="bottom_container" wx:if="{{parking.isself}}">
     <view class="bottom_go" hover-class="hover_def" bindtap="jumpApply">租车位</view>
   </view>
 

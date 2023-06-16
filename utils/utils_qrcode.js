@@ -13,7 +13,7 @@ const doTask = function () {
   var to = getApp().globalData.task.to
   var id = getApp().globalData.task.id
 
-  console.log('to = %s id = %s', to, id)
+  console.log('----------->to = %s id = %s', to, id)
 
   if (to == 'in') {
     wx.navigateTo({
@@ -23,7 +23,7 @@ const doTask = function () {
   }
 
   if (getApp().globalData.task.to === 'out') {
-    http.scanOut(id, '桂A88888',
+    http.scanOut(id,
       () => wx.showLoading(),
       res => {
         wx.hideLoading()
@@ -33,7 +33,15 @@ const doTask = function () {
           url: '../fee_pay/fee_pay?order=' + params,
         })
       },
-      res => wx.hideLoading()
+      res => {
+        wx.hideLoading()
+        toast.normal('未查询到停车订单');
+        setTimeout(() => {
+          wx.reLaunch({
+            url: '../fee_bill/fee_bill',
+          })
+        }, 2000);
+      }
     )
     return
   }
@@ -45,13 +53,50 @@ const doTask = function () {
     return
   }
 
-  if (getApp().globalData.task.to === 'chargestart') {
+  if (getApp().globalData.task.to === 'chargecar') {
     http.chargeDeviceDetail(id,
       () => wx.showLoading(),
       res => {
-        wx.redirectTo({
-          url: '../charge_start/charge_start?device=' + JSON.stringify(res.data),
-        })
+        if (res.data.status == 0) {
+          wx.redirectTo({
+            url: '../charge_start/charge_start?device=' + JSON.stringify(res.data),
+          })
+        } else if (res.data.status == 1) {
+          const to_pay = (ls, device) => {
+            wx.redirectTo({
+              url: '../charge_pay/charge_pay?ls=' + JSON.stringify(ls) +
+                '&device=' + JSON.stringify(device),
+            })
+          }
+
+          const no_pay = () => {
+            toast.normal('当前充电桩未查询到充电订单');
+            setTimeout(() => {
+              wx.redirectTo({
+                url: '../charge_moto_history/charge_moto_history',
+              })
+            }, 2000);
+          }
+
+          http.chargeCurrent(
+            () => wx.showLoading(),
+            res => {
+              if (id == res.data.deviceinfo.id) {
+                to_pay(res.data.ls, res.data.deviceinfo)
+              } else {
+                no_pay()
+              }
+            },
+            res => no_pay()
+          )
+        } else {
+          toast.normal('设备不可用');
+          setTimeout(() => {
+            wx.reLaunch({
+              url: '../pages/park_list/park_list.js',
+            })
+          }, 2000);
+        }
       },
       res => {
         wx.hideLoading()
@@ -60,33 +105,55 @@ const doTask = function () {
     return
   }
 
-  if (getApp().globalData.task.to === 'chargeend') {
-    const to_pay = (ls, device) => {
-      wx.redirectTo({
-        url: '../charge_pay/charge_pay?ls=' + JSON.stringify(ls) +
-          '&device=' + JSON.stringify(device),
-      })
-    }
-
-    const no_pay = () => {
-      toast.normal('当前充电桩未查询到充电信息');
-      setTimeout(() => {
-        wx.redirectTo({
-          url: '../charge_history/charge_history',
-        })
-      }, 2000);
-    }
-
-    http.chargeCurrent(
+  if (getApp().globalData.task.to === 'chargemoto') {
+    http.chargeMotoDeviceDetail(id,
       () => wx.showLoading(),
       res => {
-        if (id == res.data.deviceinfo.id) {
-          to_pay(res.data.ls, res.data.deviceinfo)
+        if (res.data.status == 0) {
+          wx.redirectTo({
+            url: '../charge_start/charge_start?device=' + JSON.stringify(res.data) + '&moto=true',
+          })
+        } else if (res.data.status == 1) {
+          const to_pay = (ls, device) => {
+            wx.redirectTo({
+              url: '../charge_pay/charge_pay?ls=' + JSON.stringify(ls) +
+                '&device=' + JSON.stringify(device),
+            })
+          }
+
+          const no_pay = () => {
+            toast.normal('当前充电桩未查询到充电订单');
+            setTimeout(() => {
+              wx.redirectTo({
+                url: '../charge_history/charge_history',
+              })
+            }, 2000);
+          }
+
+          http.chargeCurrentMoto(
+            () => wx.showLoading(),
+            res => {
+              if (id == res.data.deviceinfo.id) {
+                res.data.ls.isMoto = true
+                to_pay(res.data.ls, res.data.deviceinfo)
+              } else {
+                no_pay()
+              }
+            },
+            res => no_pay()
+          )
         } else {
-          no_pay()
+          toast.normal('设备不可用');
+          setTimeout(() => {
+            wx.reLaunch({
+              url: '../pages/park_list/park_list.js',
+            })
+          }, 2000);
         }
       },
-      res => no_pay()
+      res => {
+        wx.hideLoading()
+      }
     )
     return
   }

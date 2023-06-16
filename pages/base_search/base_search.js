@@ -52,18 +52,24 @@ Page({
     //     'result': res
     //   })
     // }, function (res) {})
-    http.findParkings(
-      getApp().globalData.longitude,
-      getApp().globalData.latitude,
-      key,
-      () => {},
-      res => {
-        this.setData({
-          parkings: res.data
-        })
-      },
-      res => {}
-    )
+    if (key.length > 0) {
+      http.findParkings(
+        getApp().globalData.longitude,
+        getApp().globalData.latitude,
+        key,
+        () => {},
+        res => {
+          this.setData({
+            parkings: res.data
+          })
+        },
+        res => {}
+      )
+    } else {
+      this.setData({
+        parkings: []
+      })
+    }
   },
 
   bindUserInput: function (eventhandle) {

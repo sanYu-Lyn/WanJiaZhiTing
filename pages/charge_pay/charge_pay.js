@@ -34,11 +34,19 @@ Page({
   },
 
   requestDevice() {
-    http.chargeDeviceDetail(this.data.ls.deviceid,
-      () => {},
-      res => this.setData({
-        device: res.data
-      }), res => {})
+    if (this.data.ls.isMoto) {
+      http.chargeMotoDeviceDetail(this.data.ls.deviceid,
+        () => {},
+        res => this.setData({
+          device: res.data
+        }), res => {})
+    } else {
+      http.chargeDeviceDetail(this.data.ls.deviceid,
+        () => {},
+        res => this.setData({
+          device: res.data
+        }), res => {})
+    }
   },
 
   requestDetail: function () {
@@ -55,15 +63,32 @@ Page({
     )
   },
 
-  onChargeStart: function (params) {
-    http.chargeStart(this.data.device.id, '桂A88888',
-      () => {},
-      res => {},
-      res => {}
-    )
+  onChargeEnd: function () {
+    if (this.data.ls.isMoto) {
+      this.stopMotoCharge()
+    } else {
+      this.stopCarCharge()
+    }
   },
 
-  onChargeEnd: function (params) {
+  onParkClick: function (params) {
+    var _amt = this.data.cdzls.amt
+    _amt += this.data.parkls ? this.data.parkls.amt : 0
+    this.setData({
+      payPark: !this.data.payPark,
+      amt: _amt
+    })
+  },
+
+  onPayClick: function () {
+    if (this.data.ls.isMoto) {
+      this.payMotoCharge()
+    } else {
+      this.payCarCharge()
+    }
+  },
+
+  stopCarCharge() {
     http.chargeEnd(this.data.ls.id,
       () => {},
       res => {
@@ -86,16 +111,21 @@ Page({
     )
   },
 
-  onParkClick: function (params) {
-    var _amt = this.data.cdzls.amt
-    _amt += this.data.parkls ? this.data.parkls.amt : 0
-    this.setData({
-      payPark: !this.data.payPark,
-      amt: _amt
-    })
+  stopMotoCharge() {
+    http.chargeMotoEnd(this.data.ls.id,
+      () => {},
+      res => {
+        this.setData({
+          balance: 10000,
+          cdzls: res.data.ls,
+          amt: res.data.ls.amt
+        })
+      },
+      res => {}
+    )
   },
 
-  onPayClick: function (params) {
+  payCarCharge() {
     http.chargePay(this.data.cdzls.id, this.data.payPark ? 1 : 0,
       () => wx.showLoading(),
       res => {
@@ -104,6 +134,16 @@ Page({
         })
       },
       res => {})
-  }
+  },
 
+  payMotoCharge() {
+    http.chargePayMoto(this.data.cdzls.id,
+      () => wx.showLoading(),
+      res => {
+        wx.reLaunch({
+          url: '../base_result/base_result?src=0',
+        })
+      },
+      res => {})
+  },
 })

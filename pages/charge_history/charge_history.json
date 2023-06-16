@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "充电账单",
-  "usingComponents": {}
+  "usingComponents": {
+    "empty": "../../component/empty/empty"
+  }
 }

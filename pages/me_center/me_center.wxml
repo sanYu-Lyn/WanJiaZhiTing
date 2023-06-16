@@ -19,7 +19,7 @@
   <!--未登录-->
   <view class="profile_login_container" wx:if="{{!userInfo}}" bindtap="onLoginClick">
     <view class="profile_bind">
-      <image class="profile_avatar" src="../../image/ic_avatar_def.png"></image>
+      <image class="profile_avatar" src="../../image/ic_logo.png"></image>
       <view style="margin-left:23rpx">
         <view class="profile_name">未登录</view>
       </view>
@@ -75,7 +75,10 @@
     <image class="item_image" src="../../image/ic_me_invoice.png" mode="aspectFit"></image>
     <view class="item_title">停车账单</view>
   </view>
-  <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+  <view class="item_left">
+    <view wx:if="{{count.parkcount>0}}" class="count">{{count.parkcount}}</view>
+    <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+  </view>
 </view>
 <view class="line_horizontal"></view>
 <view class="item_container" hover-class="hover_def" bindtap="onChargeHistoryClick">
@@ -83,7 +86,21 @@
     <image class="item_image" src="../../image/ic_me_invoice.png" mode="aspectFit"></image>
     <view class="item_title">充电账单</view>
   </view>
-  <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+  <view class="item_left">
+    <view wx:if="{{count.cdzcount>0}}" class="count">{{count.cdzcount}}</view>
+    <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+  </view>
+</view>
+<view class="line_horizontal"></view>
+<view class="item_container" hover-class="hover_def" bindtap="onMotoHistoryClick">
+  <view class="item_left">
+    <image class="item_image" src="../../image/ic_me_invoice.png" mode="aspectFit"></image>
+    <view class="item_title">二轮账单</view>
+  </view>
+  <view class="item_left">
+    <view wx:if="{{count.motorcount>0}}" class="count">{{count.motorcount}}</view>
+    <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+  </view>
 </view>
 <view class="line_horizontal"></view>
 <view class="item_container" hover-class="hover_def" bindtap="onCardClick">
@@ -94,7 +111,7 @@
   <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
 </view>
 <view class="line_horizontal"></view>
-<view class="item_container" hover-class="hover_def" bindtap="onFeedbackClick">
+<view class="item_container" hover-class="hover_def" bindtap="onFeedbackClick" wx:if="{{false}}">
   <view class="item_left">
     <image class="item_image" src="../../image/ic_me_feedback.png" mode="aspectFit"></image>
     <view class="item_title">意见反馈</view>
