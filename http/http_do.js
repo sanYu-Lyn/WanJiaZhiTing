@@ -537,6 +537,16 @@ const chargeAmounts = function (onStart, onSuccess, onError) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * 根据deviceno查询设备类型 motor car
+ */
+const deviceType = function (deviceno, onStart, onSuccess, onError) {
+  var params = {
+    deviceno: deviceno
+  }
+  proxy.postRequest(BASE_URL + "/info/getDevice", params, onStart, onSuccess, onError)
+}
+
+/**
  * 查看停车场充电桩详情
  */
 const chargeDeviceList = function (parkingId, onStart, onSuccess, onError) {
@@ -549,9 +559,9 @@ const chargeDeviceList = function (parkingId, onStart, onSuccess, onError) {
 /**
  * 充电桩详情
  */
-const chargeDeviceDetail = function (deviceId, onStart, onSuccess, onError) {
+const chargeDeviceDetail = function (deviceno, onStart, onSuccess, onError) {
   var params = {
-    id: deviceId
+    id: deviceno
   }
   proxy.postRequest(BASE_URL + "/info/cdzdeviceinfo", params, onStart, onSuccess, onError)
 }
@@ -559,9 +569,9 @@ const chargeDeviceDetail = function (deviceId, onStart, onSuccess, onError) {
 /**
  * 二轮充电桩详情
  */
-const chargeMotoDeviceDetail = function (deviceId, onStart, onSuccess, onError) {
+const chargeMotoDeviceDetail = function (deviceno, onStart, onSuccess, onError) {
   var params = {
-    id: deviceId
+    id: deviceno
   }
   proxy.postRequest(BASE_URL + "/info/motordeviceinfo", params, onStart, onSuccess, onError)
 }
@@ -589,23 +599,35 @@ const chargeMoto = function (parkingId, onStart, onSuccess, onError) {
 /**
  * 开始充电
  */
-const chargeStart = function (id, carno, chargetime, onStart, onSuccess, onError) {
+const chargeStart = function (id, carno, chargetime, socket, onStart, onSuccess, onError) {
   var params = {
     id: id,
     chargetime: chargetime,
-    carno: carno
+    carno: carno,
+    socket: socket
   }
   proxy.postRequest(BASE_URL + "/cdz/startCharge", params, onStart, onSuccess, onError)
 }
 
 /**
+ * 充电中插座
+ */
+const deviceSockets = function (deviceno, onStart, onSuccess, onError) {
+  var params = {
+    deviceno: deviceno
+  }
+  proxy.postRequest(BASE_URL + "/info/getDeviceSocket", params, onStart, onSuccess, onError)
+}
+
+/**
  * 开始二轮充电
  */
-const chargeMotoStart = function (id, carno, chargetime, onStart, onSuccess, onError) {
+const chargeMotoStart = function (id, carno, chargetime, socket, onStart, onSuccess, onError) {
   var params = {
     id: id,
     chargetime: chargetime,
-    carno: carno
+    carno: carno,
+    socket: socket
   }
   proxy.postRequest(BASE_URL + "/motorcd/startCharge", params, onStart, onSuccess, onError)
 }
@@ -782,6 +804,7 @@ exports.quickPaySwitch = quickPaySwitch;
 exports.chargeAmounts = chargeAmounts;
 
 exports.chargeDeviceList = chargeDeviceList;
+exports.deviceSockets = deviceSockets
 exports.chargeDeviceDetail = chargeDeviceDetail;
 exports.chargeMotoDeviceDetail = chargeMotoDeviceDetail;
 exports.chargeFee = chargeFee;
@@ -796,3 +819,4 @@ exports.chargePayMoto = chargePayMoto
 exports.chargeHistory = chargeHistory
 exports.chargeMotoHistory = chargeMotoHistory
 exports.chargeMoto = chargeMoto
+exports.deviceType = deviceType

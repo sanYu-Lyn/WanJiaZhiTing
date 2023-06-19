@@ -1,4 +1,4 @@
-<view wx:if="{{bills.length==0}}" class="root">
+<view wx:if="{{bills.length!=0}}" class="root">
   <block wx:for="{{bills}}" wx:key="unique">
     <view class="item_container" bindtap="onChargeClick" data-index="{{index}}">
       <view class="hor">

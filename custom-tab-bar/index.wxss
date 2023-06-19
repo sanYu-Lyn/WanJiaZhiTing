@@ -3,7 +3,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100rpx;
+  height: 120rpx;
   background: white;
   display: flex;
   padding-bottom: env(safe-area-inset-bottom);
@@ -21,12 +21,13 @@
 
 .tab-bar-item {
   flex: 1;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: relative;
 }
 
 .tab-bar-item image {
@@ -40,12 +41,12 @@
 
 .count {
   position: absolute;
-  right: 60rpx;
-  top: 10rpx;
+  right: 90rpx;
+  top: 12rpx;
   border-radius: 40rpx;
   padding-left: 3rpx;
   padding-right: 3rpx;
-  min-width: 22rpx;
+  min-width: 24rpx;
   font-size: 18rpx;
   font-family: Microsoft YaHei;
   font-weight: 900;

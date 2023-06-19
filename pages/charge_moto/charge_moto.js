@@ -77,6 +77,5 @@ Page({
           '&device=' + JSON.stringify(this.data.device),
       })
     }
-  }
-
+  },
 })

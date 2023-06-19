@@ -31,21 +31,21 @@
         {
           "name": "公众号扫码出场",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "q=https://park.itms8.top/qrcode?to%3Dparkout%26id%3D1",
+          "query": "scene=to%3Dparkout",
           "launchMode": "default",
           "scene": 1011
         },
         {
           "name": "开始充电",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "scene=to%3Dchargecar%26id%3D18",
+          "query": "q=https://park.itms8.top/scan_qrcode?power%3D6212800443,1",
           "launchMode": "default",
           "scene": 1011
         },
         {
           "name": "二轮充电",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "scene=to%3Dchargemoto%26id%3D350",
+          "query": "q=https://park.itms8.top/scan_qrcode?power%3D6206102826,01",
           "launchMode": "default",
           "scene": 1011
         }

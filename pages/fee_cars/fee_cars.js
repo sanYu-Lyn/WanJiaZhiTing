@@ -78,7 +78,6 @@ Page({
 
   scanOut: function () {
     var car = this.data.cars[this.data.chooseIndex]
-    console.log('carno = %s id = %s', car.carno, this.data.id)
     http.parkOut(car.carno,
       () => wx.showLoading(),
       res => {
@@ -111,7 +110,6 @@ Page({
 
   scanIn: function () {
     var car = this.data.cars[this.data.chooseIndex]
-    console.log('carno = %s id = %s', car.carno, this.data.id)
     http.scanIn(this.data.id, car.carno,
       () => wx.showLoading(),
       res => {

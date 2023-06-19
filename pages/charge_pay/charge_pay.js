@@ -35,13 +35,13 @@ Page({
 
   requestDevice() {
     if (this.data.ls.isMoto) {
-      http.chargeMotoDeviceDetail(this.data.ls.deviceid,
+      http.chargeMotoDeviceDetail(this.data.ls.deviceno,
         () => {},
         res => this.setData({
           device: res.data
         }), res => {})
     } else {
-      http.chargeDeviceDetail(this.data.ls.deviceid,
+      http.chargeDeviceDetail(this.data.ls.deviceno,
         () => {},
         res => this.setData({
           device: res.data

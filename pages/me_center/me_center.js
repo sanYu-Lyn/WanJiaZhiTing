@@ -26,7 +26,15 @@ Component({
       } else {
         this.setData({
           userInfo: null,
+          nickname: '',
           userExpandInfo: null,
+          ls: null,
+          device: null,
+          count: {
+            parkcount: 0,
+            motorcount: 0,
+            cdzcount: 0
+          }
         })
       }
     }

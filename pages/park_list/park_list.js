@@ -12,7 +12,6 @@ Component({
       qqmapsdk = new QQMapWX({
         key: 'D3NBZ-47EWW-KQ2RW-3O2DL-RU4RT-DQFKT'
       });
-      this.requestCity()
 
       this.requestLocation(
         (lat, lng) => {
@@ -21,6 +20,8 @@ Component({
           getApp().globalData.longitude = lng
 
           this.findParkings();
+
+          this.requestCity()
         }
       )
     },
@@ -32,18 +33,6 @@ Component({
         this.getTabBar().setData({
           selected: 0
         })
-      }
-
-      if (getApp().globalData.userInfo) {
-        http.getUserCount(
-          () => {},
-          res => {
-            this.setData({
-              count: res.data.parkcount + res.data.motorcount + res.data.cdzcount
-            })
-          },
-          res => {}
-        )
       }
     }
   },

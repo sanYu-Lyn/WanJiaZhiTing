@@ -2,7 +2,7 @@
 <view wx:if="{{cars&&cars.length>0}}" class="container">
 
   <view wx:if="{{to=='out'}}" class="title">请选择或确认您需要交费的车辆车牌号</view>
-  <view wx:else="" class="title">请选择您要进场的车辆</view>
+  <view wx:else="" class="title">请选择您的车辆</view>
 
   <view style="flex-direction: column; display: flex; flex: 1;">
     <view wx:for="{{cars}}" wx:key="unique" catchtap="onItemClick" data-index="{{index}}">

@@ -69,13 +69,14 @@ Page({
         this.setData({
           bills: this.data.bills.concat(res.data.ls),
         })
+        console.log(this.data.bills)
       },
       res => wx.hideLoading()
     )
   },
 
   onChargeClick(e) {
-    var histoty = this.data.datas[e.currentTarget.dataset.index]
+    var histoty = this.data.bills[e.currentTarget.dataset.index]
     if (histoty.status == 0) {
       histoty.isMoto = false
       wx.navigateTo({

@@ -14,6 +14,8 @@ page {
 .item_account {
   background: #FFFFFF;
   flex: 0;
+  margin-bottom: 120rpx;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .item_container {
@@ -73,7 +75,7 @@ page {
   color: #72777b;
 }
 
-.main-scroll{
+.main-scroll {
   position: absolute;
   left: 0;
   right: 0;

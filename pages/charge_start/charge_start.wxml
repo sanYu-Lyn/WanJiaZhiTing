@@ -1,11 +1,24 @@
 <!--pages/charge_start/charge_start.wxml-->
 
-<view>
+<view bindtap="onOutsideTap" style=" height: 100%;">
   <view class="board_container">
     <block wx:for="{{hours}}" wx:key="unique">
       <view class="{{item==hour?'month_container_selected':'month_container'}}" bindtap="onHourClick" data-index="{{index}}">{{item<0?'充满':item+"小时"}} </view>
     </block>
   </view>
+
+  <view class="hor" style="margin-top: 24rpx;" catchtap="onSocketTap">
+    <view class="spinner_title" wx:if="{{curSocket==null}}">选择充电插座</view>
+    <view class="spinner_title" wx:else="">插座{{curSocket.socket}}</view>
+    <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
+  </view>
+
+  <scroll-view class="spinner" scroll-y="true" wx:if="{{showSpinner}}">
+    <block wx:for="{{sockets}}" wx:key="unique">
+      <view class="line_horizontal"></view>
+      <view class="spinner_item" bindtap="onSocketItemTap" data-index="{{index}}">{{item.socket}} </view>
+    </block>
+  </scroll-view>
 
   <view class="hor" style="margin-top: 24rpx;" wx:if="{{amt!=null}}">
     <view class="item_title">余额 {{amt}} 元</view>

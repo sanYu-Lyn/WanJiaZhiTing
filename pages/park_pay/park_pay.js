@@ -1,11 +1,9 @@
 // pages/park_pay/park_pay.js
 import http from '../../http/http_do'
 import persistence from '../../utils/utils_persistence'
-import pay from '../../utils/utils_pay'
 import toast from '../../utils/utils_toast'
 
 Component({
-
   pageLifetimes: {
     show() {
       if (typeof this.getTabBar === 'function' && this.getTabBar()) {
@@ -13,17 +11,29 @@ Component({
           selected: 1
         })
       }
-
-      this.findBindCars();
+      console.log('user---->' + getApp().globalData.userInfo)
+      if (getApp().globalData.userInfo) {
+        this.findBindCars();
+      } else {
+        console.log('jump---->' + this.data.autoJump)
+        if (this.data.autoJump) {
+          this.setData({
+            autoJump: false
+          })
+          wx.navigateTo({
+            url: '../base_login/base_login',
+          })
+        } else {
+          wx.switchTab({
+            url: '/pages/me_center/me_center'
+          })
+          this.setData({
+            autoJump: true
+          })
+        }
+      }
     }
   },
-
-  lifetimes: {
-    ready() {
-
-    }
-  },
-
 
   /**
    * 组件的属性列表
@@ -36,7 +46,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    autoJump: true
   },
 
   /**
