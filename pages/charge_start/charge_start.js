@@ -15,7 +15,8 @@ Page({
     car: null,
     isMoto: false,
     curSocket: null,
-    showSpinner: false
+    showSpinner: false,
+    fee: []
   },
 
   onLoad: function (options) {
@@ -30,7 +31,6 @@ Page({
     }
 
     if (options.socket) {
-      console.log('---------------------->' + options.socket)
       this.setData({
         curSocket: {
           socket: options.socket
@@ -41,7 +41,7 @@ Page({
 
   onShow: function () {
     this.requestWallet()
-    this.requestSocket()
+    this.requestDevice()
   },
 
   onHourClick: function (e) {
@@ -69,14 +69,43 @@ Page({
     )
   },
 
-  requestSocket() {
-    http.deviceSockets(
-      this.data.device.deviceno,
+  requestDevice() {
+    http.deviceType(this.data.device.deviceno,
       () => {},
       res => {
+        var feeDisplay = []
+        for (var i in res.data.feeconfig) {
+          var title = ''
+          var price = ''
+          if (res.data.feeconfig[i].s) {
+            title = (res.data.feeconfig[i].s + '~' + res.data.feeconfig[i].e + '瓦')
+            price = res.data.feeconfig[i].price + '元/小时'
+          } else {
+            title = (res.data.feeconfig[i].stime + '~' + res.data.feeconfig[i].etime)
+            price = '充电费:' + res.data.feeconfig[i].price + '元/小时' + ' 服务费:' + res.data.feeconfig[i].serviceprice + '元'
+          }
+          feeDisplay.push({
+            title: title,
+            price: price
+          })
+        }
+
         this.setData({
-          sockets: res.data,
+          device: res.data.device,
+          fee: feeDisplay,
+          sockets: res.data.socketinfo ? res.data.socketinfo : []
         })
+
+        if (this.data.curSocket) {
+          for (var i in this.data.sockets) {
+            if (this.data.sockets[i].socket == this.data.curSocket.socket) {
+              this.setData({
+                curSocket: this.data.sockets[i]
+              })
+              break
+            }
+          }
+        }
       },
       res => {}
     )
@@ -95,24 +124,34 @@ Page({
   },
 
   onChargeClick: function (e) {
-    if (this.data.curSocket == null) {
-      toast.normal('请选择您要充电的插座')
-      return
+    var socketId = this.data.curSocket ? this.data.curSocket : 1
+    var name = this.data.isMoto ? '插座' : '充电枪'
+    if (this.data.sockets.length > 0) {
+      if (this.data.curSocket == null) {
+        toast.normal('请选择您要充电的' + name)
+        return
+      }
+
+      if (this.data.curSocket.status && this.data.curSocket.status != 0) {
+        toast.normal('当前' + name + '不可用，请尝试使用其他插座')
+        return
+      }
     }
+
     if (this.data.isMoto) {
-      this.doMotoCharge()
+      this.doMotoCharge(socketId)
     } else {
-      this.doCarCharge()
+      this.doCarCharge(socketId)
     }
   },
 
-  doCarCharge() {
+  doCarCharge(socketId) {
     const carno = this.data.car == null ? "" : this.data.car.carno
     http.chargeStart(
       this.data.device.id,
       carno,
       this.data.hour == -1 ? 0 : this.data.hour * 60,
-      this.data.curSocket.socket,
+      socketId,
       () => wx.showLoading(),
       res => {
         wx.reLaunch({

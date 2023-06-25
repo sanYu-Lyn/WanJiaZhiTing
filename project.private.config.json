@@ -45,7 +45,7 @@
         {
           "name": "二轮充电",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "q=https://park.itms8.top/scan_qrcode?power%3D6206102826,01",
+          "query": "q=https://park.itms8.top/scan_qrcode?power%3D6206401388,3",
           "launchMode": "default",
           "scene": 1011
         }

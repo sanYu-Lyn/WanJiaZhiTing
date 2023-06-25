@@ -155,6 +155,11 @@ Component({
     },
 
     requestCurrentCharge: function () {
+      this.setData({
+        ls: null,
+        device: null
+      })
+
       http.chargeCurrent(
           () => {},
           res => {

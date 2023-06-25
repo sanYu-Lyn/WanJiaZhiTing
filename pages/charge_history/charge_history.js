@@ -63,13 +63,16 @@ Page({
 
   requestHistory() {
     http.chargeHistory(this.data.pageNum,
-      () => wx.showLoading(),
+      () => {
+        if (this.data.pageNum == 1) {
+          wx.showLoading()
+        }
+      },
       res => {
         wx.hideLoading()
         this.setData({
           bills: this.data.bills.concat(res.data.ls),
         })
-        console.log(this.data.bills)
       },
       res => wx.hideLoading()
     )

@@ -59,17 +59,17 @@ const doTask = function () {
     return
   }
 
-  requestDeviceType(deviceno, socket)
+  requestDevice(deviceno, socket)
 }
 
-const requestDeviceType = function (deviceno, socket) {
+const requestDevice = function (deviceno, socket) {
   http.deviceType(deviceno,
     () => wx.showLoading(),
     res => {
       if (res.data.type === 'car') {
-        chargeCar(deviceno, socket)
+        chargeCar(res.data.device, socket)
       } else if (res.data.type === 'motor') {
-        chargeMoto(deviceno, socket)
+        chargeMoto(res.data.device, socket)
       } else {
         wx.reLaunch({
           url: '../pages/park_list/park_list',
@@ -80,111 +80,93 @@ const requestDeviceType = function (deviceno, socket) {
   )
 }
 
-const chargeCar = function (deviceno, socket) {
-  http.chargeDeviceDetail(deviceno,
-    () => {},
-    res => {
-      if (res.data.status == 0) {
-        wx.redirectTo({
-          url: '../charge_start/charge_start?device=' + JSON.stringify(res.data) +
-            '&socket=' + socket
-        })
-      } else if (res.data.status == 1) {
-        const to_pay = (ls, device) => {
-          wx.redirectTo({
-            url: '../charge_pay/charge_pay?ls=' + JSON.stringify(ls) +
-              '&device=' + JSON.stringify(device) +
-              '&socket='
-          })
-        }
-
-        const no_pay = () => {
-          toast.normal('当前充电桩未查询到充电订单');
-          setTimeout(() => {
-            wx.redirectTo({
-              url: '../charge_history/charge_history',
-            })
-          }, 2000);
-        }
-
-        http.chargeCurrent(
-          () => wx.showLoading(),
-          res => {
-            if (deviceno == res.data.deviceinfo.deviceno) {
-              to_pay(res.data.ls, res.data.deviceinfo)
-            } else {
-              no_pay()
-            }
-          },
-          res => no_pay()
-        )
-      } else {
-        toast.normal('设备不可用');
-        setTimeout(() => {
-          wx.reLaunch({
-            url: '../pages/park_list/park_list',
-          })
-        }, 2000);
-      }
-    },
-    res => {
-      wx.hideLoading()
+const chargeCar = function (device, socket) {
+  if (device.status == 0) {
+    wx.redirectTo({
+      url: '../charge_start/charge_start?device=' + JSON.stringify(device) +
+        '&socket=' + socket
+    })
+  } else if (device.status == 1) {
+    const to_pay = (ls, device) => {
+      wx.redirectTo({
+        url: '../charge_pay/charge_pay?ls=' + JSON.stringify(ls) +
+          '&device=' + JSON.stringify(device)
+      })
     }
-  )
-  return
+
+    const no_pay = () => {
+      toast.normal('当前充电桩未查询到充电订单');
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '../charge_history/charge_history',
+        })
+      }, 2000);
+    }
+
+    http.chargeCurrent(
+      () => wx.showLoading(),
+      res => {
+        if (device.deviceno == res.data.deviceinfo.deviceno) {
+          to_pay(res.data.ls, res.data.deviceinfo)
+        } else {
+          no_pay()
+        }
+      },
+      res => no_pay()
+    )
+  } else {
+    toast.normal('设备不可用');
+    setTimeout(() => {
+      wx.reLaunch({
+        url: '../pages/park_list/park_list',
+      })
+    }, 2000);
+  }
 }
 
-const chargeMoto = function (deviceno, socket) {
-  http.chargeMotoDeviceDetail(deviceno,
-    () => wx.showLoading(),
-    res => {
-      if (res.data.status == 0) {
-        wx.redirectTo({
-          url: '../charge_start/charge_start?device=' + JSON.stringify(res.data) +
-            '&moto=true' + '&socket=' + socket
-        })
-      } else if (res.data.status == 1) {
-        const to_pay = (ls, device) => {
-          wx.redirectTo({
-            url: '../charge_pay/charge_pay?ls=' + JSON.stringify(ls) +
-              '&device=' + JSON.stringify(device),
-          })
-        }
-
-        const no_pay = () => {
-          toast.normal('当前充电桩未查询到充电订单');
-          setTimeout(() => {
-            wx.redirectTo({
-              url: '../charge_moto_history/charge_moto_history',
-            })
-          }, 2000);
-        }
-
-        http.chargeCurrentMoto(
-          () => wx.showLoading(),
-          res => {
-            if (deviceno == res.data.deviceinfo.deviceno) {
-              res.data.ls.isMoto = true
-              to_pay(res.data.ls, res.data.deviceinfo)
-            } else {
-              no_pay()
-            }
-          },
-          res => no_pay()
-        )
-      } else {
-        toast.normal('设备不可用');
-        setTimeout(() => {
-          wx.reLaunch({
-            url: '../pages/park_list/park_list',
-          })
-        }, 2000);
-      }
-    },
-    res => {
-      wx.hideLoading()
+const chargeMoto = function (device, socket) {
+  if (device.status == 0) {
+    wx.redirectTo({
+      url: '../charge_start/charge_start?device=' + JSON.stringify(device) +
+        '&moto=true' + '&socket=' + socket
+    })
+  } else if (res.data.status == 1) {
+    const to_pay = (ls, device) => {
+      wx.redirectTo({
+        url: '../charge_pay/charge_pay?ls=' + JSON.stringify(ls) +
+          '&device=' + JSON.stringify(device),
+      })
     }
-  )
+
+    const no_pay = () => {
+      toast.normal('当前充电桩未查询到充电订单');
+      setTimeout(() => {
+        wx.redirectTo({
+          url: '../charge_moto_history/charge_moto_history',
+        })
+      }, 2000);
+    }
+
+    http.chargeCurrentMoto(
+      () => wx.showLoading(),
+      res => {
+        if (deviceno == res.data.deviceinfo.deviceno) {
+          res.data.ls.isMoto = true
+          to_pay(res.data.ls, res.data.deviceinfo)
+        } else {
+          no_pay()
+        }
+      },
+      res => no_pay()
+    )
+  } else {
+    toast.normal('设备不可用');
+    setTimeout(() => {
+      wx.reLaunch({
+        url: '../pages/park_list/park_list',
+      })
+    }, 2000);
+  }
 }
 
 /**

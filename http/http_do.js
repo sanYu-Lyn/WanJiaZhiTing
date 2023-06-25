@@ -561,7 +561,7 @@ const chargeDeviceList = function (parkingId, onStart, onSuccess, onError) {
  */
 const chargeDeviceDetail = function (deviceno, onStart, onSuccess, onError) {
   var params = {
-    id: deviceno
+    deviceno: deviceno
   }
   proxy.postRequest(BASE_URL + "/info/cdzdeviceinfo", params, onStart, onSuccess, onError)
 }
@@ -571,7 +571,7 @@ const chargeDeviceDetail = function (deviceno, onStart, onSuccess, onError) {
  */
 const chargeMotoDeviceDetail = function (deviceno, onStart, onSuccess, onError) {
   var params = {
-    id: deviceno
+    deviceno: deviceno
   }
   proxy.postRequest(BASE_URL + "/info/motordeviceinfo", params, onStart, onSuccess, onError)
 }

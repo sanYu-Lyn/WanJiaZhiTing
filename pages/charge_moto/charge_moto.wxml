@@ -1,5 +1,5 @@
 <view>
-  <view class="text_title">请选择插座号</view>
+  <view class="text_title">请选择设备号</view>
   <grid-view type='aligned' cross-axis-count='8' main-axis-gap='20rpx' cross-axis-gap='20rpx' class="grid">
     <view wx:key="unique" wx:for="{{devices}}" data-index="{{index}}" bindtap="onDeviceTap">
       <view wx:if="{{item.status == 0}}" class="item_free">{{item.devicename}}</view>
@@ -24,7 +24,5 @@
       <view class="text_desc">不可用</view>
     </view>
   </view>
-
-  <view class=".hor" style="color: gray;font-size: 24rpx;">每小时单价：{{parking.cdprice}}元</view>
 
 </view>

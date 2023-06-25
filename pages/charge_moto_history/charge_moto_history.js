@@ -64,7 +64,11 @@ Page({
   requestHistory() {
     http.chargeMotoHistory(
       this.data.pageNum,
-      () => wx.showLoading(),
+      () => {
+        if (this.data.pageNum == 1) {
+          wx.showLoading()
+        }
+      },
       res => {
         wx.hideLoading()
         this.setData({

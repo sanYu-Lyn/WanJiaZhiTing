@@ -7,16 +7,25 @@
     </block>
   </view>
 
-  <view class="hor" style="margin-top: 24rpx;" catchtap="onSocketTap">
-    <view class="spinner_title" wx:if="{{curSocket==null}}">选择充电插座</view>
-    <view class="spinner_title" wx:else="">插座{{curSocket.socket}}</view>
+  <view class="hor" style="margin-top: 24rpx;" catchtap="onSocketTap" wx:if="{{sockets.length>0}}">
+    <view class="spinner_title" wx:if="{{curSocket==null}}">
+      {{isMoto?'选择充电插座':'请选择充电枪'}}
+    </view>
+    <view class="spinner_title" wx:else="">
+      {{isMoto?curSocket.socket+'插座':device.devicename+'桩'+curSocket.socket+'枪'}}
+    </view>
     <image class="icon_more" src="../../image/ic_public_more.png" mode="aspectFit"></image>
   </view>
 
   <scroll-view class="spinner" scroll-y="true" wx:if="{{showSpinner}}">
     <block wx:for="{{sockets}}" wx:key="unique">
       <view class="line_horizontal"></view>
-      <view class="spinner_item" bindtap="onSocketItemTap" data-index="{{index}}">{{item.socket}} </view>
+      <view class="spinner_item" bindtap="onSocketItemTap" data-index="{{index}}" wx:if="{{isMoto}}">
+        {{item.socket}}插座
+      </view>
+      <view class="spinner_item" bindtap="onSocketItemTap" data-index="{{index}}" wx:else="">
+        {{item.socket}}枪
+      </view>
     </block>
   </scroll-view>
 
@@ -41,6 +50,14 @@
   <view style="display: flex;flex-direction: row; margin-left: 30rpx;margin-right: 30rpx;margin-top: 12rpx;" wx:if="{{!isMoto}}">
     <image class="title_image" src="../../image/ic_public_question.png"></image>
     <view class="text_tips">提示：输入充电车牌号可以减免此次在本停车场的部分临时停车费用，请准确填写充电车牌号</view>
+  </view>
+
+  <view class="fee">
+    <view wx:for="{{fee}}" wx:key="unique" class="fee_container">
+      <view class="text_fee" style="justify-content: flex-end;min-width:{{isMoto?'200':'0'}};">{{item.title}}</view>
+      <view style="width: 40rpx;"></view>
+      <view class="text_fee" style="justify-content: flex-start;min-width:{{isMoto?'200':'0'}};">{{item.price}}</view>
+    </view>
   </view>
 
 
