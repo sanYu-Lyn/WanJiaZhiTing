@@ -35,6 +35,14 @@ Page({
     }
   },
 
+  onShareAppMessage: function () {
+
+  },
+
+  onShareTimeline: function () {
+
+  },
+
   parkingRule: function () {
     http.rentRule(this.data.parking.id, () => {}, res => {
       this.setData({

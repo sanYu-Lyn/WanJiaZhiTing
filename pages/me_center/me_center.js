@@ -54,6 +54,14 @@ Component({
   },
 
   methods: {
+    
+    onShareAppMessage: function () {
+
+    },
+
+    onShareTimeline: function () {
+
+    },
     /**
      * 用户信息
      */

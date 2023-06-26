@@ -78,6 +78,14 @@ Component({
         function (res) {})
     },
 
+    onShareAppMessage: function () {
+
+    },
+
+    onShareTimeline: function () {
+
+    },
+
     jumpParkingDetail: function (e) {
       var parking = this.data.parkings[e.currentTarget.dataset.index]
       wx.navigateTo({

@@ -10,13 +10,22 @@ const doTask = function () {
     return
   }
 
+  if (getApp().globalData.task.to === 'parkout') {
+    wx.redirectTo({
+      url: '../fee_cars/fee_cars?to=parkout',
+    })
+    return
+  }
+
   var to = getApp().globalData.task.to
   var deviceno = getApp().globalData.task.id
-  var socket = '1'
+  var socket = {
+    socket: '1'
+  }
   if (getApp().globalData.task.id.indexOf(',') != -1) {
     const arr = deviceno.split(',')
     deviceno = arr[0]
-    socket = arr[1]
+    socket.socket = arr[1]
   }
 
   console.log('----------->to = %s deviceno = %s', to, deviceno)
@@ -52,13 +61,6 @@ const doTask = function () {
     return
   }
 
-  if (getApp().globalData.task.to === 'parkout') {
-    wx.redirectTo({
-      url: '../fee_cars/fee_cars?to=parkout',
-    })
-    return
-  }
-
   requestDevice(deviceno, socket)
 }
 
@@ -84,7 +86,7 @@ const chargeCar = function (device, socket) {
   if (device.status == 0) {
     wx.redirectTo({
       url: '../charge_start/charge_start?device=' + JSON.stringify(device) +
-        '&socket=' + socket
+        '&socket=' + JSON.stringify(socket)
     })
   } else if (device.status == 1) {
     const to_pay = (ls, device) => {
@@ -128,7 +130,7 @@ const chargeMoto = function (device, socket) {
   if (device.status == 0) {
     wx.redirectTo({
       url: '../charge_start/charge_start?device=' + JSON.stringify(device) +
-        '&moto=true' + '&socket=' + socket
+        '&moto=true' + '&socket=' + JSON.stringify(socket)
     })
   } else if (res.data.status == 1) {
     const to_pay = (ls, device) => {

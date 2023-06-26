@@ -24,6 +24,14 @@ Page({
     this.findBindCars();
   },
 
+  onShareAppMessage: function () {
+
+  },
+
+  onShareTimeline: function () {
+
+  },
+
   findBindCars: function () {
     http.findBindCars(() => {
         var cars = persistence.getCarLicenses();

@@ -20,28 +20,25 @@ Page({
   },
 
   onLoad: function (options) {
+    console.log(options.socket)
     this.setData({
-      device: JSON.parse(options.device)
+      device: JSON.parse(options.device),
+      curSocket: options.socket ? JSON.parse(options.socket) : null,
+      isMoto: options.moto ? options.moto : false
     })
-
-    if (options.moto) {
-      this.setData({
-        isMoto: true
-      })
-    }
-
-    if (options.socket) {
-      this.setData({
-        curSocket: {
-          socket: options.socket
-        }
-      })
-    }
   },
 
   onShow: function () {
     this.requestWallet()
     this.requestDevice()
+  },
+
+  onShareAppMessage: function () {
+
+  },
+
+  onShareTimeline: function () {
+
   },
 
   onHourClick: function (e) {

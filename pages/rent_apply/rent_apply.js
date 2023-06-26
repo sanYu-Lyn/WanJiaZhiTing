@@ -97,6 +97,14 @@ Page({
     // this.loadGroundType();
   },
 
+  onShareAppMessage: function () {
+
+  },
+
+  onShareTimeline: function () {
+
+  },
+
   /**
    * 协议点击
    */

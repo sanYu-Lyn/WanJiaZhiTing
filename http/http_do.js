@@ -609,6 +609,13 @@ const chargeStart = function (id, carno, chargetime, socket, onStart, onSuccess,
   proxy.postRequest(BASE_URL + "/cdz/startCharge", params, onStart, onSuccess, onError)
 }
 
+const parkingSockets = function (parkid, onStart, onSuccess, onError) {
+  var params = {
+    parkid: parkid
+  }
+  proxy.postRequest(BASE_URL + "/info/getMortorListByParkid", params, onStart, onSuccess, onError)
+}
+
 /**
  * 充电中插座
  */
@@ -804,6 +811,7 @@ exports.quickPaySwitch = quickPaySwitch;
 exports.chargeAmounts = chargeAmounts;
 
 exports.chargeDeviceList = chargeDeviceList;
+exports.parkingSockets = parkingSockets
 exports.deviceSockets = deviceSockets
 exports.chargeDeviceDetail = chargeDeviceDetail;
 exports.chargeMotoDeviceDetail = chargeMotoDeviceDetail;

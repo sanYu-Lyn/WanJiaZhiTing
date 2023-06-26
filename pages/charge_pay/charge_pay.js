@@ -33,6 +33,14 @@ Page({
     }
   },
 
+  onShareAppMessage: function () {
+
+  },
+
+  onShareTimeline: function () {
+
+  },
+
   requestDevice() {
     if (this.data.ls.isMoto) {
       http.chargeMotoDeviceDetail(this.data.ls.deviceno,

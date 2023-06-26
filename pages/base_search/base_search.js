@@ -12,6 +12,14 @@ Page({
     'key': '',
   },
 
+  onShareAppMessage: function () {
+
+  },
+
+  onShareTimeline: function () {
+
+  },
+
   /**
    * 监听用户的输入内容，进项推荐查询
    * @param {输入内容} e 

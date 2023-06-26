@@ -9,20 +9,15 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    if (options.scene) {
-      options.scene = 'https://xxx.xxx.xxx/qrcode?' + options.scene
-      var to = util.getUrlParam(decodeURIComponent(options.scene), 'to');
-      var id = util.getUrlParam(decodeURIComponent(options.scene), 'id');
-      if (to) getApp().globalData.task = {
-        to: to,
-        id: id
-      }
-    }
-
     if (options.q) {
-      var to = 'chargecar';
-      var id = util.getUrlParam(decodeURIComponent(options.q), 'power');
-      console.log(id)
+      var uri = decodeURIComponent(options.q)
+      var to = util.getUrlParam(uri, 'to');
+      var id = util.getUrlParam(uri, 'id');
+      var power = util.getUrlParam(uri, 'power');
+      if (power) {
+        to = 'charge'
+        id = power
+      }
       if (to) getApp().globalData.task = {
         to: to,
         id: id

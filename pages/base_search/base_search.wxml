@@ -41,7 +41,7 @@
                 </view>
               </view>
             </view>
-            <view wx:else="" class="text_address" style="margin-top: 12rpx;">非合作停车场，数据更新中...</view>
+            <view wx:else="" class="text_address" style="margin-top: 12rpx;">非合作停车场</view>
           </view>
         </view>
         <view class="line_horizontal" style="margin-top: 32rpx;margin-bottom: 14rpx;"></view>

@@ -92,6 +92,5 @@
   "sitemapLocation": "sitemap.json",
   "entryPagePath": "pages/park_list/park_list",
   "themeLocation": "theme/theme.json",
-  "lazyCodeLoading": "requiredComponents",
   "debug": true
 }

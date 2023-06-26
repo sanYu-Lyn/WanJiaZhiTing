@@ -1,10 +1,10 @@
 <view>
   <view class="text_title">请选择设备号</view>
   <grid-view type='aligned' cross-axis-count='8' main-axis-gap='20rpx' cross-axis-gap='20rpx' class="grid">
-    <view wx:key="unique" wx:for="{{devices}}" data-index="{{index}}" bindtap="onDeviceTap">
-      <view wx:if="{{item.status == 0}}" class="item_free">{{item.devicename}}</view>
-      <view wx:elif="{{item.status == 1}}" class="item_charge">{{item.devicename}}</view>
-      <view wx:else="" class="item_disable">{{item.devicename}}</view>
+    <view wx:key="unique" wx:for="{{sockets}}" data-index="{{index}}" bindtap="onDeviceTap">
+      <view wx:if="{{item.status == 0}}" class="item_free">{{item.socket}}</view>
+      <view wx:elif="{{item.status == 1}}" class="item_charge">{{item.socket}}</view>
+      <view wx:else="" class="item_disable">{{item.socket}}</view>
     </view>
   </grid-view>
 
@@ -22,6 +22,14 @@
     <view style="display: flex;flex-direction: row;align-items: center;margin-left: 32rpx;">
       <view class="rect_disable"></view>
       <view class="text_desc">不可用</view>
+    </view>
+  </view>
+
+  <view class="fee">
+    <view wx:for="{{fee}}" wx:key="unique" class="fee_container">
+      <view class="text_fee" style="justify-content: flex-end;">{{item.title}}</view>
+      <view style="width: 40rpx;"></view>
+      <view class="text_fee">{{item.price}}</view>
     </view>
   </view>
 

@@ -21,6 +21,14 @@ Page({
     this.reuquestChargeDeviceList()
   },
 
+  onShareAppMessage: function () {
+
+  },
+
+  onShareTimeline: function () {
+
+  },
+
   reuquestChargeDeviceList: function () {
     http.chargeDeviceList(this.data.parking.id,
       () => wx.showLoading(),

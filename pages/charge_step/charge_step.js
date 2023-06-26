@@ -33,6 +33,14 @@ Page({
     }
   },
 
+  onShareAppMessage: function () {
+
+  },
+
+  onShareTimeline: function () {
+
+  },
+
   requestDetail: function () {
     http.chargeFee(
       this.data.device.id,

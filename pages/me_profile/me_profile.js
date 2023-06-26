@@ -21,6 +21,14 @@ Page({
     })
   },
 
+  onShareAppMessage: function () {
+
+  },
+
+  onShareTimeline: function () {
+
+  },
+
   /**
    * 退出登录
    */

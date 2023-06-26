@@ -10,14 +10,14 @@
         {
           "name": "道闸扫码出场",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "q=https://park.itms8.top/qrcode?to%3Dout%26id%3Ddz-45-1",
+          "query": "q=https://park.itms8.top/qrcode?to%3Dout%26id%3D95ae5fbc-e64c5c22",
           "launchMode": "default",
           "scene": 1011
         },
         {
           "name": "道闸扫码进场",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "q=https://park.itms8.top/qrcode?to%3Din%26id%3Didz-45-0",
+          "query": "q=https://park.itms8.top/qrcode?to%3Din%26id%3Da3734acd-2ffde51c",
           "launchMode": "default",
           "scene": 1011
         },
@@ -31,21 +31,21 @@
         {
           "name": "公众号扫码出场",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "scene=to%3Dparkout",
+          "query": "q=https://park.itms8.top/qrcode?to%3Dparkout",
           "launchMode": "default",
           "scene": 1011
         },
         {
           "name": "开始充电",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "q=https://park.itms8.top/scan_qrcode?power%3D6212800443,1",
+          "query": "q=https://park.itms8.top/zzzz?power%3D6212800443,1",
           "launchMode": "default",
           "scene": 1011
         },
         {
           "name": "二轮充电",
           "pathName": "pages/base_redirect/base_redirect",
-          "query": "q=https://park.itms8.top/scan_qrcode?power%3D6206401388,3",
+          "query": "q=https://park.itms8.top/qrcode?to%3Dcharge%26id%3D6206401388,3",
           "launchMode": "default",
           "scene": 1011
         }

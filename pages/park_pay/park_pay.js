@@ -53,6 +53,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onShareAppMessage: function () {
+
+    },
+
+    onShareTimeline: function () {
+
+    },
+
     findBindCars: function () {
       http.findBindCars(() => {
           var cars = persistence.getCarLicenses();

@@ -9,7 +9,8 @@ Page({
     parking: null,
     ls: null,
     device: null,
-    devices: null,
+    scokets: null,
+    fee: [],
     balance: null,
     amt: null,
   },
@@ -28,26 +29,33 @@ Page({
     this.requestCurrent()
   },
 
-  requestDevice() {
-    http.chargeMoto(this.data.parking.id,
-      () => {},
-      res => this.setData({
-        devices: res.data
-      }), res => {})
+  onShareAppMessage: function () {
+
   },
 
-  requestDetail: function () {
-    http.chargeFee(
-      this.data.device.id,
-      () => wx.showLoading(),
+  onShareTimeline: function () {
+
+  },
+
+  requestDevice() {
+    http.parkingSockets(this.data.parking.id,
+      () => {},
       res => {
+        var feeDisplay = []
+        for (var i in res.data.feeconfig) {
+          var title = (res.data.feeconfig[i].s + '~' + res.data.feeconfig[i].e + '瓦')
+          var price = res.data.feeconfig[i].price + '元/小时'
+          feeDisplay.push({
+            title: title,
+            price: price
+          })
+        }
         this.setData({
-          fee: res.data
+          sockets: res.data.list,
+          device: res.data.device,
+          fee: feeDisplay
         })
-        wx.hideLoading()
-      },
-      res => wx.hideLoading()
-    )
+      }, res => {})
   },
 
   requestCurrent: function () {
@@ -64,10 +72,13 @@ Page({
   },
 
   onDeviceTap(e) {
-    var device = this.data.devices[e.currentTarget.dataset.index]
-    if (device.status == 0) {
+    var socket = this.data.sockets[e.currentTarget.dataset.index]
+    if (socket.status == 0) {
       wx.navigateTo({
-        url: '../charge_start/charge_start?device=' + JSON.stringify(device) + '&moto=true',
+        url: '../charge_start/charge_start?' +
+          'device=' + JSON.stringify(this.data.device) +
+          '&socket=' + JSON.stringify(socket) +
+          '&moto=true',
       })
     } else if (this.data.ls && this.data.ls.parkid == this.data.parking.id &&
       this.data.ls.deviceid == device.id) {

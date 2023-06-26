@@ -16,10 +16,16 @@ Page({
         selected: 1
       })
     }
-
     this.findBindCars();
   },
 
+  onShareAppMessage: function () {
+
+  },
+
+  onShareTimeline: function () {
+
+  },
 
   findBindCars: function () {
     http.findBindCars(() => {
